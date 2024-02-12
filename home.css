@@ -1,0 +1,48 @@
+
+body{
+    margin: 0;
+}
+html, body{
+    height: 100%;
+}
+
+
+nav {
+
+    padding-top: 0;
+    padding-bottom: 0;
+    box-shadow: none;
+    background-color: #0c3f14;
+    border-bottom: #0c3f14 1px solid;
+    align-items: stretch;
+    height: 61px;
+
+}
+
+.page-wrap{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-wrapper{
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.login-box{
+    max-width: 600px;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    padding: 3rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+    margin-bottom: 2rem;
+}
