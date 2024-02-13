@@ -1,0 +1,1 @@
+I would like to use this folder to keep html files that are shared across the project (ie; if we use a shared html file for header/footer)
