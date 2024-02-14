@@ -23,31 +23,33 @@ class DbOperation:
             std_major TEXT NOT NULL,
             std_looking_for_job BIT,
             std_bio TEXT ,
-            FOREIGN KEY (std_Applied_job_id) REFERENCES jobs_table(jobs_ID)
             date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             date_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (std_Applied_job_id) REFERENCES jobs_table(jobs_ID)
             );
         '''
         with con as con:
             cursor = con.cursor()
             cursor.execute(query)
 
-    # adds new values to passwords table
-    def create_record(self, data, user_id, name="pass_vault"):
-        website_name = data['website_name']
-        email = data['email']
-        username = data['username']
+    # adds new values to student table when creating new account
+    def create_record(self, data, user_id, name="student_table"):
+        std_first_name = data['std_first_name']
+        std_first_name = data['std_first_name']
+        std_last_name = data['std_last_name']
+        std_email = data['std_email']
         password = data['password']
+        std_major = data['std_major']
         con = self.db_op()
         query = f'''
-               INSERT INTO {name}('user_id','website_name', 'email', 'username', 'password') 
-               VALUES(?, ?, ?, ?,?);
+               INSERT INTO {name}('user_id', 'std_first_name', 'std_last_name', 'std_email', 'password', 'std_major') 
+               VALUES(?, ?, ?, ?, ?, ?);
                '''
         with con as con:
             cursor = con.cursor()
-            cursor.execute(query, (user_id, website_name, email, username, password))
+            cursor.execute(query, (user_id, std_first_name, std_last_name, std_email, password))
 
-    #retrieves data from vault based on user ID of account
+    # retrieves data from vault based on user ID of account
     def show_record(self, user_id, name="pass_vault"):
         con = self.db_op()
         query = f'''
@@ -80,13 +82,20 @@ class DbOperation:
             return result[0]
 
     # creates master table for master accounts, ie. new users
-    def create_master_table(self, name="master_table"):
+    def create_employer_table(self, name="employer_table"):
         con = self.db_op()
         query = f'''
         CREATE TABLE IF NOT EXISTS {name}(
-            ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            username VARCHAR(200),
-            password VARCHAR(50)
+            emp_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            company_name VARCHAR(250),
+            emp_email VARCHAR(200) NOT NULL,
+            emp_name VARCHAR(200) NOT NULL,
+            emp_is_hiring BIT,
+            emp_address VARCHAR(200) NOT NULL,
+            emp_phone_number VARCHAR(200) NOT NULL,
+            emp_address VARCHAR(200) NOT NULL,
+            password VARCHAR(50),
+            FOREIGN KEY (emp_jobs_id) REFERENCES jobs_table(jobs_ID)
             );
         '''
         with con as con:
@@ -155,3 +164,23 @@ class DbOperation:
             if result:
                 return result[0]
             return None
+
+    def create_jobs_table(self, name="jobs_table"):
+        con = self.db_op()
+        query = f'''
+        CREATE TABLE IF NOT EXISTS {name}(
+            jobs_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            job_name VARCHAR(250),
+            job_description TEXT,
+            emp_name VARCHAR(200) NOT NULL,
+            job_filled BIT,
+            job_address VARCHAR(200) NOT NULL,
+            job_posted_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            job_deadline TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (emp_id) REFERENCES emp_table(emp_ID),
+            FOREIGN KEY (job_applicants_id) REFERENCES student_table(std_ID)
+            );
+        '''
+        with con as con:
+            cursor = con.cursor()
+            cursor.execute(query)
