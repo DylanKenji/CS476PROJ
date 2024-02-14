@@ -9,19 +9,23 @@ class DbOperation:
         return con
 
     #creates table for new passwords
-    def create_table(self, name="pass_vault"):
+    def create_student_table(self, name="student_table"):
         con = self.db_op()
         query = f'''
         CREATE TABLE IF NOT EXISTS {name}(
-            ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            user_id INTEGER,
+            std_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            student_id INTEGER NOT NULL,
+            std_first_name VARCHAR(200) NOT NULL,
+            std_last_name VARCHAR(200) NOT NULL,
+            std_email VARCHAR(200) NOT NULL,
+            password VARCHAR(50) NOT NULL,
+            std_resume TEXT ,
+            std_major TEXT NOT NULL,
+            std_looking_for_job BIT,
+            std_bio TEXT ,
+            FOREIGN KEY (std_Applied_job_id) REFERENCES jobs_table(jobs_ID)
             date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             date_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            website_name TEXT NOT NULL,
-            email VARCHAR(200),
-            username VARCHAR(200),
-            password VARCHAR(50),
-            FOREIGN KEY (user_id) REFERENCES master_table(ID)
             );
         '''
         with con as con:
