@@ -5,7 +5,7 @@ class DbOperation:
 
     # opens database
     def db_op(self):
-        con = sqlite3.connect('password_vault.db')
+        con = sqlite3.connect('UR_Connect.db')
         return con
 
     #creates table for new passwords
