@@ -172,7 +172,6 @@ class DbOperation:
             jobs_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             job_name VARCHAR(250),
             job_description TEXT,
-            job_name VARCHAR(200) NOT NULL,
             job_filled BIT,
             job_address VARCHAR(200) NOT NULL,
             job_posted_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
