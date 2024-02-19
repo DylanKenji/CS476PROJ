@@ -1,8 +1,7 @@
 
 body{
-    background-image: url(IMG_8921443.jpg);
+    background-image: url(../library/media/IMG_8921443.jpg);
 }
-
 
 
 .logo{
@@ -54,7 +53,6 @@ body{
 }
 
 .loginButton{
-
     margin-top: 30px;
     width: 175px;
     height: 40px;
@@ -66,4 +64,8 @@ body{
 .loginButton:hover{
     color: goldenrod;
     border: 3px solid goldenrod;
+}
+
+.space{
+    margin-top: 50px;
 }
