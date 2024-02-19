@@ -4,7 +4,6 @@ html, body{
 
 body{
     margin: 0;
-    background-image: url(university-of-regina.avif);
     background-size: cover;
     overflow-x: hidden;
 }
