@@ -8,6 +8,11 @@ body{
     overflow-x: hidden;
 }
 
+.logo{
+    height: 61px;
+}
+
+
 nav {
     padding-top: 0;
     padding-bottom: 0;
@@ -42,4 +47,23 @@ nav {
     padding: 3rem;
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
     margin-bottom: 2rem;
+}
+
+.greenButton{
+    border-radius: 50px;
+    background-color: #164e1f;
+    color: white;
+}
+
+.greenButton:hover{
+    color: goldenrod;
+    border: 3px solid goldenrod;
+}
+
+.roundForm{
+    border-radius: 10px;
+}
+
+.bold{
+    font-weight: bold;
 }

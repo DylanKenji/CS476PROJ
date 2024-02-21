@@ -1,0 +1,65 @@
+body{
+    background-image: url(../library/media/IMG_8921443.jpg);
+}
+
+.jobList{
+    display: flex;
+    flex-direction: column;
+    height: 1200px;
+    width: 400px;
+    background-color: white;
+    margin-right: 50px;
+    overflow-y: scroll;
+    padding-top: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(11, 88, 11) white;
+}
+
+.listing{
+    margin-top: 10px;
+    flex-direction: row;
+}
+
+.jobPosting{
+    display: flex;
+    border-bottom: 2px solid rgb(214, 211, 211);
+}
+
+.jobDetails{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+}
+
+.jobImg{
+    max-height: 100px;
+}
+
+.jobName{
+    font-size: 20px;
+}
+
+.jobInfo{
+    height: 1215px;
+    width: 800px;
+    background-color: white;
+
+}
+
+.titleCard{
+    display: flex;
+    width: 800px;
+    border-bottom: 2px solid rgb(58, 57, 57);;
+}
+
+.mainImg{
+    width: 200px;
+}
+
+.mainName{
+    font-size: 40px;
+}
+
+.titlecardFont{
+    font-size: 20px;
+}
