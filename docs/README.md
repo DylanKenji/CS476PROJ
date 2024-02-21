@@ -2,10 +2,7 @@
 # UR Connect
 The University of Regina faces a challenge where students struggle to showcase their skills and secure fitting opportunities, while local employers find it hard to identify and connect with talented individuals. UR Connect is introduced as a solution to streamline and personalize interactions between students and employers within the University. This user-friendly platform aims to provide opportunities to UofR students by allowing them to present their achievements beyond traditional resumes. UR Connect will support both students actively pursuing opportunities while studying and those on the verge of graduation. For students still studying, the platform provides a space to discover internship opportunities and professional growth. Simultaneously, for graduating students preparing to step into the professional world, UR Connect becomes a resource that will provide a comprehensive job board, personalized connections, and a secure messaging system, becoming a pivotal tool in the job searching process. UR Connect, in essence, addresses the needs of students at various stages of their academic and professional journey. By providing tailored support for those currently studying and those about to graduate, the platform ensures that every student, regardless of their academic timeline, can find meaningful and fitting opportunities within the University of Regina community.
 
-
 ## Features
-
-
 - Comprehensive Profile Creation
     - Students and graduates can create detailed profiles highlighting their education, skills, work/volunteer experience, and achievements.
     - Employers can showcase their company values, culture, and job opportunities through comprehensive profiles.
@@ -23,7 +20,7 @@ The University of Regina faces a challenge where students struggle to showcase t
 - Application Tracking System (ATS)
     - Students and graduates can track their job applications, interview schedules, and application statuses, streamlining the job search process.
 - Advanced Search 
-    - Functionality thath allows users to find specific profiles and job listings based on various criteria.
+    - Functionality that allows users to find specific profiles and job listings based on various criteria.
 
 ## Authors
 
