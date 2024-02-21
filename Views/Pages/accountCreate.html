@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="../../Root/css/sharred.css">
 </head>
 <body>
+
+
+    
     <div class="page-wrap">
 
         <nav>
@@ -16,41 +19,58 @@
 
         <div class="main-wrapper">
 
-            <div class="login-box">
+            <div class="creationWrapper">
                 <div class="create-account">
                     <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="125">
                     <h1> Sign Up Now! </h1>
-                    <label for="account_Type">Choose account type: </label>
-                    <select name="account_Type" id="account_Type">
-                        <option value="Student">Student</option>
-                        <option value="Employer">Employer</option>
+                    <label for="account_Type" class="font20" >Choose account type: </label>
+                    <select name="account_Type" id="account_Type" class="dropDown font20">
+                        <option class="font20" value="Student" id="studentType">Student</option>
+                        <option class="font20" value="Employer" id="employerType">Employer</option>
 
                     </select>
 
-                    <form>
+                    <form class="inputForm" id="infoForm">
 
-                        <section class="space">
-                            <label class="float-left">Email:</label>
-                            <input type="email" placeholder="Enter Email">
+
+                        <section class="space" id="firstnameEntry">
+                            <label class="inputLabel float-left" >First Name:</label>
+                            <input class="inputBox" type="text" placeholder="First Name">
+                        </section>
+                        
+                        <section class="space" id="lastnameEntry">
+                            <label class="inputLabel float-left" >Last Name:</label>
+                            <input class="inputBox" type="text" placeholder="Last Name">
                         </section>
 
-                        <section class="space">
-                            <label class="float-left">Password:</label>
-                            <input type="password" placeholder="Enter Password">
+                        <section class="space" id="emailEntry">
+                            <label class="inputLabel float-left" >Email:</label>
+                            <input class="inputBox" type="email" placeholder="Enter Email">
                         </section>
 
-                        <section class="space">
-                            <label class="float-left">Confirm Password:</label>
-                            <input type="password" placeholder="Re-enter Password">
+                        <section class="space" id="idEntry">
+                            <label class="inputLabel float-left">Student ID:</label>
+                            <input class="inputBox" type="text" placeholder="Student ID">
                         </section>
 
-                        <input class="button-custom greenButton" type="button" value="Create Account">
-
-                        <section>
-                            <label class="space">Already have an account?<a href=""> Log In Here!</a></label>
+                        <section class="space" id="passwordEntry">
+                            <label class="inputLabel float-left">Password:</label>
+                            <input class="inputBox" type="password" placeholder="Enter Password">
                         </section>
+
+                        <section class="space" id="confirmEntry">
+                            <label class="inputLabel float-left">Confirm Password:</label>
+                            <input class="inputBox" type="password" placeholder="Re-enter Password">
+                        </section>
+
+                       
             
                     </form>
+                    <input class="createButton greenButton" type="button" value="Create Account" id="createAccount">
+
+                    <section>
+                        <label class="space accountText">Already have an account?<a href=""> Log In Here!</a></label>
+                    </section>
                 </div>
             </div>
            
@@ -59,5 +79,7 @@
 
     </div>
     
+    <script src="../../Root/js/creationSwitch.js"></script>
+
 </body>
 </html>

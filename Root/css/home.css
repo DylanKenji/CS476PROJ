@@ -11,10 +11,7 @@ body{
     width: 500px;
 }
 
-.inputLabel{
-    font-size: 20px;
-    margin-bottom: 5px;
-}
+
 
 .inputField{
     margin-top: 25px;
@@ -22,13 +19,7 @@ body{
     flex-direction: column;
 }
 
-.input-textbox{
-    font-size: 20px;
-    border: 2px solid rgb(128, 133, 128);
-    height: 40px;
-    border-radius: 4px;
-    display: flex;
-}
+
 
 .text-input{
     flex-grow: 1;
