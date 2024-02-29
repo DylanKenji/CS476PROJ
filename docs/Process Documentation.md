@@ -18,7 +18,7 @@
     - Discussing feature requests and enhancements proposed by team members, considering their potential impact on project scope and feasibility.
 
 #### Utilize Various Requirement Gathering Techniques:
-    - Used prototyping tools to visualize user interfaces and workflows, allowing team members to provide constructive feedback and make decision on design concepts.
+    - Used prototyping tools to visualize user interfaces and workflows, allowing team members to provide constructive feedback and make decisions on design concepts.
 #### Facilitate Requirement Prioritization:
 
     - Team  discussions to prioritize requirements based on their importance, urgency, and feasibility within project timelines.
@@ -34,7 +34,7 @@
 ### Description
 This phase involves designing the architecture and planning the implementation strategy for the project
 
-### Activites
+### Activities
 ## 3. Implementation
 ### Description
 Developers write code and implement the features according to the design and requirements.
