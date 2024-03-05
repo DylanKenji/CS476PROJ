@@ -48,3 +48,16 @@ body{
     margin-right: auto;
     margin-left: auto;
 }
+
+input[type=email], input[type=password], input[type=text]{
+    width: 95%;
+    padding: 5px;
+    display: inline-block;
+}
+
+.inputBox{
+    font-size: 20px;
+    border: 2px solid rgb(128, 133, 128);
+    height: 20px;
+    border-radius: 4px;
+}
