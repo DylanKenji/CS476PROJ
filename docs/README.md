@@ -25,10 +25,10 @@ The University of Regina faces a challenge where students struggle to showcase t
 ## Authors
 
 - [DylanYamaguchi-Kuan](https://github.com/ImGizmoh)
-- [Logan Hesse](https://github.com/Slickdawg)
+- [Logan Hesse](https://github.com/lhesse0)
 - [Zeeshan Nasir](https://github.com/nzer00)
 - [Kaleb Saggu](https://github.com/KalebSaggu)
-- [Ilias Echaouni Benabdallah](https://github.com/lhesse0)
+- [Ilias Echaouni Benabdallah](https://github.com/Slickdawg)
 
 
 ## FAQ

@@ -63,3 +63,20 @@ body{
 .titlecardFont{
     font-size: 20px;
 }
+
+@media (min-width:375px) and (max-width: 1200px) {
+   
+    .jobList{
+        width: 35%;
+        margin-right: 4px;
+    }
+    .jobInfo{
+        width: 65%;
+    }
+    .titleCard{
+        width: 100%;
+    }
+    .jobDetails{
+        width: 100%;
+    }
+}

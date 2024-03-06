@@ -35,21 +35,14 @@ function switchInputs(){
     if(document.getElementById("account_Type").value == "Student"){
 
         //remove previous inputs
-        document.getElementById("firstnameEntry").remove();
-        document.getElementById("lastnameEntry").remove();
-        document.getElementById("emailEntry").remove();
-        document.getElementById("companyEntry").remove();
-        document.getElementById("passwordEntry").remove();
-        document.getElementById("confirmEntry").remove();
-        document.getElementById("addressEntry").remove();
-        document.getElementById("phonenumberEntry").remove();
+        document.querySelectorAll('.space').forEach(e => e.remove());
 
         //creating html elements to append to form to switch from employer to student inputs
 
         //firstName
         let inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="firstnameEntry";
+        
 
         let label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -60,6 +53,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "text";
         input.placeholder = "First Name"
+        input.id="firstnameEntry";
 
         inputField.append(input);
 
@@ -69,7 +63,7 @@ function switchInputs(){
         //lastName
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="lastnameEntry";
+       
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -80,6 +74,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "text";
         input.placeholder = "Last Name"
+        input.id="lastnameEntry";
 
         inputField.append(input);
 
@@ -88,7 +83,7 @@ function switchInputs(){
         //email
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="emailEntry";
+      
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -99,6 +94,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "email";
         input.placeholder = "Email"
+        input.id="emailEntry";
 
         inputField.append(input);
 
@@ -107,7 +103,7 @@ function switchInputs(){
         //ID
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="idEntry";
+        
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -118,6 +114,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "text";
         input.placeholder = "Student ID"
+        input.id="idEntry";
 
         inputField.append(input);
 
@@ -126,7 +123,7 @@ function switchInputs(){
         //Password
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="passwordEntry";
+     
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -137,6 +134,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "password";
         input.placeholder = "Password"
+        input.id="passwordEntry";
 
         inputField.append(input);
 
@@ -145,7 +143,7 @@ function switchInputs(){
         //Password confirm
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="confirmEntry";
+       
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -156,6 +154,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "password";
         input.placeholder = "Confirm Password"
+        input.id="confirmEntry";
 
         inputField.append(input);
 
@@ -165,20 +164,13 @@ function switchInputs(){
     }else if(document.getElementById("account_Type").value == "Employer"){
 
 
-        //remove previous inputs
-        document.getElementById("firstnameEntry").remove();
-        document.getElementById("lastnameEntry").remove();
-        document.getElementById("emailEntry").remove();
-        document.getElementById("idEntry").remove();
-        document.getElementById("passwordEntry").remove();
-        document.getElementById("confirmEntry").remove();
-
+        document.querySelectorAll('.space').forEach(e => e.remove());
         //creating html elements to append to form to switch from employer to student inputs
         
         //firstName
         let inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="firstnameEntry";
+     
 
         let label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -189,6 +181,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "text";
         input.placeholder = "First Name"
+        input.id="firstnameEntry";
 
         inputField.append(input);
 
@@ -198,7 +191,7 @@ function switchInputs(){
         //lastName
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="lastnameEntry";
+      
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -209,6 +202,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "text";
         input.placeholder = "Last Name"
+        input.id="lastnameEntry";
 
         inputField.append(input);
 
@@ -217,7 +211,7 @@ function switchInputs(){
         //email
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="emailEntry";
+       
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -228,6 +222,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "email";
         input.placeholder = "Email"
+        input.id="emailEntry";
 
         inputField.append(input);
 
@@ -236,7 +231,7 @@ function switchInputs(){
         //Company name
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="companyEntry";
+     
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -247,6 +242,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "text";
         input.placeholder = "Company Name"
+        input.id="companyEntry";
 
         inputField.append(input);
 
@@ -255,7 +251,7 @@ function switchInputs(){
         //Company address
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="addressEntry";
+     
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -266,6 +262,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "text";
         input.placeholder = "Company Address"
+        input.id="addressEntry";
 
         inputField.append(input);
 
@@ -274,7 +271,7 @@ function switchInputs(){
         //Company phonenumber
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="phonenumberEntry";
+       
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -285,6 +282,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "text";
         input.placeholder = "Company Phone Number"
+        input.id="phonenumberEntry";
 
         inputField.append(input);
 
@@ -293,7 +291,7 @@ function switchInputs(){
         //Password
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="passwordEntry";
+   
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -304,6 +302,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "password";
         input.placeholder = "Password"
+        input.id="passwordEntry";
 
         inputField.append(input);
 
@@ -312,7 +311,7 @@ function switchInputs(){
         //Password confirm
         inputField = document.createElement("section");
         inputField.classList = "space";
-        inputField.id="confirmEntry";
+     
 
         label = document.createElement("label");
         label.classList = "inputLabel float-left"
@@ -323,6 +322,7 @@ function switchInputs(){
         input.classList = "inputBox";
         input.type = "password";
         input.placeholder = "Confirm Password"
+        input.id="confirmEntry";
 
         inputField.append(input);
 

@@ -49,3 +49,17 @@ body{
 .space{
     margin-top: 50px;
 }
+
+@media (min-width:375px) and (max-width: 700px) {
+   
+    .login-box{
+        width: 71%;
+    }
+    .loginForm{
+        width: 100%;
+    }
+    .fitBox{
+        width: 100%;
+    }
+
+}
