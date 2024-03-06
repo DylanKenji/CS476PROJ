@@ -1,85 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Creation</title>
     <link rel="stylesheet" type="text/css" href="../../Root/css/accountCreate.css">
     <link rel="stylesheet" type="text/css" href="../../Root/css/sharred.css">
+    <script defer src="../../Root/js/creationSwitch.js"></script>
+    <script defer src="../../Root/js/formValidation.js"></script>
 </head>
+
 <body>
-
-
-    
     <div class="page-wrap">
-
         <nav>
             <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="62">
         </nav>
-
         <div class="main-wrapper">
-
             <div class="creationWrapper">
                 <div class="create-account">
                     <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="125">
                     <h1> Sign Up Now! </h1>
-                    <label for="account_Type" class="font20" >Choose account type: </label>
+                    <label for="account_Type" class="font20">Choose account type: </label>
                     <select name="account_Type" id="account_Type" class="dropDown font20">
                         <option class="font20" value="Student" id="studentType">Student</option>
                         <option class="font20" value="Employer" id="employerType">Employer</option>
-
                     </select>
-
-                    <form class="inputForm" id="infoForm">
-
-
-                        <section class="space" id="firstnameEntry">
-                            <label class="inputLabel float-left" >First Name:</label>
-                            <input class="inputBox" type="text" placeholder="First Name">
+                    <div id="error"></div>
+                    <form class="inputForm" id="infoForm" method="GET">
+                        <section class="space">
+                            <label class="inputLabel float-left">First Name:</label>
+                            <input id="firstnameEntry" class="inputBox" type="text" placeholder="First Name">
                         </section>
-                        
-                        <section class="space" id="lastnameEntry">
-                            <label class="inputLabel float-left" >Last Name:</label>
-                            <input class="inputBox" type="text" placeholder="Last Name">
+                        <section class="space">
+                            <label class="inputLabel float-left">Last Name:</label>
+                            <input id="lastnameEntry" class="inputBox" type="text" placeholder="Last Name">
                         </section>
-
-                        <section class="space" id="emailEntry">
-                            <label class="inputLabel float-left" >Email:</label>
-                            <input class="inputBox" type="email" placeholder="Enter Email">
+                        <section class="space">
+                            <label class="inputLabel float-left">Email:</label>
+                            <input id="emailEntry" class="inputBox" type="email" placeholder="Enter Email">
                         </section>
-
-                        <section class="space" id="idEntry">
+                        <section class="space">
                             <label class="inputLabel float-left">Student ID:</label>
-                            <input class="inputBox" type="text" placeholder="Student ID">
+                            <input id="idEntry" class="inputBox" type="text" placeholder="Student ID">
                         </section>
-
-                        <section class="space" id="passwordEntry">
+                        <section class="space">
                             <label class="inputLabel float-left">Password:</label>
-                            <input class="inputBox" type="password" placeholder="Enter Password">
+                            <input id="passwordEntry" class="inputBox" type="password" placeholder="Enter Password">
                         </section>
-
-                        <section class="space" id="confirmEntry">
+                        <section class="space">
                             <label class="inputLabel float-left">Confirm Password:</label>
-                            <input class="inputBox" type="password" placeholder="Re-enter Password">
+                            <input id="confirmEntry" class="inputBox" type="password" placeholder="Re-enter Password">
                         </section>
-
-                       
-            
+                        <sction class="space">
+                            <button type="submit" class="createButton greenButton" value="Create Account" id="createAccount">Create Account</button>
+                        </sction>
+                        
                     </form>
-                    <input class="createButton greenButton" type="button" value="Create Account" id="createAccount">
+
+                    <!--Commented this out because I needed the button inside the form as a "submit button"-->
+                    <!-- <input class="createButton greenButton" type="button" value="Create Account" id="createAccount"> -->
 
                     <section>
                         <label class="space font20">Already have an account?<a href=""> Log In Here!</a></label>
                     </section>
+
                 </div>
             </div>
-           
-
         </div>
-
     </div>
-    
-    <script src="../../Root/js/creationSwitch.js"></script>
 
 </body>
+
 </html>
