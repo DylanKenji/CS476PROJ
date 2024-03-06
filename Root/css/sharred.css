@@ -6,7 +6,10 @@ body{
     margin: 0;
     background-size: cover;
     overflow-x: hidden;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
+
+
 
 .logo{
     height: 61px;
@@ -16,6 +19,7 @@ body{
     font-size: 20px;
     margin-bottom: 5px;
 }
+
 
 .inputTextbox{
     font-size: 20px;
@@ -33,6 +37,7 @@ nav {
     border-bottom: #0c3f14 1px solid;
     align-items: stretch;
     height: 61px;
+    width: 100%;
 }
 
 .page-wrap{
@@ -79,3 +84,14 @@ nav {
 .bold{
     font-weight: bold;
 }
+
+@media (max-width:375px) {
+
+    .login-box{
+        max-width: 100%;
+    }
+    
+
+}
+
+
