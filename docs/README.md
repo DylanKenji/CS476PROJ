@@ -24,7 +24,7 @@ The University of Regina faces a challenge where students struggle to showcase t
 
 ## Authors
 
-- [DylanYamaguchi-Kuan](https://github.com/ImGizmoh)
+- [DylanYamaguchi-Kuan](https://github.com/DylanKenji)
 - [Logan Hesse](https://github.com/lhesse0)
 - [Zeeshan Nasir](https://github.com/nzer00)
 - [Kaleb Saggu](https://github.com/KalebSaggu)
