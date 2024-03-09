@@ -160,6 +160,22 @@ function switchInputs(){
 
         mainForm.append(inputField)
 
+        //adding button
+        inputField = document.createElement("section");
+        inputField.classList = "space buttonHolder";
+       
+
+        button = document.createElement("button");
+        button.classList = "createButton greenButton";
+        button.type = "submit";
+        button.value = "Create Account";
+        button.id = "createAccount";
+        button.textContent = "Create Account";
+        inputField.append(button);
+        
+
+        mainForm.append(inputField)
+
    //check if the value in the selection box is equal to employer
     }else if(document.getElementById("account_Type").value == "Employer"){
 
@@ -327,6 +343,22 @@ function switchInputs(){
         inputField.append(input);
 
         mainForm.append(inputField)
+
+        //adding button
+        inputField = document.createElement("section");
+        inputField.classList = "space buttonHolder";
+        
+
+        button = document.createElement("button");
+        button.classList = "createButton greenButton";
+        button.type = "submit";
+        button.value = "Create Account";
+        button.id = "createAccount";
+        button.textContent = "Create Account";
+        inputField.append(button);
+         
+ 
+         mainForm.append(inputField)
 
 
     }

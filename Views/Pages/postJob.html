@@ -8,6 +8,15 @@
     <link rel="stylesheet" type="text/css" href="../../Root/css/postJob.css">
 </head>
 
+
+<!-- ALL IDS
+jobForm
+jobtitleEntry
+jobdescEntry
+jobaddressEntry
+jobdeadlineEntry
+postButton -->
+
 <body>
     <div class="page-wrap">
 
@@ -21,16 +30,17 @@
 
                 <div class="postTitle">Job Posting</div>
 
-                <div class="job-wrapper">
+               <!--  Action location for backend -->
+                <form id="jobForm" method="get" action="" class="job-wrapper">
 
                     <section class="space lineUp">
                         <label class="postingLabel float-left">Job Title:</label>
-                        <input class="postingBox" placeholder="Job Title" id="jobnameEntry">
+                        <input class="postingBox" placeholder="Job Title" id="jobtitleEntry">
                     </section>
 
                     <section class="space textBox lineUp">
-                        <label class="postingLabel float-left">Job Discription:</label>
-                        <textarea class="postingBox disc"  id="jobdiscEntry"></textarea>
+                        <label class="postingLabel float-left">Job Description:</label>
+                        <textarea class="postingBox disc"  id="jobdescEntry"></textarea>
                     </section>
 
                     <section class="space lineUp">
@@ -43,9 +53,9 @@
                         <input class="postingBox" type="date" id="jobdeadlineEntry">
                     </section>
 
-                    <input class="postButton greenButton" type="button" value="Post Job" id="createAccount">
+                    <button class="postButton greenButton" type="submit" id="postButton">Post Job</button>
 
-                </div>
+                </form>
 
                 
                 

@@ -9,7 +9,9 @@ body{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
-
+textarea{
+    resize: none;
+}
 
 .logo{
     height: 61px;
@@ -84,6 +86,8 @@ nav {
 .bold{
     font-weight: bold;
 }
+
+
 
 @media (max-width:375px) {
 
