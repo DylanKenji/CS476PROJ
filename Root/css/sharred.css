@@ -22,6 +22,9 @@ textarea{
     margin-bottom: 5px;
 }
 
+.headerPicture{
+    cursor: pointer;
+}
 
 .inputTextbox{
     font-size: 20px;
