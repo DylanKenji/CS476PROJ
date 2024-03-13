@@ -1,2 +1,0 @@
-Let's keep our css files here.
-I'm used to having a shared css file such as "site.css" to ensure that we have consistency across our site.

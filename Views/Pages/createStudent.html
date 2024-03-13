@@ -7,30 +7,30 @@
     <title>Account Creation</title>
     <link rel="stylesheet" type="text/css" href="../../Root/css/sharred.css">
     <link rel="stylesheet" type="text/css" href="../../Root/css/accountCreate.css">
-
     <script src="../../Root/js/accountpageSwap.js" defer></script>
-    <script src="../../Root/js/formValidation.js" defer></script>
-
+    <script src="../../Root/js/createStudent.js" defer></script>
 </head>
 
 <body>
-
     <div class="page-wrap">
+
         <nav>
             <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="62" class="headerPicture" onclick="location.href='../Pages/home.html'">
         </nav>
+
         <div class="main-wrapper">
             <div class="creationWrapper">
                 <div class="create-account">
                     <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="125">
+                    
                     <h1> Sign Up Now! </h1>
                     <label for="account_Type" class="font20">Choose account type: </label>
                     <select name="account_Type" id="account_Type" class="dropDown font20">
-                        <option class="font20" value="Employer" id="employerType">Employer</option>
                         <option class="font20" value="Student" id="studentType">Student</option>
+                        <option class="font20" value="Employer" id="employerType">Employer</option>
                     </select>
-                    <div id="error"></div>
-                    <form class="inputForm" id="infoForm" method="GET">
+
+                    <form class="inputForm" id="infoForm" method="POST">
                         <section class="space">
                             <label class="inputLabel float-left">First Name:</label>
                             <input id="firstnameEntry" class="inputBox" type="text" placeholder="First Name">
@@ -41,19 +41,11 @@
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Email:</label>
-                            <input id="emailEntry" class="inputBox" type="email" placeholder="Email">
+                            <input id="emailEntry" class="inputBox" type="email" placeholder="Enter Email">
                         </section>
                         <section class="space">
-                            <label class="inputLabel float-left">Company Name:</label>
-                            <input id="companyEntry" class="inputBox" type="text" placeholder="Company Name">
-                        </section>
-                        <section class="space">
-                            <label class="inputLabel float-left">Company Address:</label>
-                            <input id="addressEntry" class="inputBox" type="text" placeholder="Company Address">
-                        </section>
-                        <section class="space">
-                            <label class="inputLabel float-left">Company Phone Number:</label>
-                            <input id="companyEntry" class="inputBox" type="text" placeholder="Company Phone Number">
+                            <label class="inputLabel float-left">Student ID:</label>
+                            <input id="idEntry" class="inputBox" type="text" placeholder="Student ID">
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Password:</label>
@@ -63,25 +55,19 @@
                             <label class="inputLabel float-left">Confirm Password:</label>
                             <input id="confirmEntry" class="inputBox" type="password" placeholder="Re-enter Password">
                         </section>
-                        <sction class="space buttonHolder">
+                        <section class="space buttonHolder">
+                            <div id="error"></div>
                             <button type="submit" class="createButton greenButton" value="Create Account" id="createAccount">Create Account</button>
                         </sction>
-                        
                     </form>
 
-
                     <section>
-                        <label class= "font20">Already have an account?<a href=""> Log In Here!</a></label>
+                        <label class= "font20">Already have an account? <a href="">Log In Here!</a></label>
                     </section>
 
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 </body>
-
 </html>

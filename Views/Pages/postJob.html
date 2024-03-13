@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../../Root/css/sharred.css">
     <link rel="stylesheet" type="text/css" href="../../Root/css/postJob.css">
+    <script src="../../Root/js/postJob.js" defer></script>
 </head>
 
 
@@ -31,7 +32,7 @@ postButton -->
                 <div class="postTitle">Job Posting</div>
 
                <!--  Action location for backend -->
-                <form id="jobForm" method="get" action="" class="job-wrapper">
+                <form id="jobForm" method="POST" action="" class="job-wrapper">
 
                     <section class="space lineUp">
                         <label class="postingLabel float-left">Job Title:</label>
@@ -52,11 +53,11 @@ postButton -->
                         <label class="postingLabel float-left">Job Deadline:</label>
                         <input class="postingBox" type="date" id="jobdeadlineEntry">
                     </section>
-
+                    <div id="error"></div>
                     <button class="postButton greenButton" type="submit" id="postButton">Post Job</button>
 
                 </form>
-
+                
                 
                 
             </div>

@@ -1,1 +1,0 @@
-files in this folder contain control logic (i.e; receives updates from view then notifieds model to 'add item')
