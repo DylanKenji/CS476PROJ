@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customize Employer Profile</title>
-    <link rel="stylesheet" type="text/css" href="../../Root/css/sharred.css">
+    <link rel="stylesheet" type="text/css" href="../../Root/css/shared.css">
     <link rel="stylesheet" type="text/css" href="../../Root/css/employerProfile.css">
     <link rel="stylesheet" type="text/css" href="../../Root/css/employerprofileEdit.css">
     <script src="../../Root/js/editEmployer.js" defer></script>
-
 </head>
 <body>
 
@@ -29,9 +28,6 @@
         saveButton 
     -->
 
-
-
-
     <div class="page-wrap">
 
         <nav>
@@ -40,22 +36,15 @@
 
       <!-- Action location for backend -->
         <form method="POST" action="" id="submitForm" class="cust-main-wrapper">
-
             <div class="info-box1">
                 <div id="error"></div>
                 <div class="align-center">
                     <img src="../../Root/library/media/avatar1.jpg" id="employerAvatar" class="avatar">
                 </div>
-
-                <h1 class="align-center titleText">User Details</h1>
-                
+                <h1 class="align-center titleText">User Details</h1>          
             </div>
-
             <div class="info-box2">
-                
-
-                    <div class="userDetails">
-                        
+                    <div class="userDetails">     
                             <label class="inputLabel float-left" >First Name:</label>
                             <input class="inputBox" type="text" id="employerfirstName" placeholder="First Name">
                         
@@ -70,16 +59,10 @@
 
                             <label class="inputLabel float-left" >Confirm Password:</label>
                             <input class="inputBox" type="password" id="employerconfirmPassword" placeholder="Confirm Password">
-
                     </div>
-
             </div>
-
             <div class="info-box3">
-           
-
                     <div class="userDetails">
-
                         <label class="inputLabel float-left" >Company Name:</label>
                         <input class="inputBox" type="text" id="companyName" placeholder="Company Name">
 
@@ -92,16 +75,11 @@
                         <label class="inputLabel float-left" >Company Avatar:</label>
                         <input class="pictureInput" type="file" accept="image/*" id="newemployerAvatar" placeholder="Company Number">
 
-
                         <button class="submitButton greenButton" id="backButton" type="submit">Back</button>
                         <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
-                    </div>
-
-                    
-                    
+                    </div>   
             </div>
-        </form>
-    
+        </form> 
     </div>
 </body>
 </html>

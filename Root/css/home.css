@@ -50,16 +50,23 @@ body{
     margin-top: 50px;
 }
 
-@media (min-width:375px) and (max-width: 700px) {
-   
-    .login-box{
-        width: 71%;
-    }
-    .loginForm{
-        width: 100%;
-    }
-    .fitBox{
-        width: 100%;
-    }
+.loginForm {
+    text-align: center;
+}
+
+.homeLogo {
+    width: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 576px) {
+
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+
+}
+
+@media (min-width: 993px) {
 
 }
