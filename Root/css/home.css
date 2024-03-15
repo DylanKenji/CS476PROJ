@@ -1,72 +1,146 @@
-
-body{
-    background-image: url(../library/media/IMG_8921443.jpg);
+.home-hero {
+    position: relative;
 }
 
-
-
-
-.loginForm{
-    display: block;
-    width: 500px;
+.home-hero video{
+    height: 80vh;
+    width: 100vw;
+    object-fit: fill;
 }
 
+.home-hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 20px;
+  }
 
-
-.inputField{
-    margin-top: 25px;
+  .overlay-container {
     display: flex;
     flex-direction: column;
-}
-
-
-
-.text-input{
-    flex-grow: 1;
-    border: 1px solid transparent;
-    outline-width: 0px;
-    font-size: 20px;
-}
-
-.input-textbox:hover{
-    border: 2px solid black;
-}
-
-.text-input:focus {
-    box-shadow: 0px 10px 13px -7px #000000, 1px 3px 16px 2px #000000;
-}
-
-.input-textbox:hover .text-input{
-    background-color: rgb(238, 234, 234);
-}
-
-.loginButton{
-    margin-top: 30px;
-    width: 175px;
-    height: 40px;
-}
-
-.space{
-    margin-top: 50px;
-}
-
-.loginForm {
+    align-items: center;
     text-align: center;
+  }
+
+  .overlay-text {
+    font-weight: 900;
+    font-size: 6vw;
+    text-transform: uppercase;
+  }
+
+  .overlay-signup {
+    padding: 3vh 5vw 3vh 5vw;
+  }
+
+  .overlay-button {
+    background-color: rgba(255, 255, 255, 0.1); 
+    border: white solid;
+    cursor: pointer; 
+    padding: 1vh 1vw 1vh 1vw;
+    border-radius: 5px;
+  }
+
+  .overlay-button a {
+    color: white;
+    font-size: 2rem;
+    text-decoration: none;
+  }
+
+  .overlay-button:hover{
+    background-color: rgb(255, 255, 255, 0.3);
+
+
+  }
+
+
+.aboutus {
+    background-color: #e8faea;
+    height: 70vh;
+    width: 100vw;
 }
 
-.homeLogo {
-    width: 100%;
-    object-fit: contain;
+.services {
+    background-color: white;
+    height: 70vh;
+    width: 100vw;
 }
 
 @media (max-width: 576px) {
+    .home-hero video{
+        height: 80vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+  .overlay-text {
+    font-weight: 900;
+    font-size: 10vw;
+    text-transform: uppercase;
+  }
 
+  .overlay-button {
+    background-color: rgba(255, 255, 255, 0.1); 
+    border: white solid;
+    cursor: pointer; 
+    padding: 1vh 3vw 1vh 3vw;
+    border-radius: 5px;
+  }
+  .overlay-button a {
+    color: white;
+    font-size: 5vw;
+    text-decoration: none;
+  }
 }
 
 @media (min-width: 577px) and (max-width: 992px) {
+    .home-hero video{
+        height: 80vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+  .overlay-text {
+    font-weight: 900;
+    font-size: 10vw;
+    text-transform: uppercase;
+  }
 
+  .overlay-button {
+    background-color: rgba(255, 255, 255, 0.1); 
+    border: white solid;
+    cursor: pointer; 
+    padding: 1vh 3vw 1vh 3vw;
+    border-radius: 5px;
+  }
+  .overlay-button a {
+    color: white;
+    font-size: 5vw;
+    text-decoration: none;
+  }
 }
 
-@media (min-width: 993px) {
+@media (min-width: 993px) and (max-width: 1440px) {
+    .home-hero video{
+        height: 80vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+  .overlay-text {
+    font-weight: 900;
+    font-size: 8vw;
+    text-transform: uppercase;
+  }
 
-}
+  .overlay-button {
+    background-color: rgba(255, 255, 255, 0.1); 
+    border: white solid;
+    cursor: pointer; 
+    padding: 1vh 3vw 1vh 3vw;
+    border-radius: 5px;
+  }
+  .overlay-button a {
+    color: white;
+    font-size: 3vw;
+    text-decoration: none;
+  }
+} 
