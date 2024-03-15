@@ -7,11 +7,6 @@
     <link rel="stylesheet" type="text/css" href="../../Root/css/shared.css">
     <link rel="stylesheet" type="text/css" href="../../Root/css/home.css">
 
-<!-- 
-ALL IDS
-emailKey
-passwordKey
-loginButton -->
 
 </head>
 <body>
@@ -21,30 +16,32 @@ loginButton -->
             <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" class="logo">
         </nav>
 
-        <div class="main-wrapper">
-            <div class="login-box">      
-                <img class="homeLogo" src="../../Root/library/media/URConnect.png" class="fitBox"alt="">
-                <form class="loginForm">
-                    <div class="inputField">
-                        <label class="inputLabel">Email</label>
-                        <div class="inputTextbox">
-                            <input class="text-input" id="emailKey">
+        <main>
+            <div class="home-hero">
+                <video autoplay muted loop id="myVideo">
+                    <source src="/Root/library/media/HomeHeroVideo.mp4" type="video/mp4">
+                  </video>
+                  <div class="home-hero-overlay">
+                    <div class="overlay-container">
+                        <div class="overlay-text">
+                            Connect to Opportunity
+                        </div>
+                        <div class="overlay-signup">
+                            <button class="overlay-button">
+                                <a href="createStudent.html">Let's Go</a>
+                            </button>
                         </div>
                     </div>
-                    <div class="inputField">
-                        <label class="inputLabel">Password</label>
-                        <div class="inputTextbox">
-                            <input class="text-input" id="passwordKey">
-                        </div>
-                    </div>
-                    <button class="greenButton loginButton" id="loginButton" type="submit"> Login</button>
-
-                    <section>
-                        <label class= "space">Don't have an account?<br><a href="createStudent.html">Create new account</a></label>
-                    </section>
-                </form>
+                  </div>
             </div>
-        </div>
+            <div class="aboutus">
+                About Us
+            </div>
+            <div class="services">
+                Services
+            </div>
+        </main>
+
     </div>
 </body>
 </html>
