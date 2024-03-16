@@ -36,11 +36,9 @@ class DbOperation:
     def create_record(self, data, user_id, name="student_table"):
         student_id = data['student_id']
         std_first_name = data['std_first_name']
-        std_first_name = data['std_first_name']
         std_last_name = data['std_last_name']
         std_email = data['std_email']
         password = data['password']
-        std_major = data['std_major']
         con = self.db_op()
         query = f'''
                INSERT INTO {name}('student_id' ,'std_first_name', 'std_last_name', 'std_email', 'password', 'std_major') 

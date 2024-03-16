@@ -1,10 +1,11 @@
 from app import app
-from flask import render_template
+import app.Database.student_db as student_db
+from flask import render_template, request
 
 
 @app.route('/')
 def index():
-    return render_template("home.html")
+    return render_template("createStudent.html")
 
 
 @app.route('/createEmployer')
@@ -50,3 +51,8 @@ def profileEmployer():
 @app.route('/profileStudent')
 def profileStudent():
     return render_template('profileStudent.html')
+
+@app.route('/home', methods=['POST'])
+def home():
+    student_db.std_register(request.form)
+    return "Success!"
