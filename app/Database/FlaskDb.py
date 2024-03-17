@@ -1,4 +1,4 @@
-import sqlite3 as db
+
 
 conn = db.connect("UR_Connect.db")
 

@@ -1,12 +1,39 @@
-from app import app
-import app.Database.student_db as student_db
+from app import app, db
 from flask import render_template, request
-
+from app.models import Students, Employers, Jobs
 
 @app.route('/')
 def index():
     return render_template("createStudent.html")
 
+@app.route('/std_login', methods=['POST'])
+def std_login():
+    form = request.form
+    createStudent = Students(
+        student_id=form['student_id'],
+        first_name=form['first_name'],
+        last_name=form['last_name'],
+        email=form['email'],
+        password=form['password'],
+    )
+    db.session.add(createStudent)
+    db.session.commit()
+    return render_template("login.html")
+
+@app.route('/emp_login', methods=['POST'])
+def emp_login():
+    form = request.form
+    createEmployer = Employers(
+        user_name=form['user_name'],
+        company_name=form['company_name'],
+        company_address=form['address'],
+        company_phone=form['phone'],
+        email=form['email'],
+        password=form['password'],
+    )
+    db.session.add(createEmployer)
+    db.session.commit()
+    return render_template("login.html")
 
 @app.route('/createEmployer')
 def createEmployer():
@@ -52,7 +79,13 @@ def profileEmployer():
 def profileStudent():
     return render_template('profileStudent.html')
 
-@app.route('/home', methods=['POST'])
-def home():
-    student_db.std_register(request.form)
+
+
+
+"""
+
+@app.route('/profileEmployer', methods=['POST'])
+def ():
+    student_db.emp_register(request.form)
     return "Success!"
+"""
