@@ -30,7 +30,7 @@
                         <option class="font20" value="Employer" id="employerType">Employer</option>
                     </select>
 
-                    <form class="inputForm" id="infoForm" action="/std_login" method="POST">
+                    <form class="inputForm" id="infoForm" action="/std_registered" method="POST">
                         <section class="space">
                             <label class="inputLabel float-left">First Name:</label>
                             <input id="firstnameEntry" name="first_name" class="inputBox" type="text" placeholder="First Name">
@@ -61,7 +61,7 @@
                         </sction>
                     </form>
                     <section>
-                        <label class= "font20">Already have an account? <br><a href="../Pages/login.html">Log In Here!</a></label>
+                        <label class= "font20">Already have an account? <br><a href="{{ url_for('login') }}">Log In Here!</a></label>
                     </section>
 
                 </div>

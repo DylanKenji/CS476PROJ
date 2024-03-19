@@ -24,17 +24,17 @@ loginButton -->
         <div class="main-wrapper">
             <div class="login-box">      
                 <img class="homeLogo" src="../../Root/library/media/URConnect.png" class="fitBox"alt="">
-                <form class="loginForm">
+                <form class="loginForm" action="/std_profile_login" method="POST">
                     <div class="inputField">
                         <label class="inputLabel">Email</label>
                         <div class="inputTextbox">
-                            <input class="text-input" id="emailKey">
+                            <input class="text-input" name = "email" id="emailKey">
                         </div>
                     </div>
                     <div class="inputField">
                         <label class="inputLabel">Password</label>
                         <div class="inputTextbox">
-                            <input class="text-input" id="passwordKey">
+                            <input class="text-input" name ="password" id="passwordKey">
                         </div>
                     </div>
                     <button class="greenButton loginButton" id="loginButton" type="submit"> Login</button>
