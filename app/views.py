@@ -5,7 +5,6 @@ from app.models import Students, Employers, Jobs
 from werkzeug.utils import secure_filename
 import os
 
-UPLOAD_FOLDER = os.path.join(current_app.static_folder, 'library', 'media', 'Avatars')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 # routes to home page
 @app.route('/')
@@ -88,6 +87,7 @@ def profileStudent():
 
 @app.route('/editStudent', methods=['GET', 'POST'])
 def editStudent():
+    UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
     if "student_key" in session:
         student_id = session["student_key"]
         student = Students.query.get(student_id)

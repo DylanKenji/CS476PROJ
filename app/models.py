@@ -2,6 +2,7 @@
 from app import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.orm import relationship
 
 
 # The Students class is used to create the STUDENTS table in the database.
@@ -20,6 +21,8 @@ class Students(db.Model):
     avatar = db.Column(db.String(200))
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_updated = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    job_applications = relationship('Applications', backref='student', cascade='all, delete-orphan')
+
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -43,6 +46,7 @@ class Employers(db.Model):
     avatar = db.Column(db.String(200))
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_updated = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    created_jobs = relationship('EmployerJobs', backref='employer', cascade='all, delete-orphan')
 
 
 # The Jobs class is used to create the JOBS table in the database.
@@ -61,3 +65,18 @@ class Jobs(db.Model):
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_updated = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
     deadline = db.Column(db.DateTime)
+    applicants = relationship('APPLICATIONS', backref='job', cascade='all, delete-orphan')
+    employers = relationship('EmployerJobs', backref='job', cascade='all, delete-orphan')
+
+
+class Applications(db.Model):
+    __tablename__ = 'APPLICATIONS'
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('STUDENTS.id'))
+    job_id = db.Column(db.Integer, db.ForeignKey('JOBS.id'))
+
+class EmployerJobs(db.Model):
+    __tablename__ = 'EMP_JOBS'
+    id = db.Column(db.Integer, primary_key=True)
+    employer_id = db.Column(db.Integer, db.ForeignKey('EMPLOYERS.id'))
+    job_id = db.Column(db.Integer, db.ForeignKey('JOBS.id'))
