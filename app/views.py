@@ -18,60 +18,64 @@ def login():
 
 
 # routes user to the student registration page
-@app.route('/createStudent')
+@app.route('/createStudent', methods=['POST', 'GET'])
 def createStudent():
-    return render_template('createStudent.html')
-
-
-# routes to login page after registering new student
-@app.route('/std_registered', methods=['POST'])
-def std_login():
     form = request.form
-    createStudent = Students(
-        student_id=form['student_id'],
-        first_name=form['first_name'],
-        last_name=form['last_name'],
-        email=form['email'],
+    if request.method == 'POST':
+        createStudent = Students(
+            student_id=form['student_id'],
+            first_name=form['first_name'],
+            last_name=form['last_name'],
+            email=form['email'],
 
-    )
-    createStudent.set_password(form['password'])
-    db.session.add(createStudent)
-    db.session.commit()
-    return render_template("login.html")
+        )
+        createStudent.set_password(form['password'])
+        db.session.add(createStudent)
+        db.session.commit()
+        return render_template("login.html")
+    else:
+        return render_template('createStudent.html')
+
 
 
 # routes to login page after registering new employer
-@app.route('/emp_register', methods=['POST'])
+@app.route('/createEmployer', methods=['POST'])
 def emp_login():
-    form = request.form
-    createEmployer = Employers(
-        user_name=form['user_name'],
-        company_name=form['company_name'],
-        company_address=form['address'],
-        company_phone=form['phone'],
-        email=form['email'],
-        password=form['password'],
-    )
-    createEmployer.set_password(form['password'])
-    db.session.add(createEmployer)
-    db.session.commit()
-    return render_template("login.html")
+    if request.method == 'POST':
+        form = request.form
+        createEmployer = Employers(
+            user_name=form['user_name'],
+            company_name=form['company_name'],
+            company_address=form['address'],
+            company_phone=form['phone'],
+            email=form['email'],
+            password=form['password'],
+        )
+        createEmployer.set_password(form['password'])
+        db.session.add(createEmployer)
+        db.session.commit()
+        return render_template("login.html")
+    else:
+        return render_template('createEmployer.html')
 
 
 # validates student logging in
-@app.route('/std_profile_login', methods=['POST'])
+@app.route('/std_profile_login', methods=['POST', 'GET'])
 def std_profile_login():
-    form = request.form
-    student = Students.query.filter_by(email=form['email']).first()
-    if student is not None:
-        if student.check_password(form['password']):
-            session["student"] = student.id
-            return redirect(url_for('profileStudent'))
+    if request.method == 'POST':
+        form = request.form
+        student = Students.query.filter_by(email=form['email']).first()
+        if student is not None:
+            if student.check_password(form['password']):
+                session["student"] = student.id
+                return redirect(url_for('profileStudent'))
+            else:
+                print("password check failed")
+                return render_template('login.html')
         else:
-            print("password check failed")
+            print("no user found")
             return render_template('login.html')
     else:
-        print("no user found")
         return render_template('login.html')
 
 
@@ -134,6 +138,35 @@ def editStudent():
 # Function to check if the uploaded file has an allowed extension
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/jobListings')
+def jobListings():
+    # Query the database for the 20 most recent jobs
+    jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
+    return render_template('jobListings.html', jobs=jobListings)
+
+
+@app.route('/postJob', methods=['GET', 'POST'])
+def postJob():
+    if "employer_key" in session:
+        employer_id = session["employer_key"]
+        if request.method == 'POST':
+            form = request.form
+            job = Jobs(
+                title=form['Title'],
+                description=form['Description'],
+                location=form['adress'],
+                deadline=form['deadline'],
+                employer_id=employer_id
+            )
+            db.session.add(job)
+            db.session.commit()
+            return redirect(url_for('jobListings'))
+        else:
+            return render_template('postJob.html')
+    else:
+        return redirect(url_for('login'))
 """
 @app.route('/emp_profile_login', methods=['POST'])
 def emp_profile_login():
