@@ -83,7 +83,7 @@ def std_profile_login():
 @app.route('/profileStudent', methods=['POST', 'GET'])
 def profileStudent():
     if "student" in session:
-        student = session["student_key"]
+        student = session["student"]
         student = Students.query.filter_by(id=student).first()
         return render_template('profileStudent.html', students=student)
     return render_template('profileStudent.html')

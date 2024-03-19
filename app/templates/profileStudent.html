@@ -41,17 +41,14 @@
         
 
                 <div class="userDetails">
-                    {%for student in students%}
-                    <!--to refer to student attributes use {{student.value}}</label> -->
                     <label class="detailText bold">Email:</label>
-                    <label class="detailText" id="studentEmail">Student@email.com</label>
+                    <label class="detailText" id="studentEmail">{{ students.email }}</label>
                     <label class="detailText bold">Student ID:</label>
-                    <label class="detailText" id="studentID">200123456</label>
+                    <label class="detailText" id="studentID">{{ students.student_id }}</label>
                     <label class="detailText bold">Major:</label>
-                    <label class="detailText" id="studentMajor">Computer Science</label>
+                    <label class="detailText" id="studentMajor">{{ students.major }}</label>
                     <label class="detailText bold">Availability:</label>
-                    <label class="detailText" id="studentStatus">Looking for job</label>
-
+                    <label class="detailText" id="studentStatus">{{ "Looking for job" if students.looking_for_job else "Not looking for job" }}</label>
                 </div>
 
              <!--    Backend location for pdf -->
