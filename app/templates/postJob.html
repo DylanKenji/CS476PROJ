@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../Root/css/shared.css">
+    <link rel="stylesheet" type="text/css" href="../../Root/css/postJob.css">
+    <script src="../../Root/js/postJob.js" defer></script>
+</head>
+
+<!-- ALL IDS
+jobForm
+jobtitleEntry
+jobdescEntry
+jobaddressEntry
+jobdeadlineEntry
+postButton -->
+
+<body>
+    <div class="page-wrap">
+        <nav>
+            <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="62">
+        </nav>
+        <div class="main-wrapper">
+            <div class="jobBackground">
+                <div class="postTitle">Job Posting</div>
+                <form id="jobForm" method="POST" action="jobForm" class="job-wrapper">
+                    <section class="space lineUp">
+                        <label class="postingLabel float-left">Job Title:</label>
+                        <input class="postingBox" placeholder="Job Title" id="jobtitleEntry">
+                    </section>
+                    <section class="space textBox lineUp">
+                        <label class="postingLabel float-left">Job Description:</label>
+                        <textarea class="postingBox disc"  id="jobdescEntry"></textarea>
+                    </section>
+                    <section class="space lineUp">
+                        <label class="postingLabel float-left">Job Address:</label>
+                        <input class="postingBox" placeholder="Job Address" id="jobaddressEntry">
+                    </section>
+                    <section class="space lineUp">
+                        <label class="postingLabel float-left">Job Deadline:</label>
+                        <input class="postingBox" type="date" id="jobdeadlineEntry">
+                    </section>
+                    <div id="error"></div>
+                    <button class="postButton greenButton" type="submit" id="postButton">Post Job</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

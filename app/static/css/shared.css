@@ -1,0 +1,104 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    background-size: cover;
+    overflow-x: hidden;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+textarea{
+    resize: none;
+}
+
+.logo{
+    height: 61px;
+}
+
+.inputLabel{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.headerPicture{
+    cursor: pointer;
+}
+
+.inputTextbox{
+    font-size: 20px;
+    border: 2px solid rgb(128, 133, 128);
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+}
+
+nav {
+    padding-top: 0;
+    padding-bottom: 0;
+    box-shadow: none;
+    background-color: #1c6928;
+    border-bottom: #0c3f14 1px solid;
+    align-items: stretch;
+    height: 61px;
+    width: 100%;
+}
+
+.page-wrap{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-wrapper{
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.login-box{
+    max-width: 600px;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    padding: 3rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+    margin-bottom: 2rem;
+}
+
+.greenButton{
+    border-radius: 50px;
+    background-color: #164e1f;
+    color: white;
+}
+
+.greenButton:hover{
+    color: goldenrod;
+    border: 3px solid goldenrod;
+}
+
+.roundForm{
+    border-radius: 10px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+
+
+@media (max-width:375px) {
+
+    .login-box{
+        max-width: 100%;
+    }
+    
+
+}
+
+
