@@ -1,0 +1,120 @@
+body{
+    background-image: url(../library/media/university-of-regina.avif);
+}
+
+.float-right{
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.spacing{
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.padTop{
+    padding-top: 15px;
+}
+
+.align-center{
+    text-align: center;
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #1c6928;
+}
+
+
+
+.cust-main-wrapper{
+    margin-top: 200px;
+    background-color: #fff;
+    margin-right: auto;
+    margin-left: auto;
+    justify-items: center;
+    border-radius: 5px;
+    border: 4px solid #1c6928;
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.info-box1 { 
+    grid-area: 1 / 1 / 2 / 2;
+    height: 550px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+.info-box2 { 
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    justify-content: flex-end;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+
+.userDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 20px;
+}
+
+.detailText{
+    font-size: 20px;
+    max-width: 200px;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.jobPosting{
+    display: flex;
+    border-bottom: 2px solid rgb(214, 211, 211);
+}
+
+.jobDetails{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+}
+
+.jobList{
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    width: 100%;
+    background-color: white;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(11, 88, 11) white;
+    border: 4px solid #1c6928;
+}
+
+.jobImg{
+    max-height: 100px;
+}
+
+.resumeButton{
+    margin-top: 20px;
+    height: 40px;
+    width: 200px;
+}
+

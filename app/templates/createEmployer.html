@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Creation</title>
+    <link rel="stylesheet" type="text/css" href="../../Root/css/shared.css">
+    <link rel="stylesheet" type="text/css" href="../../Root/css/createAccount.css">
+    <script src="../../Root/js/accountpageSwap.js" defer></script>
+    <script src="../../Root/js/createEmployer.js" defer></script>
+</head>
+
+<body>
+    <div class="page-wrap">
+
+        <nav>
+            <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="62" class="headerPicture" onclick="location.href='../Pages/home.html'">
+        </nav>
+
+        <div class="main-wrapper">
+            <div class="creationWrapper">
+                <div class="create-account">
+                    <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="125">
+
+                    <h1> Sign Up Now! </h1>
+                    <label for="account_Type" class="font20">Choose account type: </label>
+                    <select name="account_Type" id="account_Type" class="dropDown font20">
+                        <option class="font20" value="Employer" id="employerType">Employer</option>
+                        <option class="font20" value="Student" id="studentType">Student</option>
+                    </select>
+
+                    
+                    <form class="inputForm" id="infoForm" action="/login" method="POST">
+                        <section class="space">
+                            <label class="inputLabel float-left">First Name:</label>
+                            <input id="firstnameEntry" class="inputBox" type="text" placeholder="First Name">
+                        </section>
+                        <section class="space">
+                            <label class="inputLabel float-left">Last Name:</label>
+                            <input id="lastnameEntry" class="inputBox" type="text" placeholder="Last Name">
+                        </section>
+                        <section class="space">
+                            <label class="inputLabel float-left">Email:</label>
+                            <input id="emailEntry" class="inputBox" type="email" placeholder="Email">
+                        </section>
+                        <section class="space">
+                            <label class="inputLabel float-left">Company Name:</label>
+                            <input id="companyEntry" class="inputBox" type="text" placeholder="Company Name">
+                        </section>
+                        <section class="space">
+                            <label class="inputLabel float-left">Company Address:</label>
+                            <input id="addressEntry" class="inputBox" type="text" placeholder="Company Address">
+                        </section>
+                        <section class="space">
+                            <label class="inputLabel float-left">Company Phone Number:</label>
+                            <input id="phoneEntry" class="inputBox" type="text" placeholder="Company Phone Number">
+                        </section>
+                        <section class="space">
+                            <label class="inputLabel float-left">Password:</label>
+                            <input id="passwordEntry" class="inputBox" type="password" placeholder="Enter Password">
+                        </section>
+                        <section class="space">
+                            <label class="inputLabel float-left">Confirm Password:</label>
+                            <input id="confirmEntry" class="inputBox" type="password" placeholder="Re-enter Password">
+                        </section>
+                        
+                        <section class="space buttonHolder">
+                            <div id="error"></div>
+                            <button type="submit" class="createButton greenButton" value="Create Account" id="createAccount">Create Account</button>
+                        </sction>
+                    </form>
+
+                    <section>
+                        <label class= "font20">Already have an account? <br><a href="../Pages/login.html">Log In Here!</a></label>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

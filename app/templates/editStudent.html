@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Student Profile</title>
+    <link rel="stylesheet" type="text/css" href="../../Root/css/shared.css">
+    <link rel="stylesheet" type="text/css" href="../../Root/css/studentprofileEdit.css">
+    <script src="../../Root/js/editStudent.js" defer></script>
+</head>
+<body>
+    
+
+    <!-- 
+        ALL IDS
+        studentAvatar
+        studentfirstName
+        studentlastName
+        studentEmail
+        studentPassword
+        studentconfirmPassword
+        studentMajor
+        studentAvailability
+        studentResume
+        newstudentAvatar
+        backButton
+        saveButton
+    -->
+
+    <div class="page-wrap">
+
+        <nav>
+            <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="62">
+        </nav>
+         <!-- Action location for backend -->
+         <form method="POST" action="" id="submitForm" class="cust-main-wrapper">
+            <div class="info-box1">
+                <div id="error"></div>
+                <div class="align-center">
+                    <img src="../../Root/library/media/avatar1.jpg" id="studentAvatar" class="avatar">
+                </div>
+                <h1 class="align-center titleText">User Details</h1>
+            </div>
+            <div class="info-box2">
+                <div class="userDetails">
+                    <label class="inputLabel float-left" >First Name:</label>
+                    <input class="inputBox" type="text" id="studentfirstName" placeholder="First Name">
+                
+                    <label class="inputLabel float-left" >Last Name:</label>
+                    <input class="inputBox" type="text" id="studentlastName" placeholder="Last Name">
+
+                    <label class="inputLabel float-left" >Email:</label>
+                    <input class="inputBox" type="email" id="studentEmail" placeholder="Enter Email">
+
+                    <label class="inputLabel float-left" >Password:</label>
+                    <input class="inputBox" type="password" id="studentPassword" placeholder="Enter Password">
+
+                    <label class="inputLabel float-left" >Confirm Password:</label>
+                    <input class="inputBox" type="password" id="studentconfirmPassword" placeholder="Confirm Password">
+                </div>
+            </div>
+            <div class="info-box3">
+                <div class="userDetails">
+                        
+                    <label class="inputLabel float-left" >Current Major:</label>
+                    <input class="inputBox" type="text" id="studentMajor" placeholder="Current Major">
+
+                    <label class="detailText"> Are you currently for hire?</label>
+                    <input class="checkSize" type="checkbox" id="studentAvailability" value="lfj">
+                  
+                    <label class="detailText">Resume: </label>
+                    <input type="file" id="studentResume" name="filename">
+
+                    <label class="detailText">Avatar: </label>
+                    <input type="file" id="newstudentAvatar" name="filename">
+
+                    <button class="submitButton greenButton" id="backButton" type="submit">Back</button>
+                    <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
+                </div>     
+            </div>
+        </form>
+    </div>
+</body>
+</html>
