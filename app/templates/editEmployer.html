@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../../Root/css/shared.css">
     <link rel="stylesheet" type="text/css" href="../../Root/css/employerProfile.css">
     <link rel="stylesheet" type="text/css" href="../../Root/css/employerprofileEdit.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/employerProfileEdit.css') }}">
     <script src="../../Root/js/editEmployer.js" defer></script>
 </head>
 <body>
@@ -31,7 +33,8 @@
     <div class="page-wrap">
 
         <nav>
-            <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" height="62">
+            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+            <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo" style="float: right;">
         </nav>
 
       <!-- Action location for backend -->

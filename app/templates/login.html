@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="../../Root/css/shared.css">
-    <link rel="stylesheet" type="text/css" href="../../Root/css/login.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
 
 <!-- 
 ALL IDS
@@ -18,12 +18,13 @@ loginButton -->
     <div class="page-wrap">
 
         <nav>
-            <img src="../../Root/library/media/UR_Logo_Primary_Full_COlour_RGB.png" class="logo">
+            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+            <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo" style="float: right;">
         </nav>
 
         <div class="main-wrapper">
             <div class="login-box">      
-                <img class="homeLogo" src="../../Root/library/media/URConnect.png" class="fitBox"alt="">
+                <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" height="125">
                 <form class="loginForm" action="/std_profile_login" method="POST">
                     <div class="inputField">
                         <label class="inputLabel">Email</label>
@@ -34,14 +35,15 @@ loginButton -->
                     <div class="inputField">
                         <label class="inputLabel">Password</label>
                         <div class="inputTextbox">
-                            <input class="text-input" name ="password" id="passwordKey">
+                            <input class="text-input" type="password" name="password" id="passwordKey">
                         </div>
                     </div>
                     <button class="greenButton loginButton" id="loginButton" type="submit"> Login</button>
 
                     <section>
-                        <label class= "space">Don't have an account?<br><a href="createStudent.html">Create new account</a></label>
+                        <label class="space">Don't have an account?<br><a href="{{ url_for('createStudent') }}">Create new account</a></label>
                     </section>
+                    
                 </form>
             </div>
         </div>
