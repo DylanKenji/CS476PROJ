@@ -12,9 +12,6 @@ The University of Regina faces a challenge where students struggle to showcase t
 - Customizable Job Board
     - Access to a customizable job board with filters based on industry, location, and job type.
     - Employers can post job openings with detailed descriptions, making it easier for students and graduates to find fitting opportunities.
-- Secure Messaging System
-    - Private messaging between users facilitates effective communication between students, graduates, and employers.
-
 - Career Counseling Resources
     - Access to a wealth of career counselling resources, including articles, videos, and webinars, empowering users to make informed decisions about their professional paths.
 - Application Tracking System (ATS)
