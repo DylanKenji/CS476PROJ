@@ -13,9 +13,7 @@ textarea{
     resize: none;
 }
 
-.logo{
-    height: 61px;
-}
+
 
 .inputLabel{
     font-size: 20px;
@@ -34,16 +32,6 @@ textarea{
     display: flex;
 }
 
-nav {
-    padding-top: 0;
-    padding-bottom: 0;
-    box-shadow: none;
-    background-color: #1c6928;
-    border-bottom: #0c3f14 1px solid;
-    align-items: stretch;
-    height: 61px;
-    width: 100%;
-}
 
 .page-wrap{
     height: 100%;
@@ -90,15 +78,68 @@ nav {
     font-weight: bold;
 }
 
+/* HEADER */
 
-
-@media (max-width:375px) {
-
-    .login-box{
-        max-width: 100%;
-    }
-    
-
+.header {
+    background-color: white;
+    border-bottom: #0c3f14 2px solid;
+    height: 6vh;
 }
 
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2vw 0 2vw;
+}
 
+.logo{
+    height: 6vh;
+}
+
+.header-profilenav {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 0.75vw;
+    font-weight: 600;
+}
+
+.dropbtn {
+    font-size: 0.75vw;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 120px;
+    z-index: 1;
+    border: 1px solid #ccc;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

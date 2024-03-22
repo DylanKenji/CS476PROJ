@@ -6,9 +6,9 @@
     <title>Student Profile</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profileStudent.css') }}">
+    <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    
 
     <!-- 
         ALL IDS
@@ -23,17 +23,32 @@
 
     <div class="page-wrap">
 
-        <nav>
-            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
-            <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo" style="float: right;">
+        <nav class="header">
+            <div class="header-container">
+                <div class="header-logo">
+                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                </div>
+                <div class="header-profilenav">
+                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }} {{ students.avatar }}</div>
+                    <div class="dropdown">
+                        <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </nav>
+        
 
         <div class="cust-main-wrapper">
 
             <div class="info-box1">
 
                 <div class="align-center">
-                    <img src="{{ url_for('static', filename='library/media/avatar1.png') }}" id="studentAvatar" class="avatar">
+                    <img src="{{ url_for('static', filename='library/media/avatars/default.png') }}" class="jobImg">
                 </div>
 
                 <h1 class="align-center" id="studentName">{{ students.first_name }} {{ students.last_name }}</h1>
@@ -73,7 +88,7 @@
 
                 <div class="jobList roundForm">
                       <div class="jobPosting" id="testJob1">
-                          <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
+                          <img src="{{ url_for('static', filename='library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg') }}" class="jobImg">
           
                           <div class="jobDetails">
                               <label class="jobName bold">Administrative Assistant</label>
@@ -85,7 +100,7 @@
                       </div>
                   
                       <div class="jobPosting" id="testJob2">
-                          <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
+                        <img src="{{ url_for('static', filename='library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg') }}" class="jobImg">
           
                           <div class="jobDetails">
                               <label class="jobName bold">Administrative Assistant</label>
@@ -96,7 +111,7 @@
           
                       </div>
                       <div class="jobPosting" id="testJob3">
-                          <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
+                        <img src="{{ url_for('static', filename='library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg') }}" class="jobImg">
           
                           <div class="jobDetails">
                               <label class="jobName bold">Administrative Assistant</label>

@@ -6,19 +6,19 @@
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
-    
-
-
+    <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="page-wrap">
 
-        <nav>
+        <nav class="header">
+            <div class="header-container">
+                <div class="header-logo">
+                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                </div>
                 <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
-                <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo" style="float: right;">
+            </div>
         </nav>
-
-        
 
         <main>
             <div class="home-hero">
@@ -33,17 +33,62 @@
                         </div>
                         <div class="overlay-signup">
                             <button class="overlay-button">
-                                <a href="{{ url_for('createStudent') }}">Let's Go</a>
+                                <a href="{{ url_for('createStudent') }}">Get Started</a>
                             </button>
                         </div>
                     </div>
                   </div>
             </div>
             <div class="aboutus">
-                About Us
+                <div class="section-darken">
+                    <div class="section-container">
+                        <div class="section-title">
+                            Our Mission
+                        </div>
+                        <div class="section-desc">
+                            <p>The University of Regina faces a challenge where students struggle to showcase their skills and 
+                                secure fitting opportunities, while local employers find it hard to identify and connect with 
+                                talented individuals. UR Connect is introduced as a solution to streamline and personalize interactions 
+                                between students and employers within the University. This user-friendly platform aims to provide 
+                                opportunities to UofR students by allowing them to present their achievements beyond traditional resumes. 
+                                UR Connect will support both students actively pursuing opportunities while studying and those on the 
+                                verge of graduation. For students still studying, the platform provides a space to discover internship 
+                                opportunities and professional growth. Simultaneously, for graduating students preparing to step into 
+                                the professional world, UR Connect becomes a resource that will provide a comprehensive job board, personalized 
+                                connections, and a secure messaging system, becoming a pivotal tool in the job searching process. UR Connect, 
+                                in essence, addresses the needs of students at various stages of their academic and professional journey. 
+                                By providing tailored support for those currently studying and those about to graduate, the platform ensures 
+                                that every student, regardless of their academic timeline, can find meaningful and fitting opportunities 
+                                within the University of Regina community.</p>
+                        </div>
+                    </div>
+                </div> 
             </div>
+
             <div class="services">
-                Services
+                <div class="section-darken">
+                    <div class="section-container">
+                        <div class="section-title">
+                            Our Services
+                        </div>
+                        <div class="section-desc">
+                            <ul class="section-desc-feat">
+                                <li class="feat">Comphrehensive Profile Creation</li>
+                                <li class="feat">Networking and Connections</li>
+                                <li class="feat">Customizable Job Board</li>
+                                <li class="feat">Career Counseling Resources</li>
+                                <li class="feat">Application Tracking System (ATS)</li>
+                                <li class="feat">Advanced Search</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="find-people">
+                <div class="section-darken">
+                    
+                </div>
             </div>
         </main>
 

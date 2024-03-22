@@ -6,6 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 
 <!-- 
 ALL IDS
@@ -17,9 +18,13 @@ loginButton -->
 <body>
     <div class="page-wrap">
 
-        <nav>
-            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
-            <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo" style="float: right;">
+        <nav class="header">
+            <div class="header-container">
+                <div class="header-logo">
+                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                </div>
+                <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+            </div>
         </nav>
 
         <div class="main-wrapper">
