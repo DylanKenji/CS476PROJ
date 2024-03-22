@@ -10,6 +10,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///UR_CONNECT.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 UPLOAD_FOLDER = os.path.join(app.static_folder, 'library', 'media', 'Avatars')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+RESULT_FOLDER = os.path.join(app.static_folder, 'library', 'media', 'Resumes')
+app.config['RESULT_FOLDER'] = RESULT_FOLDER
 db = SQLAlchemy(app)
 
 # import the views and models
