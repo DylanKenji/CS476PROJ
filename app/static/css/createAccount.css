@@ -83,6 +83,20 @@ input[type=email], input[type=password], input[type=text]{
     font-size: 20px;
 }
 
+.switchButton{
+    height: 40px;
+}
+
+.link{
+   color: white;
+   text-decoration: none;
+}
+
+.link:hover{
+    color: goldenrod;
+
+ }
+
 @media (max-width: 576px) {
     .creationWrapper{
         width: 80vw;

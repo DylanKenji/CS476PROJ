@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employer Profile</title>
-    <link rel="stylesheet" type="text/css" href="../../Root/css/shared.css">
-    <link rel="stylesheet" type="text/css" href="../../Root/css/profileEmployer.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profileEmployer.css') }}">
 </head>
 <body>
 
@@ -49,9 +49,14 @@
                     <label class="detailText" id="employerNumber">(123)456-7890</label>
 
                 </div>
-                <div class="padTop">
-                    <a class="float-right" href="employerprofileEdit.html">Edit Profile</a>
-                </div>
+                
+                <form method="GET" action="/editEmployer">
+                    <button class="greenButton resumeButton" id="resumeButton" type="submit">EditProfile</button>
+                </form>
+
+                
+          
+         
 
             </div>
 

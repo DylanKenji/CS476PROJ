@@ -36,7 +36,7 @@
                     <img src="{{ url_for('static', filename='library/media/avatar1.png') }}" id="studentAvatar" class="avatar">
                 </div>
 
-                <h1 class="align-center" id="studentName">Student Name</h1>
+                <h1 class="align-center" id="studentName">{{ students.first_name }} {{ students.last_name }}</h1>
 
                 <h2 class="align-center">User details</h2>
         
@@ -57,9 +57,13 @@
                     <button class="greenButton resumeButton" id="resumeButton" type="submit">View Resume</button>
                 </form>
 
-                <div class="padTop">
-                    <a class="float-right" href="studentprofileEdit.html">Edit Profile</a>
-                </div>
+                
+
+
+                <form method="GET" action="/editStudent">
+                    <button class="greenButton resumeButton" id="resumeButton" type="submit">EditProfile</button>
+                </form>
+         
 
             </div>
 

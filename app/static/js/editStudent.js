@@ -38,21 +38,17 @@ form.addEventListener('submit', (e) => {
     }
 
     //password field validation
-    if(studentPassword.value === null || studentPassword.value === '' ) {
-        messages.push('Password required');
-    }
-    if(studentPassword.value.length < 5) {
-        messages.push('Password must be longer than 5 characters');
+    if(studentPassword.value.length > 0) {
+        if(studentPassword.value.length < 5) {
+            messages.push('Password must be longer than 5 characters');
+        }
     }
     if(studentPassword.value.length > 20) {
         messages.push('Password cannot be more than 20 characters');
     }
 
     //password confirmation field validation
-    if(studentconfirmPassword.value === null || studentconfirmPassword.value === '' ) {
-        messages.push('Password confirmation required');
-    }
-    else if (studentconfirmPassword.value !== studentPassword.value) {
+   if (studentconfirmPassword.value !== studentPassword.value) {
         messages.push('Passwords do not match');
     }
 

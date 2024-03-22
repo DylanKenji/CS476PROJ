@@ -6,7 +6,7 @@
     <title>Customize Student Profile</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studentProfileEdit.css') }}">
-    <script src="../../Root/js/editStudent.js" defer></script>
+    <script src="{{ url_for('static', filename='js/editStudent.js') }}" defer></script>
 </head>
 <body>
     
@@ -34,7 +34,7 @@
             <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo" style="float: right;">
         </nav>
          <!-- Action location for backend -->
-         <form method="POST" action="" id="submitForm" class="cust-main-wrapper">
+         <form method="POST" action="/editStudent" id="submitForm" class="cust-main-wrapper">
             <div class="info-box1">
                 <div id="error"></div>
                 <div class="align-center">
@@ -45,29 +45,29 @@
             <div class="info-box2">
                 <div class="userDetails">
                     <label class="inputLabel float-left" >First Name:</label>
-                    <input class="inputBox" type="text" id="studentfirstName" placeholder="First Name">
+                    <input class="inputBox" type="text" id="studentfirstName" name="studentfirstName" placeholder="first name" value="{{ student.first_name }}">
                 
                     <label class="inputLabel float-left" >Last Name:</label>
-                    <input class="inputBox" type="text" id="studentlastName" placeholder="Last Name">
+                    <input class="inputBox" type="text" id="studentlastName" name="studentlastName" placeholder="Last Name" value="{{ student.last_name }}">
 
                     <label class="inputLabel float-left" >Email:</label>
-                    <input class="inputBox" type="email" id="studentEmail" placeholder="Enter Email">
+                    <input class="inputBox" type="email" id="studentEmail" name="studentEmail" placeholder="Enter Email" value="{{ student.email }}">
 
                     <label class="inputLabel float-left" >Password:</label>
-                    <input class="inputBox" type="password" id="studentPassword" placeholder="Enter Password">
+                    <input class="inputBox" type="text" id="studentPassword" name="newPassword" placeholder="Enter Password">
 
                     <label class="inputLabel float-left" >Confirm Password:</label>
-                    <input class="inputBox" type="password" id="studentconfirmPassword" placeholder="Confirm Password">
+                    <input class="inputBox" type="text"  id="studentconfirmPassword" name="confirmPassword" placeholder="Confirm Password">
                 </div>
             </div>
             <div class="info-box3">
                 <div class="userDetails">
                         
                     <label class="inputLabel float-left" >Current Major:</label>
-                    <input class="inputBox" type="text" id="studentMajor" placeholder="Current Major">
+                    <input class="inputBox" type="text" id="studentMajor" name="studentMajor" placeholder="Current Major">
 
                     <label class="detailText"> Are you currently for hire?</label>
-                    <input class="checkSize" type="checkbox" id="studentAvailability" value="lfj">
+                    <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
                   
                     <label class="detailText">Resume: </label>
                     <input type="file" id="studentResume" name="filename">

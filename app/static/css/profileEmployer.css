@@ -127,3 +127,10 @@ body{
 .jobImg{
     max-height: 100px;
 }
+
+.resumeButton{
+    margin-top: 20px;
+    height: 40px;
+    width: 200px;
+}
+

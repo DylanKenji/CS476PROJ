@@ -12,10 +12,17 @@ def index():
     return render_template("home.html")
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     return render_template('login.html')
 
+@app.route('/creatingEmployer')
+def gotoEmployer():
+    return render_template('createEmployer.html')
+
+@app.route('/creatingStudent')
+def gotoStudent():
+    return render_template('createStudent.html')
 
 # routes user to the student registration page
 @app.route('/createStudent', methods=['POST', 'GET'])
@@ -39,17 +46,17 @@ def createStudent():
 
 
 # routes to login page after registering new employer
-@app.route('/createEmployer', methods=['POST'])
+@app.route('/createEmployer', methods=['POST','GET'])
 def emp_login():
     if request.method == 'POST':
         form = request.form
         createEmployer = Employers(
-            user_name=form['user_name'],
+            first_name=form['first_name'],
+            last_name=form['first_name'],
             company_name=form['company_name'],
-            company_address=form['address'],
-            company_phone=form['phone'],
+            address=form['address'],
+            phone=form['phone'],
             email=form['email'],
-            password=form['password'],
         )
         createEmployer.set_password(form['password'])
         db.session.add(createEmployer)
@@ -73,10 +80,15 @@ def std_profile_login():
                 print("password check failed")
                 return render_template('login.html')
         else:
-            print("no user found")
-            return render_template('login.html')
+            form = request.form
+            employer = Employers.query.filter_by(email=form['email']).first()
+            if employer is not None and employer.check_password(form['password']):
+                return redirect(url_for('profileEmployer'))
+            else:
+                print("no user found")
+                return render_template('login.html')
     else:
-        return render_template('login.html')
+      return render_template('createStudent.html')
 
 
 # if student is logged in, they can view their profile
@@ -88,13 +100,16 @@ def profileStudent():
         return render_template('profileStudent.html', students=student)
     return render_template('profileStudent.html')
 
+@app.route('/profileEmployer', methods=['POST', 'GET'])
+def profileEmployer():
+    return render_template('profileEmployer.html')
 
 @app.route('/editStudent', methods=['GET', 'POST'])
 def editStudent():
     UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
-    if "student_key" in session:
-        student_id = session["student_key"]
-        student = Students.query.get(student_id)
+    if "student" in session:
+        student = session["student"]
+        student = Students.query.get(student)
 
         if request.method == 'POST':
             # Update student information based on form data
@@ -106,9 +121,10 @@ def editStudent():
 
             # Update password if new password is provided and matches confirmation
             new_password = request.form.get('newPassword')
-            confirm_password = request.form.get('confirmPassword')
-            if new_password and confirm_password and new_password == confirm_password:
-                student.set_password(new_password)
+            if len(new_password) >= 5:
+                confirm_password = request.form.get('confirmPassword')
+                if new_password and confirm_password and new_password == confirm_password:
+                    student.set_password(new_password)
 
             # Update avatar if a new file is uploaded
             if 'newstudentAvatar' in request.files:
@@ -127,12 +143,12 @@ def editStudent():
             except Exception as e:
                 # Handle any exceptions that may occur during the database commit
                 print(e)
-
-        # If it's a GET request or after processing a POST request, render the template
-        return render_template('profileStudent.html', student=student)
-
+        else:
+            # If it's a GET request or after processing a POST request, render the template
+            return render_template('editStudent.html', student=student)
+    else:
     # If 'student_key' is not in the session or the student doesn't exist, redirect to login
-    return redirect(url_for('login'))  # Assuming you have a 'login' route
+        return redirect(url_for('login'))  # Assuming you have a 'login' route
 
 
 # Function to check if the uploaded file has an allowed extension
@@ -168,19 +184,10 @@ def postJob():
     else:
         return redirect(url_for('login'))
 """
-@app.route('/emp_profile_login', methods=['POST'])
-def emp_profile_login():
-    form = request.form
-    employer = Employers.query.filter_by(email=form['email']).first()
-    if employer is not None and employer.check_password(form['password']):
-        return redirect(url_for('profileEmployer'))
-    else:
-        return render_template('login.html')
 
 
-@app.route('/profileEmployer', methods=['POST', 'GET'])
-def profileEmployer():
-    return render_template('profileEmployer.html')
+
+
 
 
 # routes to the creation page for the employer

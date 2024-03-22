@@ -26,11 +26,10 @@
                     <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" height="125">
                     
                     <h1> Sign Up Now! </h1>
-                    <label for="account_Type" class="font20">Choose account type: </label>
-                    <select name="account_Type" id="account_Type" class="dropDown font20">
-                        <option class="font20" value="Student" id="studentType">Student</option>
-                        <option class="font20" value="Employer" id="employerType">Employer</option>
-                    </select>
+                    <label for="account_Type" class="font20">Change account type:</label>
+                    <button name="account_Type" id="account_Type" class="greenButton switchButton font20">
+                        <a class="link" href="{{ url_for('gotoEmployer') }}">Switch to Employer</a>
+                    </button>
 
                     <form class="inputForm" id="infoForm" action="/createStudent" method="POST">
                         <section class="space">

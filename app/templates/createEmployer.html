@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/createAccount.css') }}">
     <script src="{{ url_for('static', filename='js/accountpageSwap.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='js/createStudent.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/createEmployer.js') }}" defer></script>
     
 </head>
 
@@ -26,46 +26,45 @@
                     <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" height="125">
 
                     <h1> Sign Up Now! </h1>
-                    <label for="account_Type" class="font20">Choose account type: </label>
-                    <select name="account_Type" id="account_Type" class="dropDown font20">
-                        <option class="font20" value="Employer" id="employerType">Employer</option>
-                        <option class="font20" value="Student" id="studentType">Student</option>
-                    </select>
+                    <label for="account_Type" class="font20">Change account type:</label>
+                    <button name="account_Type" id="account_Type" class="greenButton switchButton font20">
+                        <a class="link" href="{{ url_for('gotoStudent') }}">Switch to Student</a>
+                    </button>
                     
-                    <form class="inputForm" id="infoForm" action="/login" method="POST">
+                    <form class="inputForm" id="infoForm" action="/createEmployer" method="POST">
                         <section class="space">
                             <label class="inputLabel float-left">First Name:</label>
-                            <input id="firstnameEntry" class="inputBox" type="text" placeholder="First Name">
+                            <input id="firstnameEntry" name="first_name" class="inputBox" type="text" placeholder="First Name">
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Last Name:</label>
-                            <input id="lastnameEntry" class="inputBox" type="text" placeholder="Last Name">
+                            <input id="lastnameEntry" name="last_name" class="inputBox" type="text" placeholder="Last Name">
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Email:</label>
-                            <input id="emailEntry" class="inputBox" type="email" placeholder="Email">
+                            <input id="emailEntry" name="email" class="inputBox" type="email" placeholder="Email">
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Company Name:</label>
-                            <input id="companyEntry" class="inputBox" type="text" placeholder="Company Name">
+                            <input id="companyEntry" name="company_name" class="inputBox" type="text" placeholder="Company Name">
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Company Address:</label>
-                            <input id="addressEntry" class="inputBox" type="text" placeholder="Company Address">
+                            <input id="addressEntry" name="address" class="inputBox" type="text" placeholder="Company Address">
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Company Phone Number:</label>
-                            <input id="phoneEntry" class="inputBox" type="text" placeholder="Company Phone Number">
+                            <input id="phoneEntry" name="phone" class="inputBox" type="text" placeholder="Company Phone Number">
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Password:</label>
-                            <input id="passwordEntry" class="inputBox" type="password" placeholder="Enter Password">
+                            <input id="passwordEntry" name="password" class="inputBox" type="password" placeholder="Enter Password">
                         </section>
                         <section class="space">
                             <label class="inputLabel float-left">Confirm Password:</label>
                             <input id="confirmEntry" class="inputBox" type="password" placeholder="Re-enter Password">
                         </section>
-                        
+
                         <section class="space buttonHolder">
                             <div id="error"></div>
                             <button type="submit" class="createButton greenButton" value="Create Account" id="createAccount">Create Account</button>
@@ -73,7 +72,7 @@
                     </form>
 
                     <section>
-                        <label class= "font20">Already have an account? <br><a href="../Pages/login.html">Log In Here!</a></label>
+                        <label class= "font20">Already have an account? <br><a href="{{ url_for('login') }}">Log In Here!</a></label>
                     </section>
 
                 </div>
