@@ -1,11 +1,14 @@
+/* HOME HERO */
+
 .home-hero {
     position: relative;
 }
 
 .home-hero video{
-    height: 80vh;
+    height: 85vh;
     width: 100vw;
     object-fit: fill;
+    
 }
 
 .home-hero-overlay {
@@ -55,17 +58,88 @@
   }
 
 
-.aboutus {
-    background-color: #e8faea;
-    height: 70vh;
-    width: 100vw;
+/* FOR SECTIONS */
+
+.section-darken {
+  background-color: rgba(0,0,0,0.5);
+  height: 100%;
 }
 
-.services {
-    background-color: white;
-    height: 70vh;
-    width: 100vw;
+.section-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 5vh 10vw 5vh 10vw;
 }
+
+.section-title {
+  color: white;
+  font-size: 5vh;
+  font-weight: 900;
+  margin-bottom: 10vh;
+}
+
+.section-desc {
+  color: white;
+  font-size: 2vh;
+  font-weight: 700;
+  line-height: 4vh;
+}
+
+/* FIND PEOPLE */
+
+.find-people {
+   background-image: url(../library/media/URConnect_Stock3.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    width: 100%;
+}
+
+/* ABOUT US */
+
+.aboutus {
+    background-image: url(../library/media/URConnect_Stock1.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    width: 100%;
+}
+
+/* SERVICES */
+
+.services {
+    background-image: url(../library/media/URConnect_Stock2.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    width: 100%;
+}
+
+.section-desc-feat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+  align-items: center;
+}
+
+.feat {
+  list-style: none;
+  margin-bottom: 2vh;
+  width: 25vw;
+}
+
+
+/* MEDIA QUERIES */
 
 @media (max-width: 576px) {
     .home-hero video{
@@ -91,6 +165,28 @@
     font-size: 5vw;
     text-decoration: none;
   }
+
+  .aboutus {
+    background-image: url(../library/media/URConnect_Stock1.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+  .section-desc-feat {
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+  }
+  
+  .feat {
+    list-style: none;
+    border: black solid;
+    margin-bottom: 2vh;
+}
 }
 
 @media (min-width: 577px) and (max-width: 992px) {
@@ -143,4 +239,4 @@
     font-size: 3vw;
     text-decoration: none;
   }
-} 
+}
