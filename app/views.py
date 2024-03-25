@@ -191,7 +191,6 @@ def editEmployer():
             employer.company_name = request.form['employerCompany']
             employer.address = request.form['employerAddress']
             employer.phone = request.form['employerPhone']
-            employer.is_hiring = bool(request.form.get('employerHiring'))
 
             # Update password if new password is provided and matches confirmation
             new_password = request.form.get('newPassword')

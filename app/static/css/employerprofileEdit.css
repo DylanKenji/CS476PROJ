@@ -108,3 +108,7 @@ input[type=email], input[type=password], input[type=text]{
     justify-items: center;
     gap: 20px;
 }
+
+.jobImg{
+    max-height: 100px;
+}

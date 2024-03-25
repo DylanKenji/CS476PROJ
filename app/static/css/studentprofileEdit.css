@@ -117,3 +117,7 @@ body{
     width: 20px;
     height: 20px;
 }
+
+.jobImg{
+    max-height: 100px;
+}
