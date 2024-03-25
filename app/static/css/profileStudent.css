@@ -33,7 +33,7 @@ body{
 
 
 .cust-main-wrapper{
-    margin-top: 200px;
+    margin-top: 20vh;
     background-color: #fff;
     margin-right: auto;
     margin-left: auto;
@@ -75,7 +75,7 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    gap: 20px;
+    gap: 1vw;
 }
 
 .detailText{

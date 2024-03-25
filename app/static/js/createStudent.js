@@ -11,18 +11,18 @@ const confirmEntry = document.getElementById('confirmEntry');
 form.addEventListener('submit', (e) => {
     let messages = []
     //first name field validation
-    if (firstnameEntry.value === null || firstnameEntry.value === '' ) {
+    if (firstnameEntry.value === null || firstnameEntry.value === '') {
         messages.push('First name required');
-    }
-    else if (!/^[A-Za-z]+$/.test(firstnameEntry.value)) {
-        messages.push('First name cannot contain numbers');
+    } 
+    else if (!/^[A-Za-z-]+$/.test(firstnameEntry.value)) {
+        messages.push('First name cannot contain numbers or special characters (Exception: Hypens)');
     }
 
     //last name field validation
     if (lastnameEntry.value === null || lastnameEntry.value === '' ) {
         messages.push('Last name required');
     }
-    else if (!/^[A-Za-z]+$/.test(lastnameEntry.value)) {
+    else if (!/^[A-Za-z-]+$/.test(lastnameEntry.value)) {
         messages.push('Last name cannot contain numbers');
     }
 
@@ -35,11 +35,11 @@ form.addEventListener('submit', (e) => {
     }
 
     //student ID field validation
-    if (idEntry.value === null || idEntry.value === '' ) {
+    if (idEntry.value === null || idEntry.value === '') {
         messages.push('SID required');
-    }
-    else if (!/^\d{9}$/.test(idEntry.value)) {
-        messages.push('SID should be 9 digits long and contain only numbers');
+    } 
+    else if (!/^200\d{6}$/.test(idEntry.value)) {
+        messages.push('SID can only be 9 digits and start with 200');
     }
 
     //password field validation

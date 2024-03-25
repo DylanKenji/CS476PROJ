@@ -13,18 +13,18 @@ const confirmEntry = document.getElementById('confirmEntry');
 form.addEventListener('submit', (e) => {
     let messages = []
     //first name field validation
-    if (firstnameEntry.value === null || firstnameEntry.value === '' ) {
+    if (firstnameEntry.value === null || firstnameEntry.value === '') {
         messages.push('First name required');
+    } 
+    else if (!/^[A-Za-z-]+$/.test(firstnameEntry.value)) {
+        messages.push('First name cannot contain numbers or special characters (Exception: Hypens)');
     }
-    else if (!/^[A-Za-z]+$/.test(firstnameEntry.value)) {
-        messages.push('First name cannot contain numbers');
-    }
-
+    
     //last name field validation
     if (lastnameEntry.value === null || lastnameEntry.value === '' ) {
         messages.push('Last name required');
     }
-    else if (!/^[A-Za-z]+$/.test(lastnameEntry.value)) {
+    else if (!/^[A-Za-z-]+$/.test(lastnameEntry.value)) {
         messages.push('Last name cannot contain numbers');
     }
 

@@ -36,13 +36,18 @@
                     <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }}</div>
+                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }} {{ students.avatar }}</div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <div class="dropdown-content">
+                                <a href="{{ url_for('profileStudent') }}">My Profile</a> 
+                                <!--
+                                    <a href="{{ url_for('editStudent') }}">Edit Profile</a> 
+                                    <a href="{{ url_for('jobListings') }}">Job Listings</a> 
+                                    Will need another one for logout but when I tried adding one, even in the comments, it crashes the site
+                                -->
+                            </div>
                         </div>
                     </div>
                 </div>

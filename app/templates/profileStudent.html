@@ -22,20 +22,25 @@
     -->
 
     <div class="page-wrap">
-
         <nav class="header">
             <div class="header-container">
                 <div class="header-logo">
                     <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }} {{ students.avatar }}</div>
+                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }} <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" width="100"></div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <div class="dropdown-content">
+                                <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
+                                <!--
+                                    <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user-pen"></i>Edit Profile</a> 
+                                    <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i>Job Listings</a> 
+                                    Will need another one for logout but when I tried adding one, even in the comments, it crashes the site
+                                        Use this logo for it <i class="fa-solid fa-right-from-bracket"></i>
+                                -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,7 +81,7 @@
 
 
                 <form method="GET" action="/editStudent">
-                    <button class="greenButton resumeButton" id="resumeButton" type="submit">EditProfile</button>
+                    <button class="greenButton resumeButton" id="resumeButton" type="submit">Edit Profile</button>
                 </form>
          
 

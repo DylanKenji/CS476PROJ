@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>URConnect Login</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="{{ url_for('static', filename='js/login.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 
 <!-- 
@@ -23,14 +24,14 @@ loginButton -->
                 <div class="header-logo">
                     <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
                 </div>
-                <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo">
             </div>
         </nav>
 
         <div class="main-wrapper">
             <div class="login-box">      
-                <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" height="125">
-                <form class="loginForm" action="/std_profile_login" method="POST">
+                <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" height="125" width='200'>
+                <form class="loginForm" action="/std_profile_login" method="POST" id="loginForm">
                     <div class="inputField">
                         <label class="inputLabel">Email</label>
                         <div class="inputTextbox">
@@ -43,10 +44,12 @@ loginButton -->
                             <input class="text-input" type="password" name="password" id="passwordKey">
                         </div>
                     </div>
+                    <br>
+                    <div id="error"></div>
                     <button class="greenButton loginButton" id="loginButton" type="submit"> Login</button>
 
                     <section>
-                        <label class="space">Don't have an account?<br><a href="{{ url_for('createStudent') }}">Create new account</a></label>
+                        <label class="space">Don't have an account?<br><a class="link" href="{{ url_for('createStudent') }}">Create new account</a></label>
                     </section>
                     
                 </form>

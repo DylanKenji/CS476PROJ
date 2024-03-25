@@ -31,6 +31,11 @@ input[type=email], input[type=password], input[type=text]{
     display: inline-block;
 }
 
+.greenButton {
+    margin: 2vh 0 2vh 0;
+    height: 20vh;
+    width: 13vw;
+}
 
 .createButton{
     width: 100%;
@@ -69,7 +74,8 @@ input[type=email], input[type=password], input[type=text]{
     margin: 2rem 0 2rem 0;
     display: flex;
     justify-content: center;
-    border: black 1px solid;
+    border: #0c3f14 2px solid;
+
 }
 
 .inputBox{
@@ -129,6 +135,12 @@ input[type=email], input[type=password], input[type=text]{
     .space{
         padding: 1vh 0 1vh 0;
     }
+    .greenButton {
+        margin: 2vh 0 2vh 0;
+        height: 8vh;
+        width: 40vw;
+    }
+    
 }
 
 @media (min-width: 577px) and (max-width: 992px) {
@@ -166,6 +178,11 @@ input[type=email], input[type=password], input[type=text]{
     .inputLabel {
         padding-left: 1vw;
     }
+    .greenButton {
+        margin: 2vh 0 2vh 0;
+        height: 5vh;
+        width: 30vw;
+    }
 }
 
 @media (min-width: 993px) and (max-width: 1440px){
@@ -202,6 +219,11 @@ input[type=email], input[type=password], input[type=text]{
     }
     .inputLabel {
         padding-left: 0.5vw;
+    }
+    .greenButton {
+        margin: 2vh 0 2vh 0;
+        height: 6vh;
+        width: 20vw;
     }
 }
 

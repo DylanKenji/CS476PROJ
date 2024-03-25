@@ -127,6 +127,7 @@ textarea{
     min-width: 120px;
     z-index: 1;
     border: 1px solid #ccc;
+    width: 10vw;
 }
 
 .dropdown-content a {
