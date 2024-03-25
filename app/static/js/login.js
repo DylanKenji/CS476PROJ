@@ -8,9 +8,12 @@ const passwordKey = document.getElementById('passwordKey');
 form.addEventListener('submit', (e) => {
     let messages = []
     //password field validation
-    if(emailKey.value === null || emailKey.value === '' ) {
+    let email = emailKey.value.trim(); // Trim whitespace
+    email = email.toLowerCase(); // Convert email to lowercase
+    if (email === null || email === '') {
         messages.push('Email required');
     }
+
 
     //password confirmation field validation
     if(passwordKey.value === null || passwordKey.value === '' ) {

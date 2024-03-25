@@ -21,9 +21,9 @@
                     </a>
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="50px" ></div>
+                    
                     <div class="dropdown">
-                        <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
+                        <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
@@ -33,6 +33,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }}</div>
                 </div>
             </div>
         </nav>
@@ -63,14 +64,14 @@
 
              <!--    Backend location for pdf -->
                 <form method="get" action="filename">
-                    <button class="greenButton resumeButton" id="resumeButton" type="submit">View Resume</button>
+                    <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-file"></i> View Resume</button>
                 </form>
 
                 
 
 
                 <form method="GET" action="/editStudent">
-                    <button class="greenButton resumeButton" id="resumeButton" type="submit">Edit Profile</button>
+                    <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-user-pen"></i> Edit Profile</button>
                 </form>
          
 

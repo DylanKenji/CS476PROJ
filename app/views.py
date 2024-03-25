@@ -1,6 +1,7 @@
 # Description: This file contains the routes for the web application.
 from app import app, db
 from flask import render_template, request, redirect, url_for, session, flash, current_app
+from sqlalchemy import func
 from app.models import Students, Employers, Jobs
 from werkzeug.utils import secure_filename
 import os
@@ -70,12 +71,12 @@ def emp_login():
         return render_template('createEmployer.html')
 
 
-# validates student logging in
+# validates logging in
 @app.route('/std_profile_login', methods=['POST', 'GET'])
 def std_profile_login():
     if request.method == 'POST':
         form = request.form
-        student = Students.query.filter_by(email=form['email']).first()
+        student = Students.query.filter(func.lower(Students.email) == func.lower(form['email'])).first()
         if student is not None:
             if student.check_password(form['password']):
                 session["student"] = student.id
@@ -87,7 +88,7 @@ def std_profile_login():
             form = request.form
             if student in session:
                 del session['student']
-            employer = Employers.query.filter_by(email=form['email']).first()
+            employer = Employers.query.filter(func.lower(Employers.email) == func.lower(form['email'])).first()
             if employer is not None:
                 if employer.check_password(form['password']):
                     session["employer"] = employer.id

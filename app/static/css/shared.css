@@ -99,7 +99,8 @@ textarea{
 
 .header-profilenav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
 }
 
 .profile-name {
@@ -138,7 +139,8 @@ textarea{
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #0c3f14;
+    color: white;
 }
 
 .dropdown:hover .dropdown-content {

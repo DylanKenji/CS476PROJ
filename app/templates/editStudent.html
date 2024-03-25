@@ -23,9 +23,9 @@
                     </a>
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="50px" ></div>
+                    
                     <div class="dropdown">
-                        <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
+                        <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
@@ -35,6 +35,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }}</div>
                 </div>
             </div>
         </nav>
@@ -76,10 +77,10 @@
                     <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
                   
                     <label class="detailText">Resume: </label>
-                    <input type="file" id="newResume" name="newResume">
+                    <input type="file" id="newResume" name="newResume" class="newResume">
 
                     <label class="detailText">Avatar: </label>
-                    <input type="file" id="newstudentAvatar" name="newstudentAvatar">
+                    <input type="file" id="newstudentAvatar" name="newstudentAvatar" class="newStudentAvatar">
 
                     <button class="submitButton greenButton" id="backButton" type="submit">Back</button>
                     <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
