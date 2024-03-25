@@ -117,7 +117,7 @@ def profileEmployer():
 @app.route('/editStudent', methods=['GET', 'POST'])
 def editStudent():
     UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
-    RESULT_FOLDER = app.config['RESULT_FOLDER']
+    RESUME_FOLDER = app.config['RESUME_FOLDER']
     if "student" in session:
         student = session["student"]
         student = Students.query.get(student)
@@ -129,6 +129,7 @@ def editStudent():
             student.email = request.form['studentEmail']
             student.major = request.form['studentMajor']
             student.looking_for_job = bool(request.form.get('studentAvailability'))
+            #student.resume = request.form['newResume']
 
             # Update password if new password is provided and matches confirmation
             new_password = request.form.get('newPassword')
@@ -143,7 +144,7 @@ def editStudent():
                     if allowed_resume_file(resume_file.filename):
                         filename = secure_filename(resume_file.filename)
                         resume_file.save(os.path.join(app.config['RESUME_FOLDER'], filename))
-                        student.resume = os.path.join(app.config['RESUME_FOLDER'], filename)
+                        student.resume = filename
 
             # Update avatar if a new file is uploaded
             if 'newstudentAvatar' in request.files:
@@ -154,7 +155,7 @@ def editStudent():
                         filename = secure_filename(avatar_file.filename)
                         avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                         # Update the student's avatar attribute with the file path (or URL)
-                        student.avatar = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                        student.avatar = filename
 
             try:
                 db.session.commit()
@@ -180,7 +181,6 @@ def allowed_resume_file(filename):
 @app.route('/editEmployer', methods=['GET', 'POST'])
 def editEmployer():
     UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
-    RESULT_FOLDER = app.config['RESULT_FOLDER']
     if "employer" in session:
         employer = session["employer"]
         employer = Employers.query.get(employer)
@@ -201,13 +201,6 @@ def editEmployer():
                 if new_password and confirm_password and new_password == confirm_password:
                     employer.set_password(new_password)
 
-            if 'newResume' in request.files:
-                resume_file = request.files['newResume']
-                if resume_file.filename != '':
-                    if allowed_resume_file(resume_file.filename):
-                        filename = secure_filename(resume_file.filename)
-                        resume_file.save(os.path.join(app.config['RESUME_FOLDER'], filename))
-                        employer.resume = os.path.join(app.config['RESUME_FOLDER'], filename)
 
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:

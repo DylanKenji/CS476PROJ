@@ -40,7 +40,7 @@
         </nav>
         
          <!-- Action location for backend -->
-         <form method="POST" action="/editStudent" id="submitForm" class="cust-main-wrapper">
+         <form method="POST" action="/editStudent" id="submitForm" class="cust-main-wrapper" enctype="multipart/form-data">
             <div class="info-box1">
                 <div id="error"></div><br>
                 <div class="align-center">
@@ -76,10 +76,10 @@
                     <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
                   
                     <label class="detailText">Resume: </label>
-                    <input type="file" id="studentResume" name="filename">
+                    <input type="file" id="newResume" name="newResume">
 
                     <label class="detailText">Avatar: </label>
-                    <input type="file" id="newstudentAvatar" name="filename">
+                    <input type="file" id="newstudentAvatar" name="newstudentAvatar">
 
                     <button class="submitButton greenButton" id="backButton" type="submit">Back</button>
                     <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
