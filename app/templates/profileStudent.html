@@ -48,7 +48,7 @@
             <div class="info-box1">
 
                 <div class="align-center">
-                    <img src="{{ url_for('static', filename='library/media/avatars/default.png') }}" class="jobImg">
+                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ students.avatar ) }}" class="jobImg">
                 </div>
 
                 <h1 class="align-center" id="studentName">{{ students.first_name }} {{ students.last_name }}</h1>

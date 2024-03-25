@@ -36,7 +36,7 @@
                     <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }}</div>
+                    <div class="profile-name"></div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
@@ -54,23 +54,23 @@
             <div class="info-box1">
                 <div id="error"></div>
                 <div class="align-center">
-                    <img src="../../Root/library/media/avatar1.jpg" id="employerAvatar" class="avatar">
+                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" class="jobImg">
                 </div>
                 <h1 class="align-center titleText">User Details</h1>          
             </div>
             <div class="info-box2">
                     <div class="userDetails">     
                             <label class="inputLabel float-left" >First Name:</label>
-                            <input class="inputBox" type="text" id="employerfirstName" placeholder="First Name">
+                            <input class="inputBox" type="text" name="employerfirstName" id="employerfirstName" placeholder="First Name" value="{{ employer.first_name }}">
                         
                             <label class="inputLabel float-left" >Last Name:</label>
-                            <input class="inputBox" type="text" id="employerlastName" placeholder="Last Name">
+                            <input class="inputBox" type="text" name="employerlastName" id="employerlastName" placeholder="Last Name" value="{{ employer.last_name }}">
 
                             <label class="inputLabel float-left" >Email:</label>
-                            <input class="inputBox" type="email" id="employerEmail" placeholder="Enter Email">
+                            <input class="inputBox" type="email" name="employerEmail" id="employerEmail" placeholder="Enter Email" value="{{ employer.email }}">
 
                             <label class="inputLabel float-left" >Password:</label>
-                            <input class="inputBox" type="password" id="employerPassword" placeholder="Enter Password">
+                            <input class="inputBox" type="password" id="employerPassword" name="newPassword" placeholder="Enter Password">
 
                             <label class="inputLabel float-left" >Confirm Password:</label>
                             <input class="inputBox" type="password" id="employerconfirmPassword" placeholder="Confirm Password">
@@ -79,16 +79,16 @@
             <div class="info-box3">
                     <div class="userDetails">
                         <label class="inputLabel float-left" >Company Name:</label>
-                        <input class="inputBox" type="text" id="companyName" placeholder="Company Name">
+                        <input class="inputBox" type="text" name="employerCompany"  id="companyName" placeholder="Company Name" value="{{ employer.company_name }}">
 
-                        <label class="inputLabel float-left" >Company Address:</label>
-                        <input class="inputBox" type="text" id="companyAddress" placeholder="Company Address">
+                        <label class="inputLabel float-left" >Company Address:</label> 
+                        <input class="inputBox" type="text" name="employerAddress" id="companyAddress" placeholder="Company Address" value="{{ employer.address }}">
 
                         <label class="inputLabel float-left" >Company Number:</label>
-                        <input class="inputBox" type="text" id="companyNumber" placeholder="Company Number">
+                        <input class="inputBox" type="text" name="employerPhone" id="companyNumber" placeholder="Company Number" value="{{ employer.phone }}">
 
                         <label class="inputLabel float-left" >Company Avatar:</label>
-                        <input class="pictureInput" type="file" accept="image/*" id="newemployerAvatar" placeholder="Company Number">
+                        <input class="pictureInput" type="file" accept="image/*" name="newemployerAvatar" id="newemployerAvatar" placeholder="Company Number">
 
                         <button class="submitButton greenButton" id="backButton" type="submit">Back</button>
                         <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>

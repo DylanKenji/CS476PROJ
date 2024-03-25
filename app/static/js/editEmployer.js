@@ -59,21 +59,18 @@ form.addEventListener('submit', (e) => {
     }
 
     //password field validation
-    if(employerPassword.value === null || employerPassword.value === '' ) {
-        messages.push('Password required');
-    }
-    if(employerPassword.value.length < 5) {
-        messages.push('Password must be longer than 5 characters');
-    }
-    if(employerPassword.value.length > 20) {
-        messages.push('Password cannot be more than 20 characters');
-    }
+        //password field validation
+        if(employerPassword.value.length > 0) {
+            if(employerPassword.value.length < 5) {
+                messages.push('Password must be longer than 5 characters');
+            }
+        }
+        if(employerPassword.value.length > 20) {
+            messages.push('Password cannot be more than 20 characters');
+        }
 
     //password confirmation field validation
-    if(employerconfirmPassword.value === null || employerconfirmPassword.value === '' ) {
-        messages.push('Password confirmation required');
-    }
-    else if (employerconfirmPassword.value !== employerPassword.value) {
+    if (studentconfirmPassword.value !== studentPassword.value) {
         messages.push('Passwords do not match');
     }
 

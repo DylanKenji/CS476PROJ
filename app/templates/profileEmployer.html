@@ -29,7 +29,7 @@
                     <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }}</div>
+                    <div class="profile-name">{{ employers.first_name }} {{ employers.last_name }}</div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
@@ -47,22 +47,22 @@
             <div class="info-box1">
 
                 <div class="align-center">
-                    <img src="../../Root/library/media/avatar1.jpg" id="employerAvatar" class="avatar">
+                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ employers.avatar ) }}" class="jobImg">
                 </div>
 
-                <h1 class="align-center" id="employerName">Employer Name</h1>
+                <h1 class="align-center" id="employerName">{{ employers.first_name }} {{ employers.last_name }}</h1>
 
                 <h2 class="align-center">Employer details</h2>
         
                 <div class="userDetails">
                     <label class="detailText bold">Email:</label>
-                    <label class="detailText" id="employerEmail">Employer@email.com</label>
+                    <label class="detailText" id="employerEmail">{{ employers.email }}</label>
                     <label class="detailText bold">Company Name:</label>
-                    <label class="detailText" id="employerName">Company Name</label>
+                    <label class="detailText" id="employerName">{{ employers.company_name }}</label>
                     <label class="detailText bold">Company Address:</label>
-                    <label class="detailText" id="employerEmail">123 Address</label>
+                    <label class="detailText" id="employerEmail">{{ employers.address }}</label>
                     <label class="detailText bold">Company Phone Number:</label>
-                    <label class="detailText" id="employerNumber">(123)456-7890</label>
+                    <label class="detailText" id="employerNumber">{{ employers.phone }}</label>
 
                 </div>
                 

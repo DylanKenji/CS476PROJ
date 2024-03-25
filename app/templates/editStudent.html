@@ -53,7 +53,7 @@
             <div class="info-box1">
                 <div id="error"></div>
                 <div class="align-center">
-                    <img src="../../Root/library/media/avatar1.jpg" id="studentAvatar" class="avatar">
+                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" class="jobImg">
                 </div>
                 <h1 class="align-center titleText">User Details</h1>
             </div>
