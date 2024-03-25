@@ -10,39 +10,26 @@
 </head>
 <body>
 
-    <!-- 
-        ALL IDS
-        studentAvatar
-        studentName
-        studentEmail
-        studentID
-        studentMajor
-        studentStatus
-        resumeButton
-    -->
-
     <div class="page-wrap">
         <nav class="header">
             <div class="header-container">
                 <div class="header-logo">
-                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    <a href="{{ url_for('jobListings') }}">
+                        <div class="header-logo">
+                            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                        </div>
+                    </a>
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ students.avatar ) }}" width="50px" ></div>
+                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="50px" ></div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
                                 <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
-                                <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i>Job Listings</a> 
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                <!--
-                                    <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user-pen"></i>Edit Profile</a> 
-                                  
-                                    Will need another one for logout but when I tried adding one, even in the comments, it crashes the site
-                                        Use this logo for it <i class="fa-solid fa-right-from-bracket"></i>
-                                -->
+                                <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a> 
+                                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
                             </div>
                         </div>
                     </div>
@@ -50,29 +37,28 @@
             </div>
         </nav>
         
-
         <div class="cust-main-wrapper">
 
             <div class="info-box1">
 
                 <div class="align-center">
-                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ students.avatar ) }}" class="jobImg">
+                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" class="jobImg">
                 </div>
 
-                <h1 class="align-center" id="studentName">{{ students.first_name }} {{ students.last_name }}</h1>
+                <h1 class="align-center" id="studentName">{{ student.first_name }} {{ student.last_name }}</h1>
 
                 <h2 class="align-center">User details</h2>
         
 
                 <div class="userDetails">
                     <label class="detailText bold">Email:</label>
-                    <label class="detailText" id="studentEmail">{{ students.email }}</label>
+                    <label class="detailText" id="studentEmail">{{ student.email }}</label>
                     <label class="detailText bold">Student ID:</label>
-                    <label class="detailText" id="studentID">{{ students.student_id }}</label>
+                    <label class="detailText" id="studentID">{{ student.student_id }}</label>
                     <label class="detailText bold">Major:</label>
-                    <label class="detailText" id="studentMajor">{{ students.major }}</label>
+                    <label class="detailText" id="studentMajor">{{ student.major }}</label>
                     <label class="detailText bold">Availability:</label>
-                    <label class="detailText" id="studentStatus">{{ "Looking for job" if students.looking_for_job else "Not looking for job" }}</label>
+                    <label class="detailText" id="studentStatus">{{ "Looking for job" if student.looking_for_job else "Not looking for job" }}</label>
                 </div>
 
              <!--    Backend location for pdf -->

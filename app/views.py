@@ -81,6 +81,8 @@ def std_profile_login():
                 return render_template('login.html')
         else:
             form = request.form
+            if student in session:
+                del session['student']
             employer = Employers.query.filter_by(email=form['email']).first()
             if employer is not None:
                 if employer.check_password(form['password']):
@@ -99,7 +101,7 @@ def profileStudent():
     if "student" in session:
         student = session["student"]
         student = Students.query.filter_by(id=student).first()
-        return render_template('profileStudent.html', students=student)
+        return render_template('profileStudent.html', student=student)
     else:
         return redirect(url_for('login'))
 
@@ -108,14 +110,14 @@ def profileEmployer():
     if "employer" in session:
         employer = session["employer"]
         employer = Employers.query.filter_by(id=employer).first()
-        return render_template('profileEmployer.html', employers=employer)
+        return render_template('profileEmployer.html', employer=employer)
     else:
         return redirect(url_for('login'))
 
 @app.route('/editStudent', methods=['GET', 'POST'])
 def editStudent():
     UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
-    RESULT_FOLDER = app.config['RESULT_FOLDER']
+    RESUME_FOLDER = app.config['RESUME_FOLDER']
     if "student" in session:
         student = session["student"]
         student = Students.query.get(student)
@@ -127,6 +129,7 @@ def editStudent():
             student.email = request.form['studentEmail']
             student.major = request.form['studentMajor']
             student.looking_for_job = bool(request.form.get('studentAvailability'))
+            #student.resume = request.form['newResume']
 
             # Update password if new password is provided and matches confirmation
             new_password = request.form.get('newPassword')
@@ -141,7 +144,7 @@ def editStudent():
                     if allowed_resume_file(resume_file.filename):
                         filename = secure_filename(resume_file.filename)
                         resume_file.save(os.path.join(app.config['RESUME_FOLDER'], filename))
-                        student.resume = os.path.join(app.config['RESUME_FOLDER'], filename)
+                        student.resume = filename
 
             # Update avatar if a new file is uploaded
             if 'newstudentAvatar' in request.files:
@@ -152,7 +155,7 @@ def editStudent():
                         filename = secure_filename(avatar_file.filename)
                         avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                         # Update the student's avatar attribute with the file path (or URL)
-                        student.avatar = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                        student.avatar = filename
 
             try:
                 db.session.commit()
@@ -178,7 +181,6 @@ def allowed_resume_file(filename):
 @app.route('/editEmployer', methods=['GET', 'POST'])
 def editEmployer():
     UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
-    RESULT_FOLDER = app.config['RESULT_FOLDER']
     if "employer" in session:
         employer = session["employer"]
         employer = Employers.query.get(employer)
@@ -199,13 +201,6 @@ def editEmployer():
                 if new_password and confirm_password and new_password == confirm_password:
                     employer.set_password(new_password)
 
-            if 'newResume' in request.files:
-                resume_file = request.files['newResume']
-                if resume_file.filename != '':
-                    if allowed_resume_file(resume_file.filename):
-                        filename = secure_filename(resume_file.filename)
-                        resume_file.save(os.path.join(app.config['RESUME_FOLDER'], filename))
-                        employer.resume = os.path.join(app.config['RESUME_FOLDER'], filename)
 
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:
@@ -232,14 +227,26 @@ def editEmployer():
 @app.route('/jobListings')
 def jobListings():
     # Query the database for the 20 most recent jobs
-    jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
-    return render_template('jobListings.html', jobs=jobListings)
+    if "student" in session:
+        student = session["student"]
+        student = Students.query.filter_by(id=student).first()
+        jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
+        return render_template('jobListings.html', jobs=jobListings, student = student, employer = "employer")
+    elif "employer" in session:
+        employer = session["employer"]
+        employer = Employers.query.filter_by(id=employer).first()
+        jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
+        return render_template('jobListings.html', jobs=jobListings, employer = employer, student =  "student" )
+    else:
+        return redirect(url_for('login'))
+
 
 
 @app.route('/postJob', methods=['GET', 'POST'])
 def postJob():
-    if "employer_key" in session:
-        employer_id = session["employer_key"]
+    if "employer" in session:
+        employer = session["employer"]
+        employer = Employers.query.get(employer)
         if request.method == 'POST':
             form = request.form
             job = Jobs(
@@ -247,22 +254,23 @@ def postJob():
                 description=form['Description'],
                 location=form['adress'],
                 deadline=form['deadline'],
-                employer_id=employer_id
+                employer=employer
             )
             db.session.add(job)
             db.session.commit()
             return redirect(url_for('jobListings'))
         else:
-            return render_template('postJob.html')
+            return render_template('postJob.html', employer=employer)
     else:
         return redirect(url_for('login'))
-
-
+    
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
 """
+
+
 
 
 @app.route('/jobListings')
