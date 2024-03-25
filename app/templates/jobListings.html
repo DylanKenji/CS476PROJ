@@ -6,7 +6,6 @@
     <title>Job Listings</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jobListings.css') }}">
-    <script src="{{ url_for('static', filename='js/postJob.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -72,189 +71,28 @@
     <div class="listing main-wrapper">
 
         <div class="jobList roundForm">
-            <div class="jobPosting" id="testJob1">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
 
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
+            {% for job in jobs %}
+            <div class="jobPosting" id="testJob {{ job }}">
+                <img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar) }}" width="50px" alt="Employer Avatar">
 
+                    <div class="jobDetails">
+                        <label class="jobName bold">{{ job.job_title }}</label>
+
+                        {% if employers and job.id in employers %}
+                        {% set employer = employers[job.id] %}
+                        <label class="jobCompany">{{ employer.company_name }}</label>
+                        {% endif %}
+                        <label class="jobLocation">{{ employer.address }}</label>
+                        <label class="datePosted">{{ job.date_created }}</label>
+                    </div>
             </div>
-        
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            <div class="jobPosting" id="testJob2">
-                <img src="../../Root/library/media/avatar1.jpg" class="jobImg">
-
-                <div class="jobDetails">
-                    <label class="jobName bold">Administrative Assistant</label>
-                    <label class="jobCompany">University of Regina</label>
-                    <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                    <label class="datePosted">2 months ago</label>
-                </div>
-
-            </div>
-            
-
+            {% endfor %}
 
 
 
         </div>
+
         <div class="jobInfo roundForm">
             
             <div class="titleCard">

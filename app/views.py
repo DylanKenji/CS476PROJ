@@ -1,9 +1,10 @@
 # Description: This file contains the routes for the web application.
 from app import app, db
 from flask import render_template, request, redirect, url_for, session, flash, current_app
-from app.models import Students, Employers, Jobs
+from app.models import Students, Employers, Jobs, EmployerJobs, Applications
 from werkzeug.utils import secure_filename
 import os
+from datetime import datetime
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -81,7 +82,7 @@ def std_profile_login():
                 session["student"] = student.id
                 return redirect(url_for('profileStudent'))
             else:
-                print("password check failed")
+                flash("password check failed")
                 return render_template('login.html')
         else:
             form = request.form
@@ -92,6 +93,9 @@ def std_profile_login():
                 if employer.check_password(form['password']):
                     session["employer"] = employer.id
                     return redirect(url_for('profileEmployer'))
+                else:
+                    flash("password check failed")
+                    return render_template('login.html')
             else:
                 print("no user found")
                 return render_template('login.html')
@@ -115,6 +119,8 @@ def profileEmployer():
     if "employer" in session:
         employer = session["employer"]
         employer = Employers.query.filter_by(id=employer).first()
+        # Call the generate_jobs function with the employer ID
+        generate_jobs(employer.id)
         return render_template('profileEmployer.html', employer=employer)
     else:
         return redirect(url_for('login'))
@@ -254,17 +260,43 @@ def postJob():
     if "employer" in session:
         employer = session["employer"]
         employer = Employers.query.get(employer)
+        
         if request.method == 'POST':
-            form = request.form
+
+            title = request.form['Title']
+            description = request.form['Description']
+            location = request.form['Address']
+            deadline = request.form['Deadline']
+            major_required = request.form['Major']
+            pay = request.form['Pay']
+            hours = request.form['Hours']
+
+
+            deadline_datetime = datetime.strptime(deadline, '%Y-%m-%d')
+
             job = Jobs(
-                title=form['Title'],
-                description=form['Description'],
-                location=form['adress'],
-                deadline=form['deadline'],
-                employer=employer
+                job_title=title,
+                job_description=description,
+                job_location=location,
+                deadline=deadline_datetime,
+                major_required=major_required,
+                pay=pay,
+                hours=hours,
+                avatar=employer.avatar
             )
+
+         
+
             db.session.add(job)
             db.session.commit()
+
+            employer_job = EmployerJobs(employer_id=employer.id, job_id=job.id)
+
+            db.session.add(employer_job)
+            db.session.commit()
+           
+
+
             return redirect(url_for('jobListings'))
         else:
             return render_template('postJob.html', employer=employer)
@@ -278,46 +310,45 @@ def logout():
     return redirect(url_for('index'))
 
 
-"""
+from random import randint, choice
+from datetime import datetime, timedelta
 
 
+def generate_jobs(employer_id):
+    titles = ["Software Engineer", "Data Analyst", "Marketing Manager", "Graphic Designer", "Sales Representative"]
+    locations = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"]
+    majors = ["Computer Science", "Business Administration", "Marketing", "Engineering", "Finance", "Graphic Design"]
+    descriptions = ["Responsible for developing and maintaining software applications.", "Analyze data and provide insights for decision-making.", "Develop and execute marketing campaigns.", "Create visual concepts using computer software.", "Promote and sell products or services to customers."]
+    hours = ["Full-time", "Part-time", "Contract"]
+    pay_range = [25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0, 65.0, 70.0]
+    x = 1
 
+    deadlines = [datetime.now() + timedelta(days=randint(5, 30)) for x in range(20)]
 
-@app.route('/jobListings')
-def jobListings():
-    return render_template('jobListings.html')
+    for _ in range(20):
+        title = choice(titles)
+        location = choice(locations)
+        major = choice(majors)
+        description = choice(descriptions)
+        hour = choice(hours)
+        pay = choice(pay_range)
+        deadline = choice(deadlines)
 
+        job = Jobs(
+            job_title=title,
+            job_description=description,
+            job_location=location,
+            major_required=major,
+            hours=hour,
+            pay=pay,
+            deadline=deadline
+        )
 
-@app.route('/stdlogin')
-def stdlogin():
-    return render_template('login.html')
+        db.session.add(job)
+        db.session.flush()  # Flush the session to generate job ID before adding EmployerJobs entry
 
+        employer_job = EmployerJobs(employer_id=employer_id, job_id=job.id)
+        db.session.add(employer_job)
 
-@app.route('/emplogin')
-def login():
-    return render_template('login.html')
-
-
-@app.route('/postJob')
-def postJob():
-    return render_template('postJob.html')
-
-
-@app.route('/profileEmployer')
-def profileEmployer():
-    return render_template('profileEmployer.html')
-
-
-@app.route('/profileStudent')
-def profileStudent():
-    return render_template('profileStudent.html')
-                student.first_name = request.form['first_name']
-            student.last_name = request.form['last_name']
-            student.email = request.form['email']
-            student.major = request.form['major']
-            student.bio = request.form['bio']
-            student.avatar = request.form['avatar']
-            student.major = request.form['major']
-            student.looking_for_job = request.form['looking_for_job']
-            student.resume = request.form['resume']\
-"""
+    db.session.commit()
+    return redirect(url_for('login'))  # Redirect if no employer in session

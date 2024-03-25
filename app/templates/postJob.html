@@ -46,19 +46,19 @@
                 <form id="jobForm" method="POST" action="postJob" class="job-wrapper">
                     <section class="space lineUp">
                         <label class="postingLabel float-left">Job Title:</label>
-                        <input class="postingBox" placeholder="Job Title" id="jobtitleEntry">
+                        <input class="postingBox" name="Title" placeholder="Job Title" id="jobtitleEntry">
                     </section>
                     <section class="space textBox lineUp">
                         <label class="postingLabel float-left">Job Description:</label>
-                        <textarea class="postingBox disc"  id="jobdescEntry"></textarea>
+                        <textarea class="postingBox disc" name="Description"  id="jobdescEntry"></textarea>
                     </section>
                     <section class="space lineUp">
                         <label class="postingLabel float-left">Job Address:</label>
-                        <input class="postingBox" placeholder="Job Address" id="jobaddressEntry">
+                        <input class="postingBox" name="Address"  placeholder="Job Address" id="jobaddressEntry">
                     </section>
                     <section class="space lineUp">
                         <label class="postingLabel float-left">Job Deadline:</label>
-                        <input class="postingBox" type="date" id="jobdeadlineEntry">
+                        <input class="postingBox" name="Deadline" type="date" id="jobdeadlineEntry">
                     </section>
                     <div id="error"></div>
                     <button class="postButton greenButton" type="submit" id="postButton">Post Job</button>

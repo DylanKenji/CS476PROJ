@@ -63,17 +63,16 @@ class Jobs(db.Model):
     job_title = db.Column(db.String(200), nullable=False)
     job_description = db.Column(db.Text, nullable=False)
     job_location = db.Column(db.String(200), nullable=False)
-    city = db.Column(db.String(200), nullable=False)
     major_required = db.Column(db.Text)
-    filled = db.Column(db.Boolean)
+    filled = db.Column(db.Boolean, default = False)
     hours = db.Column(db.Text)
-    work_term = db.Column(db.Integer)
-    pay = db.Column(db.Integer)
+    pay = db.Column(db.Float)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_updated = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
     deadline = db.Column(db.DateTime)
     applicants = relationship('Applications', backref='job', cascade='all, delete-orphan')
     employers = relationship('EmployerJobs', backref='job', cascade='all, delete-orphan')
+    avatar = db.Column(db.String(200), default="Default.png")
 
 
 class Applications(db.Model):
