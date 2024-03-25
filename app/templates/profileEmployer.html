@@ -23,19 +23,20 @@
                     </a>
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ employer.first_name }} {{ employer.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="50px" ></div>
+                    
                     <div class="dropdown">
-                        <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
+                        <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="30vw" ></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
-                                <a href="{{ url_for('editEmployer') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
+                                <a href="{{ url_for('editEmployer') }}"><i class="fa-solid fa-user-pen"></i> Edit Profile</a> 
                                 <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a> 
-                                <a href="{{ url_for('postJob') }}"><i class="fa-solid fa-list"></i> Post Job</a>
-                                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
+                                <a href="{{ url_for('postJob') }}"><i class="fa-solid fa-square-plus"></i> Post Job</a>
+                                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a> 
                             </div>
                         </div>
                     </div>
+                    <div class="profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
                 </div>
             </div>
         </nav>
@@ -65,7 +66,7 @@
                 </div>
                 
                 <form method="GET" action="/editEmployer">
-                    <button class="greenButton resumeButton" id="resumeButton" type="submit">EditProfile</button>
+                    <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-user-pen"></i> Edit Profile</button>
                 </form>
 
                 

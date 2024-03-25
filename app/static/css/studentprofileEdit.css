@@ -95,6 +95,7 @@ body{
     height: 50px;
     border-radius: 3%;
     background-color: #1c6928;
+    border-radius: 30px;
 }
 
 .pictureInput{
