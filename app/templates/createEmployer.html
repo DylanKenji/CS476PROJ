@@ -14,13 +14,16 @@
 
 <body>
     <div class="page-wrap">
-
         <nav class="header">
             <div class="header-container">
                 <div class="header-logo">
-                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    <a href="{{ url_for('index') }}">
+                        <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    </a>
                 </div>
-                <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo">
+                <a href="{{ url_for('login') }}">
+                    <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo">
+                </a>
             </div>
         </nav>
 

@@ -25,7 +25,7 @@
                 <div class="header-profilenav">
                     
                     <div class="dropdown">
-                        <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="30vw" ></button>
+                        <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" ></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
@@ -36,48 +36,41 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
+                    <div class="header-profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
                 </div>
             </div>
         </nav>
+        <div class="profile-container">
+            <div class="cust-main-wrapper">
 
-        <div class="cust-main-wrapper">
-
-            <div class="info-box1">
-
-                <div class="align-center">
-                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" class="jobImg">
+                <div class="info-box">
+    
+                    <div class="align-center">
+                        <img class="profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" class="jobImg">
+                    </div>
+    
+                    <h1 class="align-center" id="employerName">{{ employer.first_name }} {{ employer.last_name }}</h1>
+    
+                    <h2 class="align-center">Employer details</h2>
+            
+                    <div class="userDetails">
+                        <label class="detailText bold">Email:</label>
+                        <label class="detailText" id="employerEmail">{{ employer.email }}</label>
+                        <label class="detailText bold">Company Name:</label>
+                        <label class="detailText" id="employerName">{{ employer.company_name }}</label>
+                        <label class="detailText bold">Company Address:</label>
+                        <label class="detailText" id="employerEmail">{{ employer.address }}</label>
+                        <label class="detailText bold">Company Phone Number:</label>
+                        <label class="detailText" id="employerNumber">{{ employer.phone }}</label>
+    
+                    </div>
+                    
+                    <form method="GET" action="/editEmployer">
+                        <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-user-pen"></i> Edit Profile</button>
+                    </form>
                 </div>
-
-                <h1 class="align-center" id="employerName">{{ employer.first_name }} {{ employer.last_name }}</h1>
-
-                <h2 class="align-center">Employer details</h2>
-        
-                <div class="userDetails">
-                    <label class="detailText bold">Email:</label>
-                    <label class="detailText" id="employerEmail">{{ employer.email }}</label>
-                    <label class="detailText bold">Company Name:</label>
-                    <label class="detailText" id="employerName">{{ employer.company_name }}</label>
-                    <label class="detailText bold">Company Address:</label>
-                    <label class="detailText" id="employerEmail">{{ employer.address }}</label>
-                    <label class="detailText bold">Company Phone Number:</label>
-                    <label class="detailText" id="employerNumber">{{ employer.phone }}</label>
-
-                </div>
-                
-                <form method="GET" action="/editEmployer">
-                    <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-user-pen"></i> Edit Profile</button>
-                </form>
-
-                
-          
-         
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 </html>

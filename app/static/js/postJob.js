@@ -44,6 +44,6 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
         errorElement.style.color = 'red';
         errorElement.style.fontWeight = 'bold';
-        errorElement.innerText = messages.join('. ');
+        errorElement.innerHTML = messages.join('<br>');
     }
 }) 

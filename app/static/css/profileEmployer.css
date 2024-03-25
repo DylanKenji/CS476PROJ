@@ -1,5 +1,9 @@
 body{
     background-image: url(../library/media/university-of-regina.avif);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .float-right{
@@ -23,61 +27,27 @@ body{
     text-align: center;
 }
 
-.avatar{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 4px solid #1c6928;
-}
-
-.info-box{
-    padding: 0px;
-    width: 80%;
-    border-radius: 0.5rem;
-    margin-bottom: 2rem;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-}
 
 .cust-main-wrapper{
-    margin-top: 200px;
     background-color: #fff;
-    margin-right: auto;
-    margin-left: auto;
+    width: 50vw;
+    height: 70vh;
+    padding: 1vw;
     justify-items: center;
     border-radius: 5px;
     border: 4px solid #1c6928;;
     box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
-    padding: 2rem;
     display: grid;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     text-align: center;
 }
 
-
-.info-box1 { 
+.info-box{
     grid-area: 1 / 1 / 3 / 2;
-    height: 610px;
-    width: 100%;
+    height: 70vh;
+    width: 50vw;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.info-box2 { 
-    grid-area: 1 / 2 / 2 / 3; 
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.info-box3 { 
-    grid-area: 2 / 2 / 3 / 3; 
-    display: flex;
-    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -87,8 +57,8 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    gap: 20px;
-
+    gap: 2vw 20vh;
+    margin: 1vh 0 1vh 0;
 }
 
 .detailText{
@@ -132,3 +102,90 @@ body{
     width: 200px;
 }
 
+
+@media (max-width: 576px) {
+    .profile-icon {
+        width: 15vw;
+        height: 8vh;
+    }
+    
+    .cust-main-wrapper{
+        background-color: #fff;
+        width: 85vw;
+        height: 80vh;
+        padding: 1vw;
+    }
+    
+    .info-box{
+        height: 80vh;
+        width: 80vw;
+    }
+    
+    .userDetails{
+        align-items: center;
+        gap: 2vw 1vh;
+        margin: 1vh 0 1vh 0;
+    }
+    
+    .detailText{
+        font-size: 2.5vh;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+    .profile-icon {
+        width: 15vw;
+        height: 8vh;
+    }
+    
+    .cust-main-wrapper{
+        background-color: #fff;
+        width: 85vw;
+        height: 60vh;
+        padding: 1vw;
+    }
+    
+    .info-box{
+        height: 60vh;
+        width: 80vw;
+    }
+    
+    .userDetails{
+        align-items: center;
+        gap: 2vw 1vh;
+        margin: 1vh 0 1vh 0;
+    }
+    
+    .detailText{
+        font-size: 2.5vh;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1440px) {
+    .profile-icon {
+        width: 10vw;
+        height: 10vh;
+    }
+    
+    .cust-main-wrapper{
+        background-color: #fff;
+        width: 60vw;
+        height: 80vh;
+        padding: 1vw;
+    }
+    
+    .info-box{
+        height: 80vh;
+        width: 60vw;
+    }
+    
+    .userDetails{
+        align-items: center;
+        gap: 2vw 1vh;
+        margin: 1vh 0 1vh 0;
+    }
+    
+    .detailText{
+        font-size: 2.5vh;
+    }
+}

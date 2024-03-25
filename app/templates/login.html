@@ -12,36 +12,39 @@
 </head>
 <body>
     <div class="page-wrap">
-
         <nav class="header">
             <div class="header-container">
                 <div class="header-logo">
-                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    <a href="{{ url_for('index') }}">
+                        <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    </a>
                 </div>
-                <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo">
+                <a href="{{ url_for('login') }}">
+                    <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" class="logo">
+                </a>
             </div>
         </nav>
 
         <div class="main-wrapper">
             <div class="login-box">      
-                <img src="{{ url_for('static', filename='library/media/URConnect.png') }}" height="125" width='200'>
-                <form class="loginForm" action="/std_profile_login" method="POST" id="loginForm">
-                    <div class="inputField">
-                        <label class="inputLabel">Email</label>
-                        <div class="inputTextbox">
+                <img class="login-icon" src="{{ url_for('static', filename='library/media/URConnect.png') }}">
+                <form class="login-form" action="/std_profile_login" method="POST" id="login-form">
+                    <div class="input-field">
+                        <label class="input-label">Email</label>
+                        <div class="input-textbox">
                             <input class="text-input" name = "email" id="emailKey">
                         </div>
                     </div>
-                    <div class="inputField">
-                        <label class="inputLabel">Password</label>
-                        <div class="inputTextbox">
+                    <div class="input-field">
+                        <label class="input-label">Password</label>
+                        <div class="input-textbox">
                             <input class="text-input" type="password" name="password" id="passwordKey">
                         </div>
                     </div>
                     <br>
                     <div id="error"></div>
-                    <button class="greenButton loginButton" id="loginButton" type="submit"> Login</button>
-
+                    <button class="login-button greenButton" id="loginButton" type="submit"> Login</button>
+                    <br>
                     <section>
                         <label class="space">Don't have an account?<br><a class="link" href="{{ url_for('createStudent') }}">Create new account</a></label>
                     </section>
