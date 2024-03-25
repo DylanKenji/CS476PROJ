@@ -81,6 +81,8 @@ def std_profile_login():
                 return render_template('login.html')
         else:
             form = request.form
+            if student in session:
+                del session['student']
             employer = Employers.query.filter_by(email=form['email']).first()
             if employer is not None:
                 if employer.check_password(form['password']):
@@ -99,7 +101,7 @@ def profileStudent():
     if "student" in session:
         student = session["student"]
         student = Students.query.filter_by(id=student).first()
-        return render_template('profileStudent.html', students=student)
+        return render_template('profileStudent.html', student=student)
     else:
         return redirect(url_for('login'))
 
@@ -108,7 +110,7 @@ def profileEmployer():
     if "employer" in session:
         employer = session["employer"]
         employer = Employers.query.filter_by(id=employer).first()
-        return render_template('profileEmployer.html', employers=employer)
+        return render_template('profileEmployer.html', employer=employer)
     else:
         return redirect(url_for('login'))
 
@@ -232,14 +234,26 @@ def editEmployer():
 @app.route('/jobListings')
 def jobListings():
     # Query the database for the 20 most recent jobs
-    jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
-    return render_template('jobListings.html', jobs=jobListings)
+    if "student" in session:
+        student = session["student"]
+        student = Students.query.filter_by(id=student).first()
+        jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
+        return render_template('jobListings.html', jobs=jobListings, student = student, employer = "employer")
+    elif "employer" in session:
+        employer = session["employer"]
+        employer = Employers.query.filter_by(id=employer).first()
+        jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
+        return render_template('jobListings.html', jobs=jobListings, employer = employer, student =  "student" )
+    else:
+        return redirect(url_for('login'))
+
 
 
 @app.route('/postJob', methods=['GET', 'POST'])
 def postJob():
-    if "employer_key" in session:
-        employer_id = session["employer_key"]
+    if "employer" in session:
+        employer = session["employer"]
+        employer = Employers.query.get(employer)
         if request.method == 'POST':
             form = request.form
             job = Jobs(
@@ -247,24 +261,21 @@ def postJob():
                 description=form['Description'],
                 location=form['adress'],
                 deadline=form['deadline'],
-                employer_id=employer_id
+                employer=employer
             )
             db.session.add(job)
             db.session.commit()
             return redirect(url_for('jobListings'))
         else:
-            return render_template('postJob.html')
+            return render_template('postJob.html', employer=employer)
     else:
         return redirect(url_for('login'))
+    
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 """
-
-
-
-
-
-
-
-
 
 
 

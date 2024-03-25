@@ -10,30 +10,30 @@
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 </head>
 
-<!-- ALL IDS
-jobForm
-jobtitleEntry
-jobdescEntry
-jobaddressEntry
-jobdeadlineEntry
-postButton -->
-
 <body>
     <div class="page-wrap">
 
         <nav class="header">
             <div class="header-container">
                 <div class="header-logo">
-                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    <a href="{{ url_for('jobListings') }}">
+                        <div class="header-logo">
+                            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                        </div>
+                    </a>
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }}</div>
+                    <div class="profile-name">{{ employer.first_name }} {{ employer.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="50px" ></div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <div class="dropdown-content">
+                                <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
+                                <a href="{{ url_for('editEmployer') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
+                                <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a>
+                                <a href="{{ url_for('postJob') }}"><i class="fa-solid fa-list"></i> Post Job</a>
+                                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ postButton -->
         <div class="main-wrapper">
             <div class="jobBackground">
                 <div class="postTitle">Job Posting</div>
-                <form id="jobForm" method="POST" action="jobForm" class="job-wrapper">
+                <form id="jobForm" method="POST" action="postJob" class="job-wrapper">
                     <section class="space lineUp">
                         <label class="postingLabel float-left">Job Title:</label>
                         <input class="postingBox" placeholder="Job Title" id="jobtitleEntry">

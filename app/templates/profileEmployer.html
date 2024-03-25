@@ -11,31 +11,29 @@
 </head>
 <body>
 
-    <!-- 
-        ALL IDS
-        employerAvatar
-        employerName
-        employerEmail
-        employerName
-        employerEmail   
-        employerNumber
-    -->
-
     <div class="page-wrap">
 
         <nav class="header">
             <div class="header-container">
                 <div class="header-logo">
-                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    <a href="{{ url_for('jobListings') }}">
+                        <div class="header-logo">
+                            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                        </div>
+                    </a>
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ employers.first_name }} {{ employers.last_name }}</div>
+                    <div class="profile-name">{{ employer.first_name }} {{ employer.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="50px" ></div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <div class="dropdown-content">
+                                <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
+                                <a href="{{ url_for('editEmployer') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
+                                <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a> 
+                                <a href="{{ url_for('postJob') }}"><i class="fa-solid fa-list"></i> Post Job</a>
+                                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -47,22 +45,22 @@
             <div class="info-box1">
 
                 <div class="align-center">
-                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ employers.avatar ) }}" class="jobImg">
+                    <img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" class="jobImg">
                 </div>
 
-                <h1 class="align-center" id="employerName">{{ employers.first_name }} {{ employers.last_name }}</h1>
+                <h1 class="align-center" id="employerName">{{ employer.first_name }} {{ employer.last_name }}</h1>
 
                 <h2 class="align-center">Employer details</h2>
         
                 <div class="userDetails">
                     <label class="detailText bold">Email:</label>
-                    <label class="detailText" id="employerEmail">{{ employers.email }}</label>
+                    <label class="detailText" id="employerEmail">{{ employer.email }}</label>
                     <label class="detailText bold">Company Name:</label>
-                    <label class="detailText" id="employerName">{{ employers.company_name }}</label>
+                    <label class="detailText" id="employerName">{{ employer.company_name }}</label>
                     <label class="detailText bold">Company Address:</label>
-                    <label class="detailText" id="employerEmail">{{ employers.address }}</label>
+                    <label class="detailText" id="employerEmail">{{ employer.address }}</label>
                     <label class="detailText bold">Company Phone Number:</label>
-                    <label class="detailText" id="employerNumber">{{ employers.phone }}</label>
+                    <label class="detailText" id="employerNumber">{{ employer.phone }}</label>
 
                 </div>
                 
