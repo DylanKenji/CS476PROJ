@@ -6,6 +6,8 @@ from werkzeug.utils import secure_filename
 import os
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+
 # routes to home page
 @app.route('/')
 def index():
@@ -16,13 +18,16 @@ def index():
 def login():
     return render_template('login.html')
 
+
 @app.route('/creatingEmployer')
 def gotoEmployer():
     return render_template('createEmployer.html')
 
+
 @app.route('/creatingStudent')
 def gotoStudent():
     return render_template('createStudent.html')
+
 
 # routes user to the student registration page
 @app.route('/createStudent', methods=['POST', 'GET'])
@@ -44,9 +49,8 @@ def createStudent():
         return render_template('createStudent.html')
 
 
-
 # routes to login page after registering new employer
-@app.route('/createEmployer', methods=['POST','GET'])
+@app.route('/createEmployer', methods=['POST', 'GET'])
 def emp_login():
     if request.method == 'POST':
         form = request.form
@@ -92,7 +96,7 @@ def std_profile_login():
                 print("no user found")
                 return render_template('login.html')
     else:
-      return render_template('createStudent.html')
+        return render_template('createStudent.html')
 
 
 # if student is logged in, they can view their profile
@@ -105,6 +109,7 @@ def profileStudent():
     else:
         return redirect(url_for('login'))
 
+
 @app.route('/profileEmployer', methods=['POST', 'GET'])
 def profileEmployer():
     if "employer" in session:
@@ -113,6 +118,7 @@ def profileEmployer():
         return render_template('profileEmployer.html', employer=employer)
     else:
         return redirect(url_for('login'))
+
 
 @app.route('/editStudent', methods=['GET', 'POST'])
 def editStudent():
@@ -129,7 +135,7 @@ def editStudent():
             student.email = request.form['studentEmail']
             student.major = request.form['studentMajor']
             student.looking_for_job = bool(request.form.get('studentAvailability'))
-            #student.resume = request.form['newResume']
+            # student.resume = request.form['newResume']
 
             # Update password if new password is provided and matches confirmation
             new_password = request.form.get('newPassword')
@@ -167,7 +173,7 @@ def editStudent():
             # If it's a GET request or after processing a POST request, render the template
             return render_template('editStudent.html', student=student)
     else:
-    # If 'student_key' is not in the session or the student doesn't exist, redirect to login
+        # If 'student_key' is not in the session or the student doesn't exist, redirect to login
         return redirect(url_for('login'))  # Assuming you have a 'login' route
 
 
@@ -175,8 +181,10 @@ def editStudent():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 def allowed_resume_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'pdf', 'doc', 'docx'}
+
 
 @app.route('/editEmployer', methods=['GET', 'POST'])
 def editEmployer():
@@ -200,7 +208,6 @@ def editEmployer():
                 confirm_password = request.form.get('confirmPassword')
                 if new_password and confirm_password and new_password == confirm_password:
                     employer.set_password(new_password)
-
 
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:
@@ -231,15 +238,15 @@ def jobListings():
         student = session["student"]
         student = Students.query.filter_by(id=student).first()
         jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
-        return render_template('jobListings.html', jobs=jobListings, student = student, employer = "employer")
+        employers = {job.id: Employers.query.get(job.employer_id) for job in jobListings}
+        return render_template('jobListings.html', jobs=jobListings, student=student, employers=employers)
     elif "employer" in session:
         employer = session["employer"]
         employer = Employers.query.filter_by(id=employer).first()
         jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
-        return render_template('jobListings.html', jobs=jobListings, employer = employer, student =  "student" )
+        return render_template('jobListings.html', jobs=jobListings, employer=employer, student="student")
     else:
         return redirect(url_for('login'))
-
 
 
 @app.route('/postJob', methods=['GET', 'POST'])
@@ -263,11 +270,14 @@ def postJob():
             return render_template('postJob.html', employer=employer)
     else:
         return redirect(url_for('login'))
-    
+
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+
 """
 
 
