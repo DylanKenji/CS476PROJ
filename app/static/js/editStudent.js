@@ -17,7 +17,7 @@ form.addEventListener('submit', (e) => {
     if (studentfirstName.value === null || studentfirstName.value === '' ) {
         messages.push('First name required');
     }
-    else if (!/^[A-Za-z]+$/.test(studentfirstName.value)) {
+    else if (!/^[A-Za-z-]+$/.test(studentfirstName.value)) {
         messages.push('First name cannot contain numbers');
     }
 
@@ -25,7 +25,7 @@ form.addEventListener('submit', (e) => {
     if (studentlastName.value === null || studentlastName.value === '' ) {
         messages.push('Last name required');
     }
-    else if (!/^[A-Za-z]+$/.test(studentlastName.value)) {
+    else if (!/^[A-Za-z-]+$/.test(studentlastName.value)) {
         messages.push('Last name cannot contain numbers');
     }
 

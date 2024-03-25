@@ -11,52 +11,38 @@
 </head>
 <body>
     
-
-    <!-- 
-        ALL IDS
-        studentAvatar
-        studentfirstName
-        studentlastName
-        studentEmail
-        studentPassword
-        studentconfirmPassword
-        studentMajor
-        studentAvailability
-        studentResume
-        newstudentAvatar
-        backButton
-        saveButton
-    -->
-
     <div class="page-wrap">
 
         <nav class="header">
             <div class="header-container">
                 <div class="header-logo">
-                    <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    <a href="{{ url_for('jobListings') }}">
+                        <div class="header-logo">
+                            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                        </div>
+                    </a>
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="50px"></div>
+                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="50px" ></div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
-                                <a href="{{ url_for('profileStudent') }}">My Profile</a> 
-                                <!--
-                                    <a href="{{ url_for('editStudent') }}">Edit Profile</a> 
-                                    <a href="{{ url_for('jobListings') }}">Job Listings</a> 
-                                    Will need another one for logout but when I tried adding one, even in the comments, it crashes the site
-                                -->
+                                <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
+                                <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
+                                <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a> 
+                                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
+        
          <!-- Action location for backend -->
          <form method="POST" action="/editStudent" id="submitForm" class="cust-main-wrapper" enctype="multipart/form-data">
             <div class="info-box1">
-                <div id="error"></div>
+                <div id="error"></div><br>
                 <div class="align-center">
                     <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" class="jobImg">
                 </div>
@@ -84,7 +70,7 @@
                 <div class="userDetails">
                         
                     <label class="inputLabel float-left" >Current Major:</label>
-                    <input class="inputBox" type="text" id="studentMajor" name="studentMajor" placeholder="Current Major">
+                    <input class="inputBox" type="text" id="studentMajor" name="studentMajor" placeholder="Current Major" value="{{ student.major }}">
 
                     <label class="detailText"> Are you currently for hire?</label>
                     <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
