@@ -51,8 +51,6 @@ body{
     box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
     padding: 2rem;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     text-align: center;
@@ -95,7 +93,7 @@ body{
 
 .detailText{
     font-size: 20px;
-    max-width: 200px;
+    max-width: 300px;
     overflow-wrap: break-word;
     text-align: center;
 }

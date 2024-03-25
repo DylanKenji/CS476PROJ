@@ -52,7 +52,7 @@ def emp_login():
         form = request.form
         createEmployer = Employers(
             first_name=form['first_name'],
-            last_name=form['first_name'],
+            last_name=form['last_name'],
             company_name=form['company_name'],
             address=form['address'],
             phone=form['phone'],

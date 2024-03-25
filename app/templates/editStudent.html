@@ -36,7 +36,7 @@
                     <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
                 </div>
                 <div class="header-profilenav">
-                    <div class="profile-name">{{ students.first_name }} {{ students.last_name }} {{ students.avatar }}</div>
+                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }} <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="50px"></div>
                     <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-square-caret-down"></i></button>
                         <div class="dropdown-content">
