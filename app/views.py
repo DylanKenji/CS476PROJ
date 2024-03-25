@@ -256,17 +256,13 @@ def postJob():
             return render_template('postJob.html')
     else:
         return redirect(url_for('login'))
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 """
-
-
-
-
-
-
-
-
-
-
 
 
 @app.route('/jobListings')
