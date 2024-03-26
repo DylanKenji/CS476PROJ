@@ -73,6 +73,7 @@ class Jobs(db.Model):
     applicants = relationship('Applications', backref='job', cascade='all, delete-orphan')
     employers = relationship('EmployerJobs', backref='job', cascade='all, delete-orphan')
     avatar = db.Column(db.String(200), default="Default.png")
+    company_name = db.Column(db.String(200))
 
 
 class Applications(db.Model):

@@ -120,8 +120,6 @@ def profileEmployer():
     if "employer" in session:
         employer = session["employer"]
         employer = Employers.query.filter_by(id=employer).first()
-        # Call the generate_jobs function with the employer ID
-        generate_jobs(employer.id)
         return render_template('profileEmployer.html', employer=employer)
     else:
         return redirect(url_for('login'))
@@ -241,12 +239,12 @@ def editEmployer():
 @app.route('/jobListings')
 def jobListings():
     # Query the database for the 20 most recent jobs
+    print(session)
     if "student" in session:
         student = session["student"]
         student = Students.query.filter_by(id=student).first()
         jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
-        employers = {job.id: Employers.query.get(job.employer_id) for job in jobListings}
-        return render_template('jobListings.html', jobs=jobListings, student=student, employers=employers)
+        return render_template('jobListings.html', jobs=jobListings, student=student, employers="employers")
     elif "employer" in session:
         employer = session["employer"]
         employer = Employers.query.filter_by(id=employer).first()
@@ -283,10 +281,9 @@ def postJob():
                 major_required=major_required,
                 pay=pay,
                 hours=hours,
-                avatar=employer.avatar
+                avatar=employer.avatar,
+                company_name=employer.company_name
             )
-
-         
 
             db.session.add(job)
             db.session.commit()
@@ -309,47 +306,3 @@ def postJob():
 def logout():
     session.clear()
     return redirect(url_for('index'))
-
-
-from random import randint, choice
-from datetime import datetime, timedelta
-
-
-def generate_jobs(employer_id):
-    titles = ["Software Engineer", "Data Analyst", "Marketing Manager", "Graphic Designer", "Sales Representative"]
-    locations = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"]
-    majors = ["Computer Science", "Business Administration", "Marketing", "Engineering", "Finance", "Graphic Design"]
-    descriptions = ["Responsible for developing and maintaining software applications.", "Analyze data and provide insights for decision-making.", "Develop and execute marketing campaigns.", "Create visual concepts using computer software.", "Promote and sell products or services to customers."]
-    hours = ["Full-time", "Part-time", "Contract"]
-    pay_range = [25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0, 65.0, 70.0]
-    x = 1
-
-    deadlines = [datetime.now() + timedelta(days=randint(5, 30)) for x in range(20)]
-
-    for _ in range(20):
-        title = choice(titles)
-        location = choice(locations)
-        major = choice(majors)
-        description = choice(descriptions)
-        hour = choice(hours)
-        pay = choice(pay_range)
-        deadline = choice(deadlines)
-
-        job = Jobs(
-            job_title=title,
-            job_description=description,
-            job_location=location,
-            major_required=major,
-            hours=hour,
-            pay=pay,
-            deadline=deadline
-        )
-
-        db.session.add(job)
-        db.session.flush()  # Flush the session to generate job ID before adding EmployerJobs entry
-
-        employer_job = EmployerJobs(employer_id=employer_id, job_id=job.id)
-        db.session.add(employer_job)
-
-    db.session.commit()
-    return redirect(url_for('login'))  # Redirect if no employer in session
