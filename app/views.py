@@ -6,6 +6,7 @@ from app.models import Students, Employers, Jobs, EmployerJobs, Applications
 from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
+from flask import jsonify
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -317,13 +318,24 @@ def is_email_used(email):
     # Return True if the email is used by either an employer or a student, False otherwise
     return employer_exists or student_exists
 
-@app.route('/jobDescription/<int:job_id>')
-def job_description(job_id):
-    # Query the database to get the job description for the given job ID
-    job = Jobs.query.filter_by(id=job_id).first()
+@app.route('/job/<int:job_id>')
+def get_job_details(job_id):
+    job = Jobs.query.get(job_id)
     if job:
-        return job.job_description
+        return {
+            'avatar': job.avatar,
+            'job_title': job.job_title,
+            'company_name': job.company_name,
+            'job_location': job.job_location,
+            'date_created': job.date_created,
+            'job_description': job.job_description,
+            'major_required': job.major_required,
+            'hours': job.hours,
+            'pay': job.pay,
+            
+            # Add other job details as needed
+        }
     else:
-        return 'Job description not found'
+        return {'error': 'Job not found'}, 404
 
 
