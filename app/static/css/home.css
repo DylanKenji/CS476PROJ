@@ -84,41 +84,28 @@
   font-size: 2vh;
   font-weight: 700;
   line-height: 4vh;
-}
-
-/* FIND PEOPLE */
-
-.find-people {
-   background-image: url(../library/media/URConnect_Stock3.jpg);
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 80vh;
-    width: 100%;
+  padding: 5vh;
+  border: white solid;
+  border-radius: 2vh;
 }
 
 /* ABOUT US */
 
 .aboutus {
     background-image: url(../library/media/URConnect_Stock1.jpg);
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
-    height: 80vh;
+    background-position: center;
+    height: 100vh;
     width: 100%;
 }
 
 /* SERVICES */
 
 .services {
-    background-image: url(../library/media/URConnect_Stock2.jpg);
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url(../library/media/URConnect_Stock3.jpg);
     background-size: cover;
-    height: 80vh;
+    background-position: center;
+    height: 100vh;
     width: 100%;
 }
 
@@ -138,105 +125,164 @@
   width: 25vw;
 }
 
-
 /* MEDIA QUERIES */
 
 @media (max-width: 576px) {
-    .home-hero video{
-        height: 80vh;
-        width: 100vw;
-        object-fit: cover;
-    }
   .overlay-text {
-    font-weight: 900;
     font-size: 10vw;
-    text-transform: uppercase;
   }
 
-  .overlay-button {
-    background-color: rgba(255, 255, 255, 0.1); 
-    border: white solid;
-    cursor: pointer; 
-    padding: 1vh 3vw 1vh 3vw;
-    border-radius: 5px;
-  }
   .overlay-button a {
-    color: white;
     font-size: 5vw;
-    text-decoration: none;
   }
 
   .aboutus {
-    background-image: url(../library/media/URConnect_Stock1.jpg);
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
+    background-position: center;
+    height: 140vh;
     width: 100%;
-}
+  }
+
+  .services {
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    width: 100%;
+  }
 
   .section-desc-feat {
     display: flex;
-    flex-direction: row;
-    gap: 5vw;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    align-items: center;
   }
   
   .feat {
     list-style: none;
-    border: black solid;
     margin-bottom: 2vh;
+    width: 40vw;
+  }
+
+.section-container {
+  padding: 0 3vw 0 3vw;
+}
+
+.section-title {
+  margin: 2vh 0 2vh 0;
+}
+
+.section-desc {
+  line-height: 3.5vh;
+  padding: 2vh;
 }
 }
 
 @media (min-width: 577px) and (max-width: 992px) {
-    .home-hero video{
-        height: 80vh;
-        width: 100vw;
-        object-fit: cover;
-    }
   .overlay-text {
-    font-weight: 900;
     font-size: 10vw;
-    text-transform: uppercase;
   }
 
-  .overlay-button {
-    background-color: rgba(255, 255, 255, 0.1); 
-    border: white solid;
-    cursor: pointer; 
-    padding: 1vh 3vw 1vh 3vw;
-    border-radius: 5px;
-  }
   .overlay-button a {
-    color: white;
     font-size: 5vw;
-    text-decoration: none;
   }
+
+  .aboutus {
+    background-size: cover;
+    background-position: center;
+    height: 120vh;
+    width: 100%;
+  }
+
+  .services {
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    width: 100%;
+  }
+
+  .section-desc-feat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+  }
+  
+  .feat {
+    list-style: none;
+    margin-bottom: 2vh;
+    width: 40vw;
+  }
+
+.section-container {
+  padding: 0 3vw 0 3vw;
+}
+
+.section-title {
+  margin: 2vh 0 2vh 0;
+}
+
+.section-desc {
+  line-height: 3.5vh;
+  padding: 2vh;
+}
 }
 
 @media (min-width: 993px) and (max-width: 1440px) {
-    .home-hero video{
-        height: 80vh;
-        width: 100vw;
-        object-fit: cover;
-    }
   .overlay-text {
-    font-weight: 900;
     font-size: 8vw;
-    text-transform: uppercase;
   }
 
-  .overlay-button {
-    background-color: rgba(255, 255, 255, 0.1); 
-    border: white solid;
-    cursor: pointer; 
-    padding: 1vh 3vw 1vh 3vw;
-    border-radius: 5px;
-  }
   .overlay-button a {
-    color: white;
-    font-size: 3vw;
-    text-decoration: none;
+    font-size: 2.5vw;
   }
+
+  .aboutus {
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    width: 100%;
+  }
+
+  .services {
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    width: 100%;
+  }
+
+  .section-desc-feat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+  }
+  
+  .feat {
+    list-style: none;
+    margin-bottom: 2vh;
+    width: 40vw;
+  }
+
+.section-container {
+  padding: 0 3vw 0 3vw;
+}
+
+.section-title {
+  margin: 2vh 0 2vh 0;
+}
+
+.section-desc {
+  line-height: 4vh;
+  padding: 2vh;
+  font-size: 2vh;
+}
 }

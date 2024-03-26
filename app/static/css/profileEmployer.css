@@ -1,9 +1,7 @@
 body{
     background-image: url(../library/media/university-of-regina.avif);
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 .float-right{
@@ -51,6 +49,11 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.profile-icon {
+    width: 10vw;
+    height: 15vh;
 }
 
 .userDetails{

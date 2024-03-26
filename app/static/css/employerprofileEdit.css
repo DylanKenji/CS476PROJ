@@ -1,5 +1,7 @@
 body{
     background-image: url(../library/media/university-of-regina.avif);
+    background-size: cover;
+    background-position: center;
 }
 
 .float-right{
