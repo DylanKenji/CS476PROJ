@@ -23,7 +23,7 @@
                 <div class="header-profilenav">
                     
                     <div class="dropdown">
-                        <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
+                        <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
@@ -40,7 +40,7 @@
         <div class="profile-container">
             <div class="cust-main-wrapper">
 
-                <div class="info-box1">
+                <div class="info-box">
     
                     <div class="align-center">
                         <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" class="jobImg">
@@ -50,7 +50,6 @@
     
                     <h2 class="align-center">User details</h2>
             
-    
                     <div class="userDetails">
                         <label class="detailText bold">Email:</label>
                         <label class="detailText" id="studentEmail">{{ student.email }}</label>
@@ -66,9 +65,6 @@
                     <form method="get" action="filename">
                         <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-file"></i> View Resume</button>
                     </form>
-    
-                    
-    
     
                     <form method="GET" action="/editStudent">
                         <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-user-pen"></i> Edit Profile</button>

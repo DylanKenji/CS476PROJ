@@ -53,17 +53,17 @@
             <div class="header-profilenav">
                 
                 <div class="dropdown">
-                    <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
+                    <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="30vw" ></button>
                     <div class="dropdown-content">
                         <div class="dropdown-content">
-                            <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
-                            <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
+                            <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
+                            <a href="{{ url_for('editEmployer') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
                             <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a> 
                             <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
                         </div>
                     </div>
                 </div>
-                <div class="profile-name">{{ student.first_name }} {{ student.last_name }}</div>
+                <div class="profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
             </div>
         </div>
     </nav>

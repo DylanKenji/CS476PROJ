@@ -308,12 +308,10 @@ def postJob():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
-
+    return redirect(url_for('login'))
 
 from random import randint, choice
 from datetime import datetime, timedelta
-
 
 def generate_jobs(employer_id):
     titles = ["Software Engineer", "Data Analyst", "Marketing Manager", "Graphic Designer", "Sales Representative"]
@@ -353,3 +351,11 @@ def generate_jobs(employer_id):
 
     db.session.commit()
     return redirect(url_for('login'))  # Redirect if no employer in session
+
+def is_email_used(email):
+    # Check if the email exists in the Employers table
+    employer_exists = Employers.query.filter_by(email=email).first()
+    # if the email exists in the Students table
+    student_exists = Students.query.filter_by(email=email).first()
+    # Return True if the email is used by either an employer or a student, False otherwise
+    return employer_exists or student_exists
