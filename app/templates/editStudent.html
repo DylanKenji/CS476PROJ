@@ -82,7 +82,10 @@
                     <label class="detailText">Avatar: </label>
                     <input type="file" id="newstudentAvatar" name="newstudentAvatar" class="newStudentAvatar">
 
-                    <button class="submitButton greenButton" id="backButton" type="submit">Back</button>
+                    <button id="backButton" class="submitButton greenButton">
+                        <a class="link" href="{{ url_for('profileStudent') }}">Back</a>
+                    </button>
+
                     <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
                 </div>     
             </div>
