@@ -305,4 +305,13 @@ def postJob():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
+
+
+def is_email_used(email):
+    # Check if the email exists in the Employers table
+    employer_exists = Employers.query.filter_by(email=email).first()
+    # if the email exists in the Students table
+    student_exists = Students.query.filter_by(email=email).first()
+    # Return True if the email is used by either an employer or a student, False otherwise
+    return employer_exists or student_exists

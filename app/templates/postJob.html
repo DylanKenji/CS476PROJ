@@ -61,6 +61,37 @@
                         <label class="postingLabel float-left">Job Deadline:</label>
                         <input class="postingBox" name="Deadline" type="date" id="jobdeadlineEntry">
                     </section>
+                    <section class="space lineUp">
+                        <label class="postingLabel float-left">Major Requirement:</label>
+                        <select class="postingBox" name="Major" id="major">
+                            <option value="" disabled selected>Select an option</option>
+                            <option class="form-item" value="option1">Computer Science</option>
+                            <option class="form-item" value="option2">Engineering</option>
+                            <option class="form-item" value="option3">Biology</option>
+                            <option class="form-item" value="option4">Economics</option>
+                            <option class="form-item" value="option5">Physics</option>
+                            <option class="form-item" value="option6">Psychology</option>
+                            <option class="form-item" value="option7">Mathematics</option>
+                            <option class="form-item" value="option8">Geology</option>
+                            <option class="form-item" value="option9">Social Work</option>
+                            <option class="form-item" value="option10">Nursing</option>
+                            <option class="form-item" value="option11">Education</option>
+                            <option class="form-item" value="option12">Anthropology</option>
+                        </select>
+                    </section>
+                    <section class="space lineUp">
+                        <label class="postingLabel float-left">Job Type:</label>
+                        <select class="postingBox" name="Hours" id="jobType">
+                            <option value="" disabled selected>Select an option</option>
+                            <option class="form-item" value="option1">Full-Time</option>
+                            <option class="form-item" value="option2">Part-Time</option>
+                        </select>
+                    </section>
+                    <section class="space lineUp">
+                        <label class="postingLabel float-left">Wage:</label>
+                        <input class="postingBox" name="Pay"  placeholder="Wage" id="wage">
+                    </section>
+
                     <div id="error"></div>
                     <button class="postButton greenButton" type="submit" id="postButton">Post Job</button>
                 </form>

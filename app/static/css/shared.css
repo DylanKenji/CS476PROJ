@@ -13,8 +13,6 @@ textarea{
     resize: none;
 }
 
-
-
 .inputLabel{
     font-size: 20px;
     margin-bottom: 5px;
@@ -157,15 +155,8 @@ textarea{
     display: block;
 }
 
-/* FOOTER */
-
-.footer {
-    height: 10vh;
-    width: 100%
-}
-
 @media (max-width: 576px) {
-    .page-wrap{
+    .page-wrap {
         height: 100%;
         width: 100%;
         display: flex;
@@ -190,7 +181,7 @@ textarea{
 }
 
 @media (min-width: 577px) and (max-width: 992px) {
-    .page-wrap{
+    .page-wrap {
         height: 100%;
         width: 100%;
         display: flex;
@@ -215,7 +206,7 @@ textarea{
 }
 
 @media (min-width: 993px) and (max-width: 1440px)  {
-    .page-wrap{
+    .page-wrap {
         height: 100%;
         width: 100%;
         display: flex;
