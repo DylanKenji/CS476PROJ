@@ -100,7 +100,6 @@ input[type=email], input[type=password], input[type=text]{
 
 .link:hover{
     color: goldenrod;
-
  }
 
 @media (max-width: 576px) {

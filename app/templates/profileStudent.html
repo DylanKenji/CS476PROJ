@@ -62,15 +62,13 @@
                     </div>
     
                  <!--    Backend location for pdf -->
-                    <form method="get" action="filename">
-                        <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-file"></i> View Resume</button>
-                    </form>
+                <form method="get" action="{{ url_for('static', filename='library/media/resumes/' ~ student.resume) }}" target="_blank">
+                    <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-file"></i> View Resume</button>
+                </form>
     
                     <form method="GET" action="/editStudent">
                         <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-user-pen"></i> Edit Profile</button>
                     </form>
-             
-    
                 </div>
     
                 <div class="info-box2">

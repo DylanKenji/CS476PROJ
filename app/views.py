@@ -150,13 +150,17 @@ def editStudent():
                 if new_password and confirm_password and new_password == confirm_password:
                     student.set_password(new_password)
 
+            # Handle new resume file upload
             if 'newResume' in request.files:
                 resume_file = request.files['newResume']
                 if resume_file.filename != '':
                     if allowed_resume_file(resume_file.filename):
-                        filename = secure_filename(resume_file.filename)
-                        resume_file.save(os.path.join(app.config['RESUME_FOLDER'], filename))
-                        student.resume = filename
+                        # Customize the new resume file name as needed
+                        resume_filename = f"{student.first_name}_{student.last_name}_{student.id}_Resume.pdf"
+                        # Save the uploaded resume with the new name
+                        resume_file.save(os.path.join(RESUME_FOLDER, resume_filename))
+                        # Update the student's resume attribute with the new filename
+                        student.resume = resume_filename
 
             # Update avatar if a new file is uploaded
             if 'newstudentAvatar' in request.files:
