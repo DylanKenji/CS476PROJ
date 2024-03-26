@@ -216,6 +216,7 @@ def editEmployer():
 
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:
+                print(1)
                 avatar_file = request.files['newemployerAvatar']
                 if avatar_file.filename != '':
                     # Securely save the avatar file on the server
@@ -223,7 +224,7 @@ def editEmployer():
                         filename = secure_filename(avatar_file.filename)
                         avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                         # Update the employer's avatar attribute with the file path (or URL)
-                        employer.avatar = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                        employer.avatar = filename
 
             try:
                 db.session.commit()
@@ -315,3 +316,14 @@ def is_email_used(email):
     student_exists = Students.query.filter_by(email=email).first()
     # Return True if the email is used by either an employer or a student, False otherwise
     return employer_exists or student_exists
+
+@app.route('/jobDescription/<int:job_id>')
+def job_description(job_id):
+    # Query the database to get the job description for the given job ID
+    job = Jobs.query.filter_by(id=job_id).first()
+    if job:
+        return job.job_description
+    else:
+        return 'Job description not found'
+
+
