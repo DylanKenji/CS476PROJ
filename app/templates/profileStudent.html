@@ -72,47 +72,20 @@
                 </div>
     
                 <div class="info-box2">
-                  
                     <h2 class="align-center">Applied jobs</h2>
-    
                     <div class="jobList roundForm">
-                          <div class="jobPosting" id="testJob1">
-                              <img src="{{ url_for('static', filename='library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg') }}" class="jobImg">
-              
-                              <div class="jobDetails">
-                                  <label class="jobName bold">Administrative Assistant</label>
-                                  <label class="jobCompany">University of Regina</label>
-                                  <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                                  <label class="datePosted">2 months ago</label>
-                              </div>
-              
-                          </div>
-                      
-                          <div class="jobPosting" id="testJob2">
-                            <img src="{{ url_for('static', filename='library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg') }}" class="jobImg">
-              
-                              <div class="jobDetails">
-                                  <label class="jobName bold">Administrative Assistant</label>
-                                  <label class="jobCompany">University of Regina</label>
-                                  <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                                  <label class="datePosted">2 months ago</label>
-                              </div>
-              
-                          </div>
-                          <div class="jobPosting" id="testJob3">
-                            <img src="{{ url_for('static', filename='library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg') }}" class="jobImg">
-              
-                              <div class="jobDetails">
-                                  <label class="jobName bold">Administrative Assistant</label>
-                                  <label class="jobCompany">University of Regina</label>
-                                  <label class="jobLocation">Regina, Saskatchewan, Canada</label>
-                                  <label class="datePosted">2 months ago</label>
-                              </div>
-              
-                          </div>
-                      </div>
-    
-    
+                        {% for application in student.job_applications %}
+                            <div class="jobPosting" id="job{{ application.job.id }}">
+                                <img src="{{ url_for('static', filename='library/media/avatars/' ~ application.job.avatar ) }}" class="jobImg">
+                                <div class="jobDetails">
+                                    <label class="jobName bold">{{ application.job.job_title }}</label>
+                                    <label class="jobCompany">{{ application.job.company_name }}</label>
+                                    <label class="jobLocation">{{ application.job.job_location }}</label>
+                                    <label class="datePosted">{{ application.job.date_created.strftime('%B %d, %Y') }}</label>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
     
     
