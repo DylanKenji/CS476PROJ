@@ -95,19 +95,19 @@
                     <div class="userDetails">
                         <label class="inputLabel float-left">Major:</label>
                             <select class="postingBox" name="studentMajor" id="studentMajor">
-                                <option value="" selected>Select an option</option>
-                                <option class="form-item" value="Computer Science">Computer Science</option>
-                                <option class="form-item" value="Engineering">Engineering</option>
-                                <option class="form-item" value="Biology">Biology</option>
-                                <option class="form-item" value="Economics">Economics</option>
-                                <option class="form-item" value="Physics">Physics</option>
-                                <option class="form-item" value="Psychology">Psychology</option>
-                                <option class="form-item" value="Mathematics">Mathematics</option>
-                                <option class="form-item" value="Geology">Geology</option>
-                                <option class="form-item" value="Social Work">Social Work</option>
-                                <option class="form-item" value="Nursing">Nursing</option>
-                                <option class="form-item" value="Education">Education</option>
-                                <option class="form-item" value="Anthropology">Anthropology</option>
+                                <option value="">Select an option</option>
+                                <option class="form-item" value="Computer Science" {% if 'Computer_Science' in student.major %} selected {% endif %}>Computer Science</option>
+                                <option class="form-item" value="Engineering" {% if 'Engineering' in student.major %} selected {% endif %}>Engineering</option>
+                                <option class="form-item" value="Biology" {% if 'Biology' in student.major %} selected {% endif %}>Biology</option>
+                                <option class="form-item" value="Economics" {% if 'Economics' in student.major %} selected {% endif %}>Economics</option>
+                                <option class="form-item" value="Physics" {% if 'Physics' in student.major %} selected {% endif %}>Physics</option>
+                                <option class="form-item" value="Psychology" {% if 'Psychology' in student.major %} selected {% endif %}>Psychology</option>
+                                <option class="form-item" value="Mathematics" {% if 'Mathematics' in student.major %} selected {% endif %}>Mathematics</option>
+                                <option class="form-item" value="Geology" {% if 'Geology' in student.major %} selected {% endif %}>Geology</option>
+                                <option class="form-item" value="Social Work" {% if 'Social Work' in student.major %} selected {% endif %}>Social Work</option>
+                                <option class="form-item" value="Nursing" {% if 'Nursing' in student.major %} selected {% endif %}>Nursing</option>
+                                <option class="form-item" value="Education" {% if 'Education' in student.major %} selected {% endif %}>Education</option>
+                                <option class="form-item" value="Anthropology" {% if 'Anthropology' in student.major %} selected {% endif %}>Anthropology</option>
                             </select>
     
                         <label class="detailText">Availability: </label>
