@@ -19,53 +19,92 @@ document.addEventListener('DOMContentLoaded', function () {
                     jobInfo.querySelector('.jobHours').textContent = "Hours: " + data.hours;
                     jobInfo.querySelector('.jobPay').textContent = "Pay: " + data.pay;
 
+                   
+                    // Reset Apply button event listener
+                    const deleteButton = jobInfo.querySelector('.removepostForm');
+                    deleteButton.removeEventListener('submit', deleteJob); // Remove existing event listener if any
+                    deleteButton.addEventListener('submit', deleteJob); // Attach event listener
 
-                        // Fetch applicants for the selected job
-                        fetch(`/job/${jobId}/applicants`)
-                            .then(response => response.json())
-                            .then(applicants => {
-                                const jobApplicantsContainer = document.querySelector('.jobApplicants');
+                    function deleteJob(event) {
+                     
+                        event.preventDefault(); // Prevent default form submission
+                       
+                        // Send POST request to apply for the job
+                        fetch('/delete_job', {
+                            method: 'POST',
+                            body: JSON.stringify({ job_id: jobId }), // Send job ID in request body
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                // Handle success response (e.g., show success message)
+                                alert('Job successfully deleted!');
+                                window.location.href = '/profileEmployer';
+                            } else {
+                                // Handle error response
+                                alert('Failed to submit application. Please try again.');
+                            }
+                        })
+                        .catch(error => console.error('Error submitting application:', error));
+                    }
 
-                                // Clear previous applicant divs if any
-                                jobApplicantsContainer.innerHTML = '';
 
-                                // Iterate through each applicant and create divs
-                                applicants.forEach(applicant => {
-                                    const applicantDiv = document.createElement('div');
-                                    applicantDiv.classList.add('applicant');
+                    // Fetch applicants for the selected job
+                    fetch(`/job/${jobId}/applicants`)
+                        .then(response => response.json())
+                        .then(applicants => {
+                            const jobApplicantsContainer = document.querySelector('.jobApplicants');
 
-                                    const avatarImg = document.createElement('img');
-                                    avatarImg.src = "static/library/media/avatars/" + applicant.avatar;
-                                    avatarImg.classList.add("appImg");
-                                    avatarImg.alt = 'Applicant Avatar';
-                                    applicantDiv.appendChild(avatarImg);
+                            // Clear previous applicant divs if any
+                            jobApplicantsContainer.innerHTML = '';
 
-                                    const namePara = document.createElement('p');
-                                    namePara.textContent = applicant.first_name + " " +  applicant.last_name;
-                                    applicantDiv.appendChild(namePara);
+                            // Iterate through each applicant and create divs
+                            applicants.forEach(applicant => {
+                                const applicantDiv = document.createElement('div');
+                                applicantDiv.classList.add('applicant');
 
-                                    const form = document.createElement('form');
-                                    form.classList.add("resumeForm");
-                                    console.log(applicant.resume);
-                                    form.action = "static/library/media/resumes/" +  applicant.resume;
-                                    form.method = "get";
-                                    form.target = "_blank";
-                                    applicantDiv.appendChild(form);
+                                const avatarImg = document.createElement('img');
+                                avatarImg.src = "static/library/media/avatars/" + applicant.avatar;
+                                avatarImg.classList.add("appImg");
+                                avatarImg.alt = 'Applicant Avatar';
+                                applicantDiv.appendChild(avatarImg);
 
-                                    const resumeButton = document.createElement("button");
-                                    resumeButton.classList.add("greenButton", "resumeButton");
-                                    resumeButton.onclick=
-                                    resumeButton.type = "submit";
-                                    resumeButton.textContent = "View Resume";
-                                    form.appendChild(resumeButton);
+                                const namePara = document.createElement('p');
+                                namePara.textContent = applicant.first_name + " " +  applicant.last_name;
+                                applicantDiv.appendChild(namePara);
 
-                                    // Append the applicant div to the container
-                                    jobApplicantsContainer.appendChild(applicantDiv);
-                                });
-                            })
+                                const form = document.createElement('form');
+                                form.classList.add("resumeForm");
+                                console.log(applicant.resume);
+                                form.action = "static/library/media/resumes/" +  applicant.resume;
+                                form.method = "get";
+                                form.target = "_blank";
+                                applicantDiv.appendChild(form);
+
+                                const resumeButton = document.createElement("button");
+                                resumeButton.classList.add("greenButton", "resumeButton");
+                                resumeButton.onclick=
+                                resumeButton.type = "submit";
+                                resumeButton.textContent = "View Resume";
+                                form.appendChild(resumeButton);
+
+                                // Append the applicant div to the container
+                                jobApplicantsContainer.appendChild(applicantDiv);
+                            });
+
+
+                            
+                        })
                     .catch(error => console.error('Error fetching applicants:', error));
+
+
+
+
                 })
                 .catch(error => console.error('Error fetching job details:', error));
-        });
+            });
     });
 });
+

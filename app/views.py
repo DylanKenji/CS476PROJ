@@ -283,6 +283,9 @@ def jobListings():
         jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
         return render_template('jobListings.html', jobs=jobListings, student=student, employers="employers")
     elif "employer" in session:
+        if "student" in session:
+                for student in session:
+                    del session['student']
         employer = session["employer"]
         employer_instance = Employers.query.filter_by(id=employer).first()
         if employer_instance:
@@ -475,6 +478,7 @@ def delete_job():
         employer = Employers.query.get(employer_id)
         job_id = request.json.get('job_id')
         job = Jobs.query.get(job_id)
+        print("test")
         if job and employer.company_name == job.company_name:
             db.session.delete(job)
             db.session.commit()
