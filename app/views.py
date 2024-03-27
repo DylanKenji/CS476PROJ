@@ -18,16 +18,13 @@ def allowed_resume_file(filename):
 def index():
     return render_template("home.html")
 
-
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     return render_template('login.html')
 
-
 @app.route('/creatingEmployer')
 def gotoEmployer():
     return render_template('createEmployer.html')
-
 
 @app.route('/creatingStudent')
 def gotoStudent():
@@ -540,3 +537,20 @@ def delete_job():
             return jsonify({'error': 'Job not found or you do not have permission to delete it'}), 404
     else:
         return jsonify({'error': 'You must be logged in as an employer to delete a job'}), 401
+    
+@app.route('/resources')
+def resources():
+    print(session)
+    if "student" in session:
+        student = session["student"]
+        student = Students.query.filter_by(id=student).first()
+        return render_template('resources.html', student=student, employers="employers")
+    elif "employer" in session:
+        if "student" in session:
+                for student in session:
+                    del session['student']
+        employer = session["employer"]
+        employer = Employers.query.filter_by(id=employer).first()
+        return render_template('resources.html', jobs=jobListings, employer=employer)
+    else:
+        return redirect(url_for('login'))

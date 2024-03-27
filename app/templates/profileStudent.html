@@ -54,6 +54,7 @@
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
                                 <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
                                 <a href="{{ url_for('jobListings') }}" onclick="checkJoblistings('{% if student.resume %}exists{% else %}not_exists{% endif %}', event)"><i class="fa-solid fa-list"></i> Job Listings</a> 
+                                <a href="{{ url_for('resources') }}"><i class="fa-solid fa-book"></i>Resources</a> 
                                 <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
                             </div>
                         </div>
@@ -72,7 +73,7 @@
                     </div>
     
                     <h1 class="align-center" id="studentName">{{ student.first_name }} {{ student.last_name }}</h1>
-    
+                
                     <h2 class="align-center">User Details</h2>
             
                     <div class="userDetails">
