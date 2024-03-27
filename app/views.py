@@ -246,8 +246,8 @@ def editEmployer():
             # Update the employer's avatar attribute with the new filename
                 employer.avatar = avatar_filename
                         # Update the employer's avatar attribute with the new filename
-                        previous_avatar = employer.avatar
-                        employer.avatar = avatar_filename
+                previous_avatar = employer.avatar
+                employer.avatar = avatar_filename
 
             try:
                 db.session.commit()
