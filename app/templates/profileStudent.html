@@ -7,6 +7,31 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profileStudent.css') }}">
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
+
+    
+    <script>
+        function checkResume(resumeStatus) {
+            if (resumeStatus === 'exists') {
+                // Resume exists, submit the form
+                document.getElementById("resumeButton").closest("form").submit();
+            } else {
+                // Resume doesn't exist, display a popup
+                alert("Please provide a resume to access this page!");
+                event.preventDefault();
+            }
+        }
+        function checkJoblistings(resumeStatus) {
+            if (resumeStatus === 'exists') {
+                // Resume exists, submit the form
+            } else {
+                // Resume doesn't exist, display a popup
+                alert("Please provide a resume to access this page!");
+                event.preventDefault();
+            }
+        }
+    </script>
+    
+
 </head>
 <body>
 
@@ -28,7 +53,7 @@
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
                                 <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
-                                <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a> 
+                                <a href="{{ url_for('jobListings') }}" onclick="checkJoblistings('{% if student.resume %}exists{% else %}not_exists{% endif %}', event)"><i class="fa-solid fa-list"></i> Job Listings</a> 
                                 <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
                             </div>
                         </div>
@@ -61,12 +86,13 @@
                         <label class="detailText" id="studentStatus">{{ "Looking for job" if student.looking_for_job else "Not looking for job" }}</label>
                     </div>
     
-                 <!--    Backend location for pdf -->
+                 <!-- Backend location for pdf -->
                 <div class="profile-button">
                     
                 </div>
+
                 <form method="get" action="{{ url_for('static', filename='library/media/resumes/' ~ student.resume) }}" target="_blank">
-                    <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-file"></i> View Resume</button>
+                    <button class="greenButton resumeButton" id="resumeButton" type="button" onclick="checkResume('{% if student.resume %}exists{% else %}not_exists{% endif %}')"><i class="fa-solid fa-file"></i> View Resume</button>
                 </form>
     
                     <form method="GET" action="/editStudent">

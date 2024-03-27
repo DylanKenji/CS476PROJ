@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                     const resumeButton = document.createElement("button");
                                     resumeButton.classList.add("greenButton", "resumeButton");
+                                    resumeButton.onclick=
                                     resumeButton.type = "submit";
                                     resumeButton.textContent = "View Resume";
                                     form.appendChild(resumeButton);

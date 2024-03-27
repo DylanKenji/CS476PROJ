@@ -423,6 +423,7 @@ def apply_for_job():
 def filterJobs():
     if 'student' in session:  # Check if user is logged in as a student
         student =  session['student']
+        student = Students.query.filter_by(id=student).first()
         major = request.form.get('Major')  # Get selected major from form
         job_type = request.form.get('Hours')  # Get selected job type from form
 
