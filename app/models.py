@@ -47,7 +47,6 @@ class Employers(db.Model):
     avatar = db.Column(db.String(200), default="Default.png")
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_updated = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-    created_jobs = relationship('EmployerJobs', backref='employer', cascade='all, delete-orphan')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -71,7 +70,6 @@ class Jobs(db.Model):
     date_updated = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
     deadline = db.Column(db.DateTime)
     applicants = relationship('Applications', backref='job', cascade='all, delete-orphan')
-    employers = relationship('EmployerJobs', backref='job', cascade='all, delete-orphan')
     avatar = db.Column(db.String(200), default="Default.png")
     company_name = db.Column(db.String(200))
 
@@ -80,10 +78,4 @@ class Applications(db.Model):
     __tablename__ = 'Applications'
     id = db.Column(db.Integer, primary_key=True)
     student_id = db.Column(db.Integer, db.ForeignKey('STUDENTS.id'))
-    job_id = db.Column(db.Integer, db.ForeignKey('JOBS.id'))
-
-class EmployerJobs(db.Model):
-    __tablename__ = 'EmployerJobs'
-    id = db.Column(db.Integer, primary_key=True)
-    employer_id = db.Column(db.Integer, db.ForeignKey('EMPLOYERS.id'))
     job_id = db.Column(db.Integer, db.ForeignKey('JOBS.id'))

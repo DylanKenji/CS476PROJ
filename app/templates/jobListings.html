@@ -105,7 +105,6 @@
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
                 <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
-
                     <div class="jobDetails">
                         <label class="jobName bold">{{ job.job_title }}</label>
                         <label class="jobCompany">{{ job.company_name }}</label>

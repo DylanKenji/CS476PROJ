@@ -2,7 +2,7 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, session, flash, current_app
 from sqlalchemy import func
-from app.models import Students, Employers, Jobs, EmployerJobs, Applications
+from app.models import Students, Employers, Jobs, Applications
 from werkzeug.utils import secure_filename
 import os
 import glob
@@ -273,9 +273,10 @@ def jobListings():
         return render_template('jobListings.html', jobs=jobListings, student=student, employers="employers")
     elif "employer" in session:
         employer = session["employer"]
-        employer = Employers.query.filter_by(id=employer).first()
-        jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
-        return render_template('jobListings.html', jobs=jobListings, employer=employer, student="student")
+        employer_instance = Employers.query.filter_by(id=employer).first()
+        if employer_instance:
+            jobListings = Jobs.query.filter_by(company_name=employer_instance.company_name).order_by(Jobs.date_created.desc()).limit(20).all()
+            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance, student="student")
     else:
         return redirect(url_for('login'))
 
