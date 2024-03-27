@@ -36,6 +36,9 @@ def gotoStudent():
 def createStudent():
     form = request.form
     if request.method == 'POST':
+        if is_email_used(form['email']):
+            flash('Email already in use', 'error')
+            return render_template('createStudent.html')
         createStudent = Students(
             student_id=form['student_id'],
             first_name=form['first_name'],
@@ -56,6 +59,9 @@ def createStudent():
 def emp_login():
     if request.method == 'POST':
         form = request.form
+        if is_email_used(form['email']):
+            flash('Email already in use', 'error')
+            return render_template('createEmployer.html')
         createEmployer = Employers(
             first_name=form['first_name'],
             last_name=form['last_name'],
@@ -138,11 +144,15 @@ def editStudent():
             # Update student information based on form data
             student.first_name = request.form['studentfirstName']
             student.last_name = request.form['studentlastName']
-            student.email = request.form['studentEmail']
+
             student.major = request.form['studentMajor']
             student.looking_for_job = bool(request.form.get('studentAvailability'))
             # student.resume = request.form['newResume']
-
+            if not student.email == request.form['studentEmail']:
+                if not is_email_used(request.form['studentEmail']):
+                    student.email = request.form['studentEmail']
+                else:
+                    flash('Email already in use', 'error')
             # Update password if new password is provided and matches confirmation
             new_password = request.form.get('newPassword')
             if len(new_password) >= 5:
@@ -233,7 +243,11 @@ def editEmployer():
             employer.company_name = request.form['employerCompany']
             employer.address = request.form['employerAddress']
             employer.phone = request.form['employerPhone']
-
+            if not employer.email == request.form['employerEmail']:
+                if not is_email_used(request.form['employerEmail']):
+                    employer.email = request.form['employerEmail']
+                else:
+                    flash('Email already in use', 'error')
             # Update password if new password is provided and matches confirmation
             new_password = request.form.get('newPassword')
             if len(new_password) >= 5:
