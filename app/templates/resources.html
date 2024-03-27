@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | UR Connect</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resources.css') }}">
+    <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!--Dynamically show header based the user's session type-->
+    <!-- STUDENT HEADER -->
+    {% if 'student' in session %}
+    <nav class="header">
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="{{ url_for('jobListings') }}">
+                    <div class="header-logo">
+                        <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    </div>
+                </a>
+            </div>
+
+            <div class="header-profilenav">
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a>
+                            <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a>
+                            <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a>
+                            <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-profile-name">{{ student.first_name }} {{ student.last_name }}</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- EMPLOYER HEADER -->
+    {% elif 'employer' in session %}
+    <nav class="header">
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="{{ url_for('jobListings') }}">
+                    <div class="header-logo">
+                        <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                    </div>
+                </a>
+            </div>
+            <div class="header-profilenav">
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" ></button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a>
+                            <a href="{{ url_for('editEmployer') }}"><i class="fa-solid fa-user"></i> Edit Profile</a>
+                            <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a>
+                            <a href="{{ url_for('postJob') }}"><i class="fa-solid fa-square-plus"></i> Post Job</a>
+                            <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+
+    <!-- PAGE HERE -->
+    <div class="listing main-wrapper">
+        
+    </div>
+</body>
+</html>
