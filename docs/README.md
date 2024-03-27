@@ -53,6 +53,13 @@ Yes, UR Connect is free for both students/graduates and employers to use. There 
 Yes, you have the option to delete your UR Connect account if you no longer wish to use the platform. Simply go to your account settings, and you'll find the option to delete your account.
 
 
+## Contributing
+We welcome contributions to the project. To contribute, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature: git checkout -b new-feature.
+3. Make the changes to the codebase
+
 ## Feedback
 
 If you have any feedback, please reach out to us at ur@connect.com
