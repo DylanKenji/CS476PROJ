@@ -5,6 +5,7 @@ from sqlalchemy import func
 from app.models import Students, Employers, Jobs, EmployerJobs, Applications
 from werkzeug.utils import secure_filename
 import os
+import glob
 from datetime import datetime
 from flask import jsonify
 
@@ -168,10 +169,20 @@ def editStudent():
                 if avatar_file.filename != '':
                     # Securely save the avatar file on the server
                     if allowed_file(avatar_file.filename):
-                        filename = secure_filename(avatar_file.filename)
-                        avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                        # Update the student's avatar attribute with the file path (or URL)
-                        student.avatar = filename
+                        # Generate the new avatar filename
+                        avatar_filename = f"{student.first_name}_{student.last_name}_{student.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
+                        
+                        # Check if there's an existing avatar file with a different extension
+                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{student.first_name}_{student.last_name}_{student.id}_Avatar.*")
+                        old_avatar_files = glob.glob(old_avatar_path)
+                        for old_avatar_file in old_avatar_files:
+                            os.remove(old_avatar_file)
+
+                        # Save the uploaded avatar with the new name
+                        avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
+                        
+                        # Update the student's avatar attribute with the new filename
+                        student.avatar = avatar_filename
 
             try:
                 db.session.commit()
@@ -221,15 +232,24 @@ def editEmployer():
 
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:
-                print(1)
                 avatar_file = request.files['newemployerAvatar']
                 if avatar_file.filename != '':
                     # Securely save the avatar file on the server
                     if allowed_file(avatar_file.filename):
-                        filename = secure_filename(avatar_file.filename)
-                        avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                        # Update the employer's avatar attribute with the file path (or URL)
-                        employer.avatar = filename
+                        # Generate the new avatar filename
+                        avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
+                        
+                        # Check if there's an existing avatar file with a different extension
+                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar.*")
+                        old_avatar_files = glob.glob(old_avatar_path)
+                        for old_avatar_file in old_avatar_files:
+                            os.remove(old_avatar_file)
+
+                        # Save the uploaded avatar with the new name
+                        avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
+                        
+                        # Update the employer's avatar attribute with the new filename
+                        employer.avatar = avatar_filename
 
             try:
                 db.session.commit()
