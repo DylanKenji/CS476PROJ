@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customize Student Profile | UR Connect</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studentProfileEdit.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/editStudent.css') }}">
     <script src="{{ url_for('static', filename='js/editStudent.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 </head>
@@ -69,9 +69,22 @@
             </div>
             <div class="info-box3">
                 <div class="userDetails">
-                        
-                    <label class="inputLabel float-left" >Current Major:</label>
-                    <input class="inputBox" type="text" id="studentMajor" name="studentMajor" placeholder="Current Major" value="{{ student.major }}">
+                    <label class="inputLabel float-left">Major:</label>
+                        <select class="postingBox" name="studentMajor" id="studentMajor">
+                            <option value="" selected>Select an option</option>
+                            <option class="form-item" value="Computer Science">Computer Science</option>
+                            <option class="form-item" value="Engineering">Engineering</option>
+                            <option class="form-item" value="Biology">Biology</option>
+                            <option class="form-item" value="Economics">Economics</option>
+                            <option class="form-item" value="Physics">Physics</option>
+                            <option class="form-item" value="Psychology">Psychology</option>
+                            <option class="form-item" value="Mathematics">Mathematics</option>
+                            <option class="form-item" value="Geology">Geology</option>
+                            <option class="form-item" value="Social Work">Social Work</option>
+                            <option class="form-item" value="Nursing">Nursing</option>
+                            <option class="form-item" value="Education">Education</option>
+                            <option class="form-item" value="Anthropology">Anthropology</option>
+                        </select>
 
                     <label class="detailText"> Are you currently for hire?</label>
                     <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">

@@ -22,6 +22,10 @@ textarea{
     cursor: pointer;
 }
 
+.login-link{
+    color: black;
+ }
+
 .link{
     color: white;
     text-decoration: none;

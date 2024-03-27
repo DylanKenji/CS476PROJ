@@ -53,8 +53,6 @@ form.addEventListener('submit', (e) => {
     }
 
     //major field validation
-    //need to look into this further. Want to create a dropdown menu and the options should be fetching the available majors
-    //from the database
     if (studentMajor.value === null || studentMajor.value === '' ) {
         messages.push('Major required');
     }
@@ -78,10 +76,10 @@ form.addEventListener('submit', (e) => {
     if (newstudentAvatar.files.length > 0) {
         const file = newstudentAvatar.files[0];
         const fileType = file.type;
-        const validFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        const validFileTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', ];
     
         if (!validFileTypes.includes(fileType)) {
-            messages.push('Invalid file format. Please upload a JPEG, PNG, or GIF file for the avatar.');
+            messages.push('Invalid file format. Please upload a PNG, JPG, JPEG, or GIF file for the avatar.');
         }
     }
 
