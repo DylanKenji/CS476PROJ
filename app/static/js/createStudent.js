@@ -7,6 +7,7 @@ const emailEntry = document.getElementById('emailEntry');
 const idEntry = document.getElementById('idEntry');
 const passwordEntry = document.getElementById('passwordEntry');
 const confirmEntry = document.getElementById('confirmEntry');
+const resumeInput = document.getElementById('newResume');
 
 form.addEventListener('submit', (e) => {
     let messages = []
@@ -63,7 +64,10 @@ form.addEventListener('submit', (e) => {
         messages.push('Passwords do not match');
     }
 
-
+    //resume field validation
+    if (!resumeInput.files || resumeInput.files.length === 0) {
+        messages.push('Resume file required');
+    }
     
     // If any errors exist, prevent form submission
     if (messages.length > 0) {

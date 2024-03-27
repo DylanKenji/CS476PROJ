@@ -18,6 +18,10 @@ body{
 
 .header-filters {
     align-content: center;
+    background-color: #0c3f14;
+    height: 6vh;
+    padding: 0 2vw 0 2vw;
+    color: white;
 }
 
 .filterForm {

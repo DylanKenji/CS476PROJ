@@ -46,7 +46,7 @@ textarea{
 .profile-container {
     display: flex;
     justify-content: center;
-    margin-top: 10vh;
+    margin-top: 8vh;
 }
 
 .page-wrap{
@@ -100,7 +100,7 @@ textarea{
 
 .header {
     background-color: white;
-    border-bottom: #0c3f14 2px solid;
+    border-bottom: #0c3f14 3px solid;
     height: 6vh;
 }
 
