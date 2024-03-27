@@ -1,11 +1,10 @@
 # Description: This file contains the routes for the web application.
 from app import app, db
 from flask import render_template, request, redirect, url_for, session, flash, current_app
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from app.models import Students, Employers, Jobs, Applications
 from werkzeug.utils import secure_filename
-import os
-import glob
+import os, glob
 from datetime import datetime
 from flask import jsonify
 
@@ -445,6 +444,47 @@ def filterJobs():
         return render_template('jobListings.html', jobs=filtered_jobs, student=student)
     else:
         return redirect(url_for('login'))
+
+@app.route('/search', methods=['POST'])
+def search():
+    if request.method == 'POST':
+
+        search_query = request.form.get('search_query')
+
+        # Search for both student and employer profiles based on the search query
+        students = Students.query.filter(or_(Students.first_name.ilike(f'%{search_query}%'),
+                                             Students.last_name.ilike(f'%{search_query}%'))).all()
+
+        employers = Employers.query.filter(or_(Employers.first_name.ilike(f'%{search_query}%'),
+                                               Employers.last_name.ilike(f'%{search_query}%'))).all()
+        if 'student' in session:
+            student = session['student']
+            student = Students.query.filter_by(id=student).first()
+            return render_template('search_results.html', students=students, employers=employers, student=student)
+        elif 'employer' in session:
+            employer = session['employer']
+            employer = Employers.query.filter_by(id=employer).first()
+            return render_template('search_results.html', students=students, employers=employers,employer=employer)
+    else:
+        # Handle other request methods (if any)
+        pass
+
+@app.route('/jobSearch', methods=['POST'])
+def jobSearch():
+    if request.method == 'POST':
+        if 'student' in session:
+            student = session['student']
+            student = Students.query.filter_by(id=student).first()
+            search_query = request.form.get('search_query')
+
+            # Search for both student and employer profiles based on the search query
+            jobs = Jobs.query.filter(or_(Jobs.job_title.ilike(f'%{search_query}%'),
+                                                 Jobs.job_location.ilike(f'%{search_query}%'))).all()
+
+            return render_template('jobListings.html', jobs=jobs, student= student)
+    else:
+        # Handle other request methods (if any)
+        pass
 
 @app.route('/delete_account', methods=['POST'])
 def delete_account():
