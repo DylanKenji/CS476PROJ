@@ -8,6 +8,29 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/editStudent.css') }}">
     <script src="{{ url_for('static', filename='js/editStudent.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
+
+    <script>
+        function checkResume(resumeStatus) {
+            if (resumeStatus === 'exists') {
+                // Resume exists, submit the form
+                document.getElementById("resumeButton").closest("form").submit();
+            } else {
+                // Resume doesn't exist, display a popup
+                alert("Please provide a resume to access this page!");
+                event.preventDefault();
+            }
+        }
+        function checkJoblistings(resumeStatus) {
+            if (resumeStatus === 'exists') {
+                // Resume exists, submit the form
+            } else {
+                // Resume doesn't exist, display a popup
+                alert("Please provide a resume to access this page!");
+                event.preventDefault();
+            }
+        }
+    </script>
+
 </head>
 <body>
     
@@ -30,7 +53,7 @@
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
                                 <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
-                                <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a> 
+                                <a href="{{ url_for('jobListings') }}" onclick="checkJoblistings('{% if student.resume %}exists{% else %}not_exists{% endif %}', event)"><i class="fa-solid fa-list"></i> Job Listings</a> 
                                 <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
                             </div>
                         </div>
