@@ -316,7 +316,6 @@ def postJob():
             db.session.add(job)
             db.session.commit()
 
-            db.session.add(employer_job)
             db.session.commit()
 
             return redirect(url_for('jobListings'))
