@@ -18,6 +18,12 @@ The University of Regina faces a challenge where students struggle to showcase t
     - Students and graduates can track their job applications, interview schedules, and application statuses, streamlining the job search process.
 - Advanced Search 
     - Functionality that allows users to find specific profiles and job listings based on various criteria.
+ 
+
+## Installation
+To install the dependencies for the backend, follow the steps below:
+
+1. Clone the repository: git clone https://github.com/DylanKenji/CS476PROJ.git
 
 ## Authors
 
