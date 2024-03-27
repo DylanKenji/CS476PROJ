@@ -90,7 +90,8 @@ def std_profile_login():
         else:
             form = request.form
             if student in session:
-                del session['student']
+                for student in session:
+                    del session['student']
             employer = Employers.query.filter(func.lower(Employers.email) == func.lower(form['email'])).first()
             if employer is not None:
                 if employer.check_password(form['password']):
@@ -419,6 +420,27 @@ def apply_for_job():
         # Handle case where student ID or job ID is missing
         return jsonify({'error': 'Student ID is missing'}), 402
 
+@app.route('/filterJobs', methods=['POST'])
+def filterJobs():
+    if 'student' in session:  # Check if user is logged in as a student
+        student =  session['student']
+        major = request.form.get('Major')  # Get selected major from form
+        job_type = request.form.get('Hours')  # Get selected job type from form
+
+        # Query database to filter job listings based on selected criteria
+        filtered_jobs = Jobs.query
+        if major and job_type:  # If both major and job type are selected, filter by both
+            filtered_jobs = filtered_jobs.filter_by(major_required=major, hours=job_type)
+        elif major:  # If a major is selected, filter by major
+            filtered_jobs = filtered_jobs.filter_by(major_required=major)
+        elif job_type:  # If a job type is selected, filter by job type
+            filtered_jobs = filtered_jobs.filter_by(hours=job_type)
+
+        filtered_jobs = filtered_jobs.all()  # Execute the query
+
+        return render_template('jobListings.html', jobs=filtered_jobs, student=student)
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/delete_account', methods=['POST'])
 def delete_account():
