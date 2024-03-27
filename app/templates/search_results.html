@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <!--search result page for searching students and employers  -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results | UR Connect</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search_results.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/searchResults.css') }}">
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/searchResults.js') }}" defer></script>
 </head>
+
 <body>
     <div class="page-wrap">
         <nav class="header">
@@ -23,30 +26,28 @@
                 </a>
             </div>
         </nav>
+
         <div class="main-wrapper">
-            <div class="search-results">
-                <h1>Search Results</h1>
-                <div class="search-container">
-                    <form action="/searchResults" method="POST">
-                        <input type="text" id="search" name="search" placeholder="Search..">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+            <div class="searchWrapper">
+                <div class="search">
+                    <h1> Search Results </h1>
+                    <form class="searchForm" action="/search" method="POST">
+                        <section class="space">
+                            <input id="searchEntry" name="search" class="inputBox" type="text" placeholder="Search">
+                            <button class="greenButton" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </section>
                     </form>
                 </div>
                 <div class="results">
-                    <div class="results-title">
-                        <p>Results</p>
-                    </div>
                     <div class="results-container">
+                        <div class="results-header">
+                            <h2> Students </h2>
+                        </div>
                         <div class="results-list">
-                            <div class="result">
-                                <div class="result-info">
-                                    <div class="result-name">Student Name</div>
-                                    <div class="result-email">Email</div>
-                                    <div class="result-major">Major</div>
-                                    <div class="result-availability">Availability</div>
-                                </div>
-                            </div>
                             {% for student in students %}
-                            <div class="result">
-                                <div class="result-info">
-                                    <div class="result-name
+                            <div class="student">
+                                <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" class="avatar">
+                                <div class="student-info">
+                                    <
