@@ -285,7 +285,8 @@ def jobListings():
     if "student" in session:
         student = session["student"]
         student = Students.query.filter_by(id=student).first()
-        jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
+        jobListings = db.session.query(Jobs).outerjoin(Applications, (Applications.job_id == Jobs.id) & (Applications.student_id == student.id)).filter(Applications.id.is_(None)).order_by(Jobs.date_created.desc()).limit(20).all()
+        
         return render_template('jobListings.html', jobs=jobListings, student=student, employers="employers")
     elif "employer" in session:
         if "student" in session:

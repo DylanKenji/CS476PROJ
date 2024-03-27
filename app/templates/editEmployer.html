@@ -79,7 +79,7 @@
                         <input class="inputBox" type="text" name="employerPhone" id="companyNumber" placeholder="Company Number" value="{{ employer.phone }}">
 
                         <label class="inputLabel float-left" >Company Avatar:</label>
-                        <input class="pictureInput" type="file" accept="image/*" name="newemployerAvatar" id="newemployerAvatar" placeholder="Company Number">
+                        <input class="pictureInput" type="file" accept="image/png, image/jpeg, image/jpg, image/gif" name="newemployerAvatar" id="newemployerAvatar" placeholder="Company Number">
                         <button id="backButton" class="submitButton greenButton">
                             <a class="link" href="{{ url_for('profileEmployer') }}">Back</a>
                         </button>

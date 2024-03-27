@@ -111,13 +111,13 @@
                             </select>
     
                         <label class="detailText">Availability: </label>
-                        <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
+                        <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" {% if student.looking_for_job %} checked {% endif %}>
                       
                         <label class="detailText">Resume: </label>
-                        <input type="file" id="newResume" name="newResume" class="newResume">
+                        <input type="file" accept="application/pdf" id="newResume" name="newResume" class="newResume">
     
                         <label class="detailText">Avatar: </label>
-                        <input type="file" id="newstudentAvatar" name="newstudentAvatar" class="newStudentAvatar">
+                        <input type="file" accept="image/png, image/jpeg, image/jpg, image/gif" id="newstudentAvatar" name="newstudentAvatar" class="newStudentAvatar">
     
                         <button id="backButton" class="submitButton greenButton">
                             <a class="link" href="{{ url_for('profileStudent') }}">Back</a>
