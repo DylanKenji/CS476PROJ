@@ -1,9 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     const jobPostings = document.querySelectorAll('.jobPosting');
+    let lastClickedJobId; // Variable to store the ID of the last clicked job
 
-    jobPostings.forEach(function (jobPosting) {
+    jobPostings(function (jobPosting) {
         jobPosting.addEventListener('click', function () {
             const jobId = jobPosting.dataset.jobId;
+            lastClickedJobId = jobId; // Update the last clicked job ID
+
+
+
             fetch(`/job/${jobId}`)
                 .then(response => response.json())
                 .then(data => {
@@ -22,17 +27,13 @@ document.addEventListener('DOMContentLoaded', function () {
                    
                     // Reset Apply button event listener
                     const deleteButton = jobInfo.querySelector('.removepostForm');
-                    deleteButton.removeEventListener('submit', deleteJob); // Remove existing event listener if any
-                    deleteButton.addEventListener('submit', deleteJob); // Attach event listener
-
-                    function deleteJob(event) {
-                     
+                    deleteButton.addEventListener('submit', function (event) {
                         event.preventDefault(); // Prevent default form submission
-                       
-                        // Send POST request to apply for the job
-                        fetch('/delete_job', {
+                
+                        // Send POST request to apply for the last clicked job
+                        fetch('/apply_for_job', {
                             method: 'POST',
-                            body: JSON.stringify({ job_id: jobId }), // Send job ID in request body
+                            body: JSON.stringify({ job_id: lastClickedJobId }), // Send last clicked job ID in request body
                             headers: {
                                 'Content-Type': 'application/json'
                             }
@@ -40,15 +41,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         .then(response => {
                             if (response.ok) {
                                 // Handle success response (e.g., show success message)
-                                alert('Job successfully deleted!');
-                                window.location.href = '/profileEmployer';
+                                alert('Application submitted successfully!');
+                                window.location.href = '/profileStudent';
                             } else {
                                 // Handle error response
                                 alert('Failed to submit application. Please try again.');
                             }
                         })
                         .catch(error => console.error('Error submitting application:', error));
-                    }
+                    });
 
 
                     // Fetch applicants for the selected job

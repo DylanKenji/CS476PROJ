@@ -1,9 +1,13 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     const jobPostings = document.querySelectorAll('.jobPosting');
+    let lastClickedJobId; // Variable to store the ID of the last clicked job
 
     jobPostings.forEach(function (jobPosting) {
         jobPosting.addEventListener('click', function () {
             const jobId = jobPosting.dataset.jobId;
+            lastClickedJobId = jobId; // Update the last clicked job ID
+
             fetch(`/job/${jobId}`)
                 .then(response => response.json())
                 .then(data => {
@@ -20,37 +24,34 @@ document.addEventListener('DOMContentLoaded', function () {
                     jobInfo.querySelector('.jobPay').innerHTML = "<strong>Pay:</strong> " + data.pay;
 
                     // Update other job details as needed
-
-                    // Reset Apply button event listener
-                    const applyButton = jobInfo.querySelector('.applyForm');
-                    applyButton.removeEventListener('submit', submitApplication); // Remove existing event listener if any
-                    applyButton.addEventListener('submit', submitApplication); // Attach event listener
-
-                    function submitApplication(event) {
-                        event.preventDefault(); // Prevent default form submission
-
-                        // Send POST request to apply for the job
-                        fetch('/apply_for_job', {
-                            method: 'POST',
-                            body: JSON.stringify({ job_id: jobId }), // Send job ID in request body
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                // Handle success response (e.g., show success message)
-                                alert('Application submitted successfully!');
-                                window.location.href = '/profileStudent';
-                            } else {
-                                // Handle error response
-                                alert('Failed to submit application. Please try again.');
-                            }
-                        })
-                        .catch(error => console.error('Error submitting application:', error));
-                    }
                 })
                 .catch(error => console.error('Error fetching job details:', error));
         });
+    });
+
+    // Event listener for applying to the last clicked job
+    const applyButton = document.querySelector('.applyForm');
+    applyButton.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Send POST request to apply for the last clicked job
+        fetch('/apply_for_job', {
+            method: 'POST',
+            body: JSON.stringify({ job_id: lastClickedJobId }), // Send last clicked job ID in request body
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle success response (e.g., show success message)
+                alert('Application submitted successfully!');
+                window.location.href = '/profileStudent';
+            } else {
+                // Handle error response
+                alert('Failed to submit application. Please try again.');
+            }
+        })
+        .catch(error => console.error('Error submitting application:', error));
     });
 });
