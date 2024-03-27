@@ -316,8 +316,6 @@ def postJob():
             db.session.add(job)
             db.session.commit()
 
-            employer_job = EmployerJobs(employer_id=employer.id, job_id=job.id)
-
             db.session.add(employer_job)
             db.session.commit()
 
