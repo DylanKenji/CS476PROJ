@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     jobPostings.forEach(function (jobPosting) {
         jobPosting.addEventListener('click', function () {
+
             const jobId = jobPosting.dataset.jobId;
             fetch(`/job/${jobId}`)
                 .then(response => response.json())
@@ -19,8 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     jobInfo.querySelector('.jobHours').innerHTML = "<strong>Hours:</strong> " + data.hours;
                     jobInfo.querySelector('.jobPay').innerHTML = "<strong>Pay:</strong> " + data.pay;
 
-
-                    // Update other job details as needed
 
                     // Add event listener for Apply button
                     const applyButton = jobInfo.querySelector('.applyForm');

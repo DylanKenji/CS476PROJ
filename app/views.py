@@ -391,31 +391,33 @@ def apply_for_job():
     student_id = session['student']
 
     # Get job ID from the request body
-    data = request.json
-    job_id = data.get('job_id')
+    job_id = request.json.get('job_id')
 
     # Check if both student ID and job ID are provided
-    if student_id and job_id:
+    if student_id:
+        if  job_id:
         # Query the database to ensure the student and job exist
-        student = Students.query.get(student_id)
-        job = Jobs.query.get(job_id)
+            student = Students.query.get(student_id)
+            job = Jobs.query.get(job_id)
 
-        if student and job:
-            # Create a new application instance
-            application = Applications(student_id=student_id, job_id=job_id)
+            if student and job:
+                # Create a new application instance
+                application = Applications(student_id=student_id, job_id=job_id)
 
-            # Add the application to the database session and commit
-            db.session.add(application)
-            db.session.commit()
+                # Add the application to the database session and commit
+                db.session.add(application)
+                db.session.commit()
 
-            # Respond with a success message
-            return jsonify({'message': 'Application submitted successfully'}), 200
-        else:
+                # Respond with a success message
+                return redirect(url_for('jobListings'))
+            else:
             # Handle case where student or job does not exist
-            return jsonify({'error': 'Student or Job not found'}), 404
+                return jsonify({'error': 'Student or Job not found'}), 404
+        else:
+            return jsonify({'error': 'Job Id not found'}), 401
     else:
         # Handle case where student ID or job ID is missing
-        return jsonify({'error': 'Student ID or Job ID is missing'}), 400
+        return jsonify({'error': 'Student ID is missing'}), 402
 
 
 @app.route('/delete_account', methods=['POST'])
