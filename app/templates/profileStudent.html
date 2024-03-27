@@ -41,7 +41,7 @@
                 <div class="header-logo">
                     <a href="{{ url_for('jobListings') }}">
                         <div class="header-logo">
-                            <img src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}" class="logo">
+                            <img class="logo" src="{{ url_for('static', filename='library/media/UR_Logo_Primary_Full_Colour_RGB.png') }}">
                         </div>
                     </a>
                 </div>
@@ -103,9 +103,9 @@
                 <div class="info-box2">
                     <h2 class="align-center">Applied jobs</h2>
                     <div class="jobList roundForm">
-                        {% for application in student.job_applications %}
+                        {% for application in student.job_applications[::-1] %}
                             <div class="jobPosting" id="job{{ application.job.id }}">
-                                <img src="{{ url_for('static', filename='library/media/avatars/' ~ application.job.avatar ) }}" class="jobImg">
+                                <img src="{{ url_for('static', filename='library/media/avatars/' ~ application.job.avatar ) }}" class="appliedImg">
                                 <div class="jobDetails">
                                     <label class="jobName bold">{{ application.job.job_title }}</label>
                                     <label class="jobCompany">{{ application.job.company_name }}</label>
@@ -115,6 +115,7 @@
                             </div>
                         {% endfor %}
                     </div>
+                    
                 </div>
     
     

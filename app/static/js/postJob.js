@@ -4,7 +4,9 @@ const errorElement = document.getElementById('error');
 const jobtitleEntry = document.getElementById('jobtitleEntry');
 const jobdescEntry = document.getElementById('jobdescEntry');
 const jobaddressEntry = document.getElementById('jobaddressEntry');
-const jobdeadlineEntry = document.getElementById('jobdeadlineEntry');
+const major = document.getElementById('major');
+const jobType = document.getElementById('jobType');
+const wage = document.getElementById('wage');
 
 
 form.addEventListener('submit', (e) => {
@@ -36,6 +38,19 @@ form.addEventListener('submit', (e) => {
     //job deadline validation
     if (jobdeadlineEntry.value === null || jobdeadlineEntry.value === '' ) {
         messages.push('Job deadline required');
+    }
+
+
+    if (major.value === null || major.value === '' ) {
+        messages.push('Major required');
+    }
+
+    if (jobType.value === null || jobType.value === '' ) {
+        messages.push('Job type required');
+    }
+
+    if (wage.value === null || wage.value === '' ) {
+        messages.push('Wage required');
     }
 
 

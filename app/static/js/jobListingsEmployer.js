@@ -53,50 +53,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Fetch applicants for the selected job
                     fetch(`/job/${jobId}/applicants`)
-                        .then(response => response.json())
-                        .then(applicants => {
-                            const jobApplicantsContainer = document.querySelector('.jobApplicants');
-
-                            // Clear previous applicant divs if any
-                            jobApplicantsContainer.innerHTML = '';
-
-                            // Iterate through each applicant and create divs
-                            applicants.forEach(applicant => {
-                                const applicantDiv = document.createElement('div');
-                                applicantDiv.classList.add('applicant');
-
-                                const avatarImg = document.createElement('img');
-                                avatarImg.src = "static/library/media/avatars/" + applicant.avatar;
-                                avatarImg.classList.add("appImg");
-                                avatarImg.alt = 'Applicant Avatar';
-                                applicantDiv.appendChild(avatarImg);
-
-                                const namePara = document.createElement('p');
-                                namePara.textContent = applicant.first_name + " " +  applicant.last_name;
-                                applicantDiv.appendChild(namePara);
-
-                                const form = document.createElement('form');
-                                form.classList.add("resumeForm");
-                                console.log(applicant.resume);
-                                form.action = "static/library/media/resumes/" +  applicant.resume;
-                                form.method = "get";
-                                form.target = "_blank";
-                                applicantDiv.appendChild(form);
-
-                                const resumeButton = document.createElement("button");
-                                resumeButton.classList.add("greenButton", "resumeButton");
-                                resumeButton.onclick=
-                                resumeButton.type = "submit";
-                                resumeButton.textContent = "View Resume";
-                                form.appendChild(resumeButton);
-
-                                // Append the applicant div to the container
-                                jobApplicantsContainer.appendChild(applicantDiv);
-                            });
-
-
-                            
-                        })
+                    .then(response => response.json())
+                    .then(applicants => {
+                        const jobApplicantsContainer = document.querySelector('.jobApplicants');
+                
+                        // Clear previous applicant divs if any
+                        jobApplicantsContainer.innerHTML = '';
+                
+                        // Iterate through each applicant in reverse order and create divs
+                        for (let i = applicants.length - 1; i >= 0; i--) {
+                            const applicant = applicants[i];
+                
+                            const applicantDiv = document.createElement('div');
+                            applicantDiv.classList.add('applicant');
+                
+                            const avatarImg = document.createElement('img');
+                            avatarImg.src = "static/library/media/avatars/" + applicant.avatar;
+                            avatarImg.classList.add("appImg");
+                            avatarImg.alt = 'Applicant Avatar';
+                            applicantDiv.appendChild(avatarImg);
+                
+                            const namePara = document.createElement('p');
+                            namePara.textContent = applicant.first_name + " " +  applicant.last_name;
+                            applicantDiv.appendChild(namePara);
+                
+                            const form = document.createElement('form');
+                            form.classList.add("resumeForm");
+                            console.log(applicant.resume);
+                            form.action = "static/library/media/resumes/" +  applicant.resume;
+                            form.method = "get";
+                            form.target = "_blank";
+                            applicantDiv.appendChild(form);
+                
+                            const resumeButton = document.createElement("button");
+                            resumeButton.classList.add("greenButton", "resumeButton");
+                            resumeButton.onclick = function() {
+                                form.submit();
+                            };
+                            resumeButton.type = "button";
+                            resumeButton.textContent = "View Resume";
+                            form.appendChild(resumeButton);
+                
+                            // Prepend the applicant div to the container
+                            jobApplicantsContainer.appendChild(applicantDiv);
+                        }
+                    })
                     .catch(error => console.error('Error fetching applicants:', error));
 
 
