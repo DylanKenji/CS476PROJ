@@ -401,7 +401,7 @@ def apply_for_job():
         if job_id:
         # Query the database to ensure the student and job exist
             student = Students.query.get(student_id)
-            job = Jobs.query.get(job_id).last()
+            job = Jobs.query.get(job_id)
 
             if student and job:
                 # Create a new application instance
@@ -528,7 +528,7 @@ def delete_job():
                 db.session.delete(applicant)
             db.session.delete(job)
             db.session.commit()
-            return jsonify({'message': 'Job deleted successfully'}), 200
+            return redirect(url_for('profileEmployer'))
         else:
             return jsonify({'error': 'Job not found or you do not have permission to delete it'}), 404
     else:

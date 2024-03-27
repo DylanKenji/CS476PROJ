@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const jobPostings = document.querySelectorAll('.jobPosting');
     let lastClickedJobId; // Variable to store the ID of the last clicked job
 
-    jobPostings(function (jobPosting) {
+    jobPostings.forEach(function (jobPosting) {
         jobPosting.addEventListener('click', function () {
             const jobId = jobPosting.dataset.jobId;
             lastClickedJobId = jobId; // Update the last clicked job ID
@@ -25,31 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     jobInfo.querySelector('.jobPay').textContent = "Pay: " + data.pay;
 
                    
-                    // Reset Apply button event listener
-                    const deleteButton = jobInfo.querySelector('.removepostForm');
-                    deleteButton.addEventListener('submit', function (event) {
-                        event.preventDefault(); // Prevent default form submission
-                
-                        // Send POST request to apply for the last clicked job
-                        fetch('/apply_for_job', {
-                            method: 'POST',
-                            body: JSON.stringify({ job_id: lastClickedJobId }), // Send last clicked job ID in request body
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                // Handle success response (e.g., show success message)
-                                alert('Application submitted successfully!');
-                                window.location.href = '/profileStudent';
-                            } else {
-                                // Handle error response
-                                alert('Failed to submit application. Please try again.');
-                            }
-                        })
-                        .catch(error => console.error('Error submitting application:', error));
-                    });
+                   
 
 
                     // Fetch applicants for the selected job
@@ -107,5 +83,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch(error => console.error('Error fetching job details:', error));
             });
     });
+
+    // Reset Apply button event listener
+    const deleteButton = document.querySelector('.removepostForm');
+    deleteButton.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Send POST request to apply for the last clicked job
+        fetch('/delete_job', {
+            method: 'POST',
+            body: JSON.stringify({ job_id: lastClickedJobId }), // Send last clicked job ID in request body
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle success response (e.g., show success message)
+                alert('Job removed successfully!');
+                window.location.href = '/profileEmployer';
+            } else {
+                // Handle error response
+                alert('Failed to remove job. Please try again.');
+            }
+        })
+        .catch(error => console.error('Error submitting application:', error));
+    });
+
+
 });
 
