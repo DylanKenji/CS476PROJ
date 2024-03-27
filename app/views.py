@@ -271,17 +271,6 @@ def editEmployer():
             return render_template('editEmployer.html', employer=employer)
 
 
-def update_jobs_with_matching_avatar(previous_avatar, new_avatar):
-    # Find all jobs with the previous avatar
-    jobs_with_matching_avatar = Jobs.query.filter_by(avatar=previous_avatar).all()
-
-    # Update job avatars to match the new avatar
-    for job in jobs_with_matching_avatar:
-        job.avatar = new_avatar
-
-    # Commit the changes to the database
-    db.session.commit()
-
 
 @app.route('/jobListings')
 def jobListings():
