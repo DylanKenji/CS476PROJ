@@ -207,6 +207,13 @@ def allowed_file(filename):
 def allowed_resume_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'pdf', 'doc', 'docx'}
 
+# Function to update all jobs with a matching avatar
+def update_avatar(previous_avatar, new_avatar):
+    jobs_with_matching_avatar = Jobs.query.filter_by(avatar=previous_avatar).all()
+    for job in jobs_with_matching_avatar:
+        job.avatar = new_avatar
+    db.session.commit()
+
 
 @app.route('/editEmployer', methods=['GET', 'POST'])
 def editEmployer():
@@ -234,26 +241,27 @@ def editEmployer():
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:
                 avatar_file = request.files['newemployerAvatar']
-            if avatar_file.filename != '':
-            # Securely save the avatar file on the server
-                if allowed_file(avatar_file.filename):
-                # Generate the new avatar filename
-                    avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
+                if avatar_file.filename != '':
+                    # Securely save the avatar file on the server
+                    if allowed_file(avatar_file.filename):
+                        # Generate the new avatar filename
+                        avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
+                        previous_avatar = employer.avatar
+                        employer.avatar = avatar_filename
+                        # Check if there's an existing avatar file with a different extension
+                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'],
+                                                       f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar.*")
+                        old_avatar_files = glob.glob(old_avatar_path)
+                        update_avatar(previous_avatar, avatar_filename)
+                        for old_avatar_file in old_avatar_files:
+                            os.remove(old_avatar_file)
 
-            # Save the uploaded avatar with the new name
-                avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
+                        # Save the uploaded avatar with the new name
+                        avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
 
-            # Update the employer's avatar attribute with the new filename
-                employer.avatar = avatar_filename
-                        # Update the employer's avatar attribute with the new filename
-                previous_avatar = employer.avatar
-                employer.avatar = avatar_filename
 
             try:
                 db.session.commit()
-                if 'newemployerAvatar' in request.files:
-                    # Update job avatars with matching previous avatar
-                    update_jobs_with_matching_avatar(previous_avatar, avatar_filename)
                 return redirect(url_for('editEmployer'))
             except Exception as e:
                 # Handle any exceptions that may occur during the database commit
@@ -262,17 +270,6 @@ def editEmployer():
             # If it's a GET request or after processing a POST request, render the template
             return render_template('editEmployer.html', employer=employer)
 
-
-def update_jobs_with_matching_avatar(previous_avatar, new_avatar):
-    # Find all jobs with the previous avatar
-    jobs_with_matching_avatar = Jobs.query.filter_by(avatar=previous_avatar).all()
-
-    # Update job avatars to match the new avatar
-    for job in jobs_with_matching_avatar:
-        job.avatar = new_avatar
-
-    # Commit the changes to the database
-    db.session.commit()
 
 
 @app.route('/jobListings')
