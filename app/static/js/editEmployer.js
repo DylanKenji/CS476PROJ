@@ -23,10 +23,10 @@ form.addEventListener('submit', (e) => {
 
     //last name field validation
     if (employerlastName.value === null || employerlastName.value === '' ) {
-        messages.push('Last name required');
+        messages.push('Employer last name required');
     }
-    else if (!/^[A-Za-z-]+$/.test(employerlastName.value)) {
-        messages.push('Last name cannot contain numbers');
+    else if (!/^[A-Za-z- ]+$/.test(employerlastName.value)) {
+        messages.push('Employer last name cannot contain numbers or special characters');
     }
 
     //email field validation

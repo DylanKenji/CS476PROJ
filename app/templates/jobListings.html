@@ -39,9 +39,10 @@
 </head>
 <body>
     
-    <!--Dynamically show header based on session type-->
-    <!--Student Header-->
+    <!--Dynamically show page based on the user's session type-->
+    <!--Student Job Listings Page-->
     {% if 'student' in session %}
+    <!-- STUDENT HEADER -->
     <nav class="header">
         <div class="header-container">
             <div class="header-logo">
@@ -68,8 +69,52 @@
             </div>
         </div>
     </nav>
-    <!--Employer Header-->
+
+    <!-- STUDENT PAGE -->
+    <div class="listing main-wrapper">
+        <div class="jobList roundForm">
+            {% for job in jobs %}
+            <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
+                <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
+
+                    <div class="jobDetails">
+                        <label class="jobName bold">{{ job.job_title }}</label>
+                        <label class="jobCompany">{{ job.company_name }}</label>
+                        <label class="datePosted">{{ job.date_created }}</label>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="jobInfo roundForm">
+            
+            <div class="titleCard">
+                <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="mainImg">
+                <div class="jobDetails">
+                    <label class="mainName bold" id="jobTitle"></label>
+                    <label class="mainCompany titlecardFont" id="jobCompany"></label>
+                    <label class="jobLocation titlecardFont" id="jobLocation"></label>
+                    <label class="datePosted titlecardFont" id="datePosted"></label>
+                </div>
+            </div>
+            
+            <div class="jobDescription">
+                <label class="jobDesc"></label><br>
+                <label class="jobMajor"></label><br>
+                <label class="jobHours"></label><br>
+                <label class="jobPay"></label>
+            </div>
+
+            <!-- action location for backend -->
+            <form class="applyForm" method="GET" action="">
+                <button class="greenButton applyButton" type="submit">Apply</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!--Employer Job Listings Page-->
     {% elif 'employer' in session %}
+    <!-- EMPLOYER HEADER -->
     <nav class="header">
         <div class="header-container">
             <div class="header-logo">
@@ -87,7 +132,8 @@
                         <div class="dropdown-content">
                             <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
                             <a href="{{ url_for('editEmployer') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
-                            <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a> 
+                            <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a>
+                            <a href="{{ url_for('postJob') }}"><i class="fa-solid fa-square-plus"></i> Post Job</a> 
                             <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
                         </div>
                     </div>
@@ -96,12 +142,10 @@
             </div>
         </div>
     </nav>
-    {% endif %}
 
+    <!-- EMPLOYER PAGE -->
     <div class="listing main-wrapper">
-
         <div class="jobList roundForm">
-
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
                 <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
@@ -113,11 +157,7 @@
                     </div>
             </div>
             {% endfor %}
-
-
-
         </div>
-
         <div class="jobInfo roundForm">
             
             <div class="titleCard">
@@ -129,31 +169,15 @@
                     <label class="datePosted titlecardFont" id="datePosted"></label>
                 </div>
             </div>
-
+            
             <div class="jobDescription">
-                
-                <label class="jobDesc"></label>
-                <br>
-                <label class="jobMajor"></label>
-                <br>
-                <label class="jobHours"></label>
-                <br>
+                <label class="jobDesc"></label><br>
+                <label class="jobMajor"></label><br>
+                <label class="jobHours"></label><br>
                 <label class="jobPay"></label>
-                
-
             </div>
-
-     <!--        action location for backend -->
-            <form class="applyForm" method="GET" action="">
-                <button class="greenButton applyButton" type="submit">Apply</button>
-            </form>
-
-
         </div>
-       
-
     </div>
-
-
+    {% endif %}
 </body>
 </html>

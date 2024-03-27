@@ -333,7 +333,6 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-
 def is_email_used(email):
     # Check if the email exists in the Employers table
     employer_exists = Employers.query.filter_by(email=email).first()
