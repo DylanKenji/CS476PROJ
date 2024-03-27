@@ -362,3 +362,44 @@ def get_job_details(job_id):
         return {'error': 'Job not found'}, 404
 
 
+
+# Route for handling job applications
+@app.route('/apply_for_job', methods=['POST'])
+def apply_for_job():
+    if 'student' not in session:
+        # Redirect to login if student is not logged in
+        return redirect(url_for('login'))
+
+    # Get student ID from session
+    student_id = session['student']
+
+    # Get job ID from the form submitted
+    job_id = request.form.get('job_id')
+
+    # Check if both student ID and job ID are provided
+    if student_id:
+        if job_id:
+            # Query the database to ensure the student and job exist
+            student = Students.query.get(student_id)
+            job = Jobs.query.get(job_id)
+
+            if student and job:
+                # Create a new application instance
+                application = Applications(student_id=student_id, job_id=job_id)
+
+                # Add the application to the database session and commit
+                db.session.add(application)
+                db.session.commit()
+
+                # Redirect to a success page or job listings page
+                return redirect(url_for('jobListings'))
+            else:
+                # Handle case where student or job does not exist
+                return "Student or Job not found", 404
+        else:
+            # Handle case where student ID or job ID is missing
+            return "Job ID missing", 400
+    else:
+        # Handle case where student ID or job ID is missing
+        return "Student ID is missing", 400
+
