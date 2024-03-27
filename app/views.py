@@ -2,7 +2,7 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, session, flash, current_app
 from sqlalchemy import func
-from app.models import Students, Employers, Jobs, EmployerJobs, Applications
+from app.models import Students, Employers, Jobs, Applications
 from werkzeug.utils import secure_filename
 import os
 import glob
@@ -171,16 +171,17 @@ def editStudent():
                     if allowed_file(avatar_file.filename):
                         # Generate the new avatar filename
                         avatar_filename = f"{student.first_name}_{student.last_name}_{student.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
-                        
+
                         # Check if there's an existing avatar file with a different extension
-                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{student.first_name}_{student.last_name}_{student.id}_Avatar.*")
+                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'],
+                                                       f"{student.first_name}_{student.last_name}_{student.id}_Avatar.*")
                         old_avatar_files = glob.glob(old_avatar_path)
                         for old_avatar_file in old_avatar_files:
                             os.remove(old_avatar_file)
 
                         # Save the uploaded avatar with the new name
                         avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
-                        
+
                         # Update the student's avatar attribute with the new filename
                         student.avatar = avatar_filename
 
@@ -238,16 +239,17 @@ def editEmployer():
                     if allowed_file(avatar_file.filename):
                         # Generate the new avatar filename
                         avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
-                        
+
                         # Check if there's an existing avatar file with a different extension
-                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar.*")
+                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'],
+                                                       f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar.*")
                         old_avatar_files = glob.glob(old_avatar_path)
                         for old_avatar_file in old_avatar_files:
                             os.remove(old_avatar_file)
 
                         # Save the uploaded avatar with the new name
                         avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
-                        
+
                         # Update the employer's avatar attribute with the new filename
                         employer.avatar = avatar_filename
 
@@ -285,7 +287,7 @@ def postJob():
     if "employer" in session:
         employer = session["employer"]
         employer = Employers.query.get(employer)
-        
+
         if request.method == 'POST':
 
             title = request.form['Title']
@@ -295,7 +297,6 @@ def postJob():
             major_required = request.form['Major']
             pay = request.form['Pay']
             hours = request.form['Hours']
-
 
             deadline_datetime = datetime.strptime(deadline, '%Y-%m-%d')
 
@@ -318,8 +319,6 @@ def postJob():
 
             db.session.add(employer_job)
             db.session.commit()
-           
-
 
             return redirect(url_for('jobListings'))
         else:
@@ -333,6 +332,7 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
+
 def is_email_used(email):
     # Check if the email exists in the Employers table
     employer_exists = Employers.query.filter_by(email=email).first()
@@ -340,6 +340,7 @@ def is_email_used(email):
     student_exists = Students.query.filter_by(email=email).first()
     # Return True if the email is used by either an employer or a student, False otherwise
     return employer_exists or student_exists
+
 
 @app.route('/job/<int:job_id>')
 def get_job_details(job_id):
@@ -355,15 +356,13 @@ def get_job_details(job_id):
             'major_required': job.major_required,
             'hours': job.hours,
             'pay': job.pay,
-            
+
             # Add other job details as needed
         }
     else:
         return {'error': 'Job not found'}, 404
 
 
-
-# Route for handling job applications
 @app.route('/apply_for_job', methods=['POST'])
 def apply_for_job():
     if 'student' not in session:
@@ -373,33 +372,29 @@ def apply_for_job():
     # Get student ID from session
     student_id = session['student']
 
-    # Get job ID from the form submitted
-    job_id = request.form.get('job_id')
+    # Get job ID from the request body
+    data = request.json
+    job_id = data.get('job_id')
 
     # Check if both student ID and job ID are provided
-    if student_id:
-        if job_id:
-            # Query the database to ensure the student and job exist
-            student = Students.query.get(student_id)
-            job = Jobs.query.get(job_id)
+    if student_id and job_id:
+        # Query the database to ensure the student and job exist
+        student = Students.query.get(student_id)
+        job = Jobs.query.get(job_id)
 
-            if student and job:
-                # Create a new application instance
-                application = Applications(student_id=student_id, job_id=job_id)
+        if student and job:
+            # Create a new application instance
+            application = Applications(student_id=student_id, job_id=job_id)
 
-                # Add the application to the database session and commit
-                db.session.add(application)
-                db.session.commit()
+            # Add the application to the database session and commit
+            db.session.add(application)
+            db.session.commit()
 
-                # Redirect to a success page or job listings page
-                return redirect(url_for('jobListings'))
-            else:
-                # Handle case where student or job does not exist
-                return "Student or Job not found", 404
+            # Respond with a success message
+            return jsonify({'message': 'Application submitted successfully'}), 200
         else:
-            # Handle case where student ID or job ID is missing
-            return "Job ID missing", 400
+            # Handle case where student or job does not exist
+            return jsonify({'error': 'Student or Job not found'}), 404
     else:
         # Handle case where student ID or job ID is missing
-        return "Student ID is missing", 400
-
+        return jsonify({'error': 'Student ID or Job ID is missing'}), 400
