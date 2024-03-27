@@ -7,17 +7,34 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shared.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jobListings.css') }}">
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
+    
     <script>
-        // Function to fetch job description
-        function fetchJobDescription(jobId) {
-            // Send a GET request to the Flask route to fetch job description
-            fetch(`/jobDescription/${jobId}`)
-                .then(response => response.text())
-                .then(description => {
-                    // Update the job info section with the fetched description
-                    document.querySelector('.jobDescription').innerHTML = description;
+        document.addEventListener('DOMContentLoaded', function () {
+            const jobPostings = document.querySelectorAll('.jobPosting');
+    
+            jobPostings.forEach(function (jobPosting) {
+                jobPosting.addEventListener('click', function () {
+                    const jobId = jobPosting.dataset.jobId;
+                    fetch(`/job/${jobId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update jobInfo section with fetched job details
+                            const jobInfo = document.querySelector('.jobInfo');
+                            jobInfo.querySelector('.mainImg').src = "static/library/media/avatars/" + data.avatar;
+                            jobInfo.querySelector('.mainName').textContent = data.job_title;
+                            jobInfo.querySelector('.mainCompany').textContent = data.company_name;
+                            jobInfo.querySelector('.jobLocation').textContent = data.job_location;
+                            jobInfo.querySelector('.datePosted').textContent = data.date_created;
+                            jobInfo.querySelector('.jobDesc').textContent = data.job_description;
+                            jobInfo.querySelector('.jobMajor').textContent = data.major_required;
+                            jobInfo.querySelector('.jobHours').textContent = data.hours;
+                            jobInfo.querySelector('.jobPay').textContent = data.pay;
+                            // Update other job details as needed
+                        })
+                        .catch(error => console.error('Error fetching job details:', error));
                 });
-        }
+            });
+        });
     </script>
 </head>
 <body>
@@ -86,7 +103,7 @@
         <div class="jobList roundForm">
 
             {% for job in jobs %}
-            <div class="jobPosting" id="testJob {{ job.id }}" onclick="fetchJobDescription('{{ job.id }}')">
+            <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
                 <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
 
                     <div class="jobDetails">
@@ -107,14 +124,21 @@
                 <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="mainImg">
                 <div class="jobDetails">
                     <label class="mainName bold" id="jobTitle"></label>
-                    <label class="titlecardFont" id="jobCompany"></label>
-                    <label class="titlecardFont" id="jobLocation"></label>
-                    <label class="titlecardFont" id="datePosted"></label>
+                    <label class="mainCompany titlecardFont" id="jobCompany"></label>
+                    <label class="jobLocation titlecardFont" id="jobLocation"></label>
+                    <label class="datePosted titlecardFont" id="datePosted"></label>
                 </div>
             </div>
 
             <div class="jobDescription">
-                    
+                
+                <label class="jobDesc"></label>
+                <br>
+                <label class="jobMajor"></label>
+                <br>
+                <label class="jobHours"></label>
+                <br>
+                <label class="jobPay"></label>
                 
 
             </div>
