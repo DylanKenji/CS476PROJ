@@ -48,7 +48,7 @@
                 <div class="header-profilenav">
                     
                     <div class="dropdown">
-                        <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
+                        <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
@@ -109,7 +109,7 @@
                             <option class="form-item" value="Anthropology">Anthropology</option>
                         </select>
 
-                    <label class="detailText"> Are you currently for hire?</label>
+                    <label class="detailText">Availability: </label>
                     <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
                   
                     <label class="detailText">Resume: </label>

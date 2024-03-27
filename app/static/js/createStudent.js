@@ -7,7 +7,6 @@ const emailEntry = document.getElementById('emailEntry');
 const idEntry = document.getElementById('idEntry');
 const passwordEntry = document.getElementById('passwordEntry');
 const confirmEntry = document.getElementById('confirmEntry');
-const resumeInput = document.getElementById('newResume');
 
 form.addEventListener('submit', (e) => {
     let messages = []
@@ -46,14 +45,25 @@ form.addEventListener('submit', (e) => {
     }
 
     //password field validation
-    if(passwordEntry.value === null || passwordEntry.value === '' ) {
+    if (passwordEntry.value === null || passwordEntry.value === '' ) {
         messages.push('Password required');
-    }
-    if(passwordEntry.value.length < 5) {
-        messages.push('Password must be longer than 5 characters');
-    }
-    if(passwordEntry.value.length > 20) {
-        messages.push('Password cannot be more than 20 characters');
+    } 
+    else {
+        if (passwordEntry.value.length < 8) {
+            messages.push('Password must be at least 8 characters long');
+        }
+        if (passwordEntry.value.length > 24) {
+            messages.push('Password cannot be more than 24 characters long');
+        }
+        if (!/[A-Z]/.test(passwordEntry.value)) {
+            messages.push('Password must contain at least one capital letter');
+        }
+        if (!/[a-z]/.test(passwordEntry.value)) {
+            messages.push('Password must contain at least one lowercase letter');
+        }
+        if (!/\d/.test(passwordEntry.value)) {
+            messages.push('Password must contain at least one number');
+        }
     }
 
     //password confirmation field validation
@@ -64,10 +74,6 @@ form.addEventListener('submit', (e) => {
         messages.push('Passwords do not match');
     }
 
-    //resume field validation
-    if (!resumeInput.files || resumeInput.files.length === 0) {
-        messages.push('Resume file required');
-    }
     
     // If any errors exist, prevent form submission
     if (messages.length > 0) {

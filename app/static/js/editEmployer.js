@@ -23,10 +23,10 @@ form.addEventListener('submit', (e) => {
 
     //last name field validation
     if (employerlastName.value === null || employerlastName.value === '' ) {
-        messages.push('Employer last name required');
+        messages.push('Last name required');
     }
-    else if (!/^[A-Za-z- ]+$/.test(employerlastName.value)) {
-        messages.push('Employer last name cannot contain numbers or special characters');
+    else if (!/^[A-Za-z\s-]+$/.test(employerlastName.value)) {
+        messages.push('Last name cannot contain numbers or special characters');
     }
 
     //email field validation
@@ -59,18 +59,26 @@ form.addEventListener('submit', (e) => {
     }
 
     //password field validation
-        //password field validation
-        if(employerPassword.value.length > 0) {
-            if(employerPassword.value.length < 5) {
-                messages.push('Password must be longer than 5 characters');
-            }
+    if (employerPassword.value !== null && employerPassword.value !== '' ) {
+        if (employerPassword.value.length < 8) {
+            messages.push('Password must be at least 8 characters long');
         }
-        if(employerPassword.value.length > 20) {
-            messages.push('Password cannot be more than 20 characters');
+        if (employerPassword.value.length > 24) {
+            messages.push('Password cannot be more than 24 characters long');
         }
+        if (!/[A-Z]/.test(employerPassword.value)) {
+            messages.push('Password must contain at least one capital letter');
+        }
+        if (!/[a-z]/.test(employerPassword.value)) {
+            messages.push('Password must contain at least one lowercase letter');
+        }
+        if (!/\d/.test(employerPassword.value)) {
+            messages.push('Password must contain at least one number');
+        }
+    } 
 
     //password confirmation field validation
-    if (studentconfirmPassword.value !== studentPassword.value) {
+    if (employerconfirmPassword.value !== employerconfirmPassword.value) {
         messages.push('Passwords do not match');
     }
 

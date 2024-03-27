@@ -25,7 +25,7 @@ form.addEventListener('submit', (e) => {
         messages.push('Last name required');
     }
     else if (!/^[A-Za-z- ]+$/.test(lastnameEntry.value)) {
-        messages.push('Last name cannot contain numbers');
+        messages.push('Last name cannot contain numbers or special characters');
     }
 
     //email field validation
@@ -58,15 +58,27 @@ form.addEventListener('submit', (e) => {
     }
 
     //password field validation
-    if(passwordEntry.value === null || passwordEntry.value === '' ) {
+    if (passwordEntry.value === null || passwordEntry.value === '' ) {
         messages.push('Password required');
+    } 
+    else {
+        if (passwordEntry.value.length < 8) {
+            messages.push('Password must be at least 8 characters long');
+        }
+        if (passwordEntry.value.length > 24) {
+            messages.push('Password cannot be more than 24 characters long');
+        }
+        if (!/[A-Z]/.test(passwordEntry.value)) {
+            messages.push('Password must contain at least one capital letter');
+        }
+        if (!/[a-z]/.test(passwordEntry.value)) {
+            messages.push('Password must contain at least one lowercase letter');
+        }
+        if (!/\d/.test(passwordEntry.value)) {
+            messages.push('Password must contain at least one number');
+        }
     }
-    if(passwordEntry.value.length < 5) {
-        messages.push('Password must be longer than 5 characters');
-    }
-    if(passwordEntry.value.length > 20) {
-        messages.push('Password cannot be more than 20 characters');
-    }
+    
 
     //password confirmation field validation
     if(confirmEntry.value === null || confirmEntry.value === '' ) {

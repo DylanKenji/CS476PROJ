@@ -9,6 +9,8 @@ from datetime import datetime
 from flask import jsonify
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+def allowed_resume_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'pdf'
 
 
 # routes to home page
@@ -156,12 +158,16 @@ def editStudent():
                 resume_file = request.files['newResume']
                 if resume_file.filename != '':
                     if allowed_resume_file(resume_file.filename):
-                        # Customize the new resume file name as needed
+                    # Customize the new resume file name as needed
                         resume_filename = f"{student.first_name}_{student.last_name}_{student.id}_Resume.pdf"
                         # Save the uploaded resume with the new name
-                        resume_file.save(os.path.join(RESUME_FOLDER, resume_filename))
+                        resume_file.save(os.path.join(RESUME_FOLDER, secure_filename(resume_filename)))
                         # Update the student's resume attribute with the new filename
                         student.resume = resume_filename
+                    else:
+                        # Handle case where uploaded file is not a PDF
+                        flash('Invalid file format. Please upload a PDF file for the resume.', 'error')
+                        return redirect(url_for('editStudent'))  # Redirect to editStudent route or template
 
             # Update avatar if a new file is uploaded
             if 'newstudentAvatar' in request.files:
@@ -187,7 +193,7 @@ def editStudent():
 
             try:
                 db.session.commit()
-                return redirect(url_for('editStudent'))
+                return redirect(url_for('profileStudent'))
             except Exception as e:
                 # Handle any exceptions that may occur during the database commit
                 print(e)

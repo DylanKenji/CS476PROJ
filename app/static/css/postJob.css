@@ -4,13 +4,18 @@ body{
 
 .jobBackground{
     width: 55vw;
-    height: 80vh;
+    height: 120vh;
     background-color: rgb(255, 255, 255);
     border-radius: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.main-wrapper {
+    height: 120vh;
+}
+
 
 .postTitle{
     width: 50vw;
@@ -24,7 +29,7 @@ body{
 .job-wrapper{
     background-color: rgb(226, 223, 223);
     width: 50vw;
-    height: 50vh;
+    height: 100%;
     border-radius: 2px;
     margin-top: 20px;
     padding-top: 20px;

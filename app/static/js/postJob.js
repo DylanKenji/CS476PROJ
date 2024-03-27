@@ -26,6 +26,9 @@ form.addEventListener('submit', (e) => {
     else if (jobdescEntry.value.length < 50) {
         messages.push('Job description must be at least 50 characters');
     }
+    else if (jobdescEntry.value.length > 5000) {
+        messages.push('Job description cannot be more than 5000 characters');
+    }
 
     //job address validation
     if (jobaddressEntry.value === null || jobaddressEntry.value === '' ) {

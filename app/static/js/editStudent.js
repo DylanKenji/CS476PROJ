@@ -25,8 +25,8 @@ form.addEventListener('submit', (e) => {
     if (studentlastName.value === null || studentlastName.value === '' ) {
         messages.push('Last name required');
     }
-    else if (!/^[A-Za-z-]+$/.test(studentlastName.value)) {
-        messages.push('Last name cannot contain numbers');
+    else if (!/^[A-Za-z\s-]+$/.test(studentlastName.value)) {
+        messages.push('Last name cannot contain numbers or special characters');
     }
 
     //email field validation
@@ -38,14 +38,23 @@ form.addEventListener('submit', (e) => {
     }
 
     //password field validation
-    if(studentPassword.value.length > 0) {
-        if(studentPassword.value.length < 5) {
-            messages.push('Password must be longer than 5 characters');
+    if (studentPassword.value !== null && studentPassword.value !== '' ) {
+        if (studentPassword.value.length < 8) {
+            messages.push('Password must be at least 8 characters long');
         }
-    }
-    if(studentPassword.value.length > 20) {
-        messages.push('Password cannot be more than 20 characters');
-    }
+        if (studentPassword.value.length > 24) {
+            messages.push('Password cannot be more than 24 characters long');
+        }
+        if (!/[A-Z]/.test(studentPassword.value)) {
+            messages.push('Password must contain at least one capital letter');
+        }
+        if (!/[a-z]/.test(studentPassword.value)) {
+            messages.push('Password must contain at least one lowercase letter');
+        }
+        if (!/\d/.test(studentPassword.value)) {
+            messages.push('Password must contain at least one number');
+        }
+    } 
 
     //password confirmation field validation
    if (studentconfirmPassword.value !== studentPassword.value) {
@@ -66,7 +75,7 @@ form.addEventListener('submit', (e) => {
     } else {
         const file = studentResume.files[0];
         const fileType = file.type;
-
+    
         if (fileType !== 'application/pdf') {
             messages.push('Invalid file format. Please upload a PDF file for the resume.');
         }

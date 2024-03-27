@@ -15,14 +15,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Update jobInfo section with fetched job details
                     const jobInfo = document.querySelector('.jobInfo');
                     jobInfo.querySelector('.mainImg').src = "static/library/media/avatars/" + data.avatar;
-                    jobInfo.querySelector('.mainName').textContent = "Job Title: " + data.job_title;
-                    jobInfo.querySelector('.mainCompany').textContent = "Company Name: " + data.company_name;
-                    jobInfo.querySelector('.jobLocation').textContent = "Job Location: " + data.job_location;
-                    jobInfo.querySelector('.datePosted').textContent = "Date Posted: " + data.date_created;
-                    jobInfo.querySelector('.jobDesc').textContent = "Job Description: " + data.job_description;
-                    jobInfo.querySelector('.jobMajor').textContent = "Major Required: " + data.major_required;
-                    jobInfo.querySelector('.jobHours').textContent = "Hours: " + data.hours;
-                    jobInfo.querySelector('.jobPay').textContent = "Pay: " + data.pay;
+                    jobInfo.querySelector('.mainName').innerHTML = "<strong>Job Title:</strong> <u>" + data.job_title + "</u>";
+                    jobInfo.querySelector('.mainCompany').innerHTML = "<strong>Company Name:</strong> " + data.company_name;
+                    jobInfo.querySelector('.jobLocation').innerHTML = "<strong>Job Location:</strong> " + data.job_location;
+                    jobInfo.querySelector('.datePosted').innerHTML = "<strong>Date Posted:</strong> " + data.date_created;
+                    jobInfo.querySelector('.jobDesc').innerHTML = "<strong>Job Description:</strong> " + data.job_description;
+                    jobInfo.querySelector('.jobMajor').innerHTML = "<strong>Major Required:</strong> " + data.major_required;
+                    jobInfo.querySelector('.jobHours').innerHTML = "<strong>Job Type:</strong> " + data.hours;
+                    jobInfo.querySelector('.jobPay').innerHTML = "<strong>Hourly Wage: $</strong> " + data.pay;
+                    
+                    
 
                    
                    

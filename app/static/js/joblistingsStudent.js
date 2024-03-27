@@ -14,14 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Update jobInfo section with fetched job details
                     const jobInfo = document.querySelector('.jobInfo');
                     jobInfo.querySelector('.mainImg').src = "static/library/media/avatars/" + data.avatar;
-                    jobInfo.querySelector('.mainName').innerHTML = "<strong>Job Title:</strong> " + data.job_title;
+                    jobInfo.querySelector('.mainName').innerHTML = "<strong>Job Title:</strong> <u>" + data.job_title + "</u>";
                     jobInfo.querySelector('.mainCompany').innerHTML = "<strong>Company Name:</strong> " + data.company_name;
                     jobInfo.querySelector('.jobLocation').innerHTML = "<strong>Job Location:</strong> " + data.job_location;
                     jobInfo.querySelector('.datePosted').innerHTML = "<strong>Date Posted:</strong> " + data.date_created;
                     jobInfo.querySelector('.jobDesc').innerHTML = "<strong>Job Description:</strong> " + data.job_description;
                     jobInfo.querySelector('.jobMajor').innerHTML = "<strong>Major Required:</strong> " + data.major_required;
-                    jobInfo.querySelector('.jobHours').innerHTML = "<strong>Hours:</strong> " + data.hours;
-                    jobInfo.querySelector('.jobPay').innerHTML = "<strong>Pay:</strong> " + data.pay;
+                    jobInfo.querySelector('.jobHours').innerHTML = "<strong>Job Type:</strong> " + data.hours;
+                    jobInfo.querySelector('.jobPay').innerHTML = "<strong>Hourly Wage: $</strong> " + data.pay;
 
                     // Update other job details as needed
                 })

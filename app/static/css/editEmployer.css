@@ -92,7 +92,7 @@ input[type=email], input[type=password], input[type=text]{
 .submitButton{
     width: 8vw;
     height: 4vh;
-    border-radius: 3%;
+    border-radius: 30px;
     background-color: #1c6928;
 }
 
