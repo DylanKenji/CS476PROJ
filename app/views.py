@@ -278,7 +278,11 @@ def jobListings():
         employer_instance = Employers.query.filter_by(id=employer).first()
         if employer_instance:
             jobListings = Jobs.query.filter_by(company_name=employer_instance.company_name).order_by(Jobs.date_created.desc()).limit(20).all()
-            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance, student="student")
+            job_applicants = {}
+            for job in jobListings:
+                job_applicants[job.id] = [application.student for application in job.applicants]
+            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance,
+                                   job_applicants=job_applicants)
     else:
         return redirect(url_for('login'))
 
