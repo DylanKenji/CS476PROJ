@@ -426,3 +426,19 @@ def delete_account():
             return render_template('editEmployer.html', message='Employer not found'), 404
     else:
         return render_template('home.html', message='no user logged in'), 401
+
+@app.route('/delete_job', methods=['POST'])
+def delete_job():
+    if 'employer' in session:
+        employer_id = session['employer']
+        employer = Employers.query.get(employer_id)
+        job_id = request.json.get('job_id')
+        job = Jobs.query.get(job_id)
+        if job and employer.company_name == job.company_name:
+            db.session.delete(job)
+            db.session.commit()
+            return jsonify({'message': 'Job deleted successfully'}), 200
+        else:
+            return jsonify({'error': 'Job not found or you do not have permission to delete it'}), 404
+    else:
+        return jsonify({'error': 'You must be logged in as an employer to delete a job'}), 401
