@@ -234,24 +234,17 @@ def editEmployer():
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:
                 avatar_file = request.files['newemployerAvatar']
-                if avatar_file.filename != '':
-                    # Securely save the avatar file on the server
-                    if allowed_file(avatar_file.filename):
-                        # Generate the new avatar filename
-                        avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
+            if avatar_file.filename != '':
+            # Securely save the avatar file on the server
+                if allowed_file(avatar_file.filename):
+                # Generate the new avatar filename
+                    avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
 
-                        # Check if there's an existing avatar file with a different extension
-                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'],
-                                                       f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar.*")
-                        old_avatar_files = glob.glob(old_avatar_path)
-                        for old_avatar_file in old_avatar_files:
-                            os.remove(old_avatar_file)
+            # Save the uploaded avatar with the new name
+                avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
 
-                        # Save the uploaded avatar with the new name
-                        avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
-
-                        # Update the employer's avatar attribute with the new filename
-                        employer.avatar = avatar_filename
+            # Update the employer's avatar attribute with the new filename
+                employer.avatar = avatar_filename
 
             try:
                 db.session.commit()
