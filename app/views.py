@@ -398,7 +398,7 @@ def apply_for_job():
 
     # Check if both student ID and job ID are provided
     if student_id:
-        if  job_id:
+        if job_id:
         # Query the database to ensure the student and job exist
             student = Students.query.get(student_id)
             job = Jobs.query.get(job_id)
@@ -502,6 +502,9 @@ def delete_account():
         employer_id = session['employer']
         employer = Employers.query.get(employer_id)
         if employer:
+            employer_jobs = Jobs.query.filter_by(company_name=employer.company_name).all()
+            for job in employer_jobs:
+                db.session.delete(job)
             db.session.delete(employer)
             db.session.commit()
             session.clear()
@@ -520,9 +523,12 @@ def delete_job():
         job = Jobs.query.get(job_id)
         print("test")
         if job and employer.company_name == job.company_name:
+            applicants = Applications.query.filter_by(job_id=job_id).all()
+            for applicant in applicants:
+                db.session.delete(applicant)
             db.session.delete(job)
             db.session.commit()
-            return jsonify({'message': 'Job deleted successfully'}), 200
+            return redirect(url_for('profileEmployer'))
         else:
             return jsonify({'error': 'Job not found or you do not have permission to delete it'}), 404
     else:
