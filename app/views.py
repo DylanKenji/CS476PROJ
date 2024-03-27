@@ -409,7 +409,7 @@ def apply_for_job():
                 db.session.commit()
 
                 # Respond with a success message
-                return redirect(url_for('jobListings'))
+                return redirect(url_for('profileStudent'))
             else:
             # Handle case where student or job does not exist
                 return jsonify({'error': 'Student or Job not found'}), 404

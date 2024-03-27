@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     jobPostings.forEach(function (jobPosting) {
         jobPosting.addEventListener('click', function () {
-
             const jobId = jobPosting.dataset.jobId;
             fetch(`/job/${jobId}`)
                 .then(response => response.json())
@@ -20,10 +19,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     jobInfo.querySelector('.jobHours').innerHTML = "<strong>Hours:</strong> " + data.hours;
                     jobInfo.querySelector('.jobPay').innerHTML = "<strong>Pay:</strong> " + data.pay;
 
+                    // Update other job details as needed
 
-                    // Add event listener for Apply button
+                    // Reset Apply button event listener
                     const applyButton = jobInfo.querySelector('.applyForm');
-                    applyButton.addEventListener('submit', function(event) {
+                    applyButton.removeEventListener('submit', submitApplication); // Remove existing event listener if any
+                    applyButton.addEventListener('submit', submitApplication); // Attach event listener
+
+                    function submitApplication(event) {
                         event.preventDefault(); // Prevent default form submission
 
                         // Send POST request to apply for the job
@@ -38,13 +41,14 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (response.ok) {
                                 // Handle success response (e.g., show success message)
                                 alert('Application submitted successfully!');
+                                window.location.href = '/profileStudent';
                             } else {
                                 // Handle error response
                                 alert('Failed to submit application. Please try again.');
                             }
                         })
                         .catch(error => console.error('Error submitting application:', error));
-                    });
+                    }
                 })
                 .catch(error => console.error('Error fetching job details:', error));
         });
