@@ -24,7 +24,7 @@ form.addEventListener('submit', (e) => {
     if (lastnameEntry.value === null || lastnameEntry.value === '' ) {
         messages.push('Last name required');
     }
-    else if (!/^[A-Za-z-]+$/.test(lastnameEntry.value)) {
+    else if (!/^[A-Za-z- ]+$/.test(lastnameEntry.value)) {
         messages.push('Last name cannot contain numbers');
     }
 

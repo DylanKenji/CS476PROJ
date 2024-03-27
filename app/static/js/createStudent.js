@@ -19,11 +19,13 @@ form.addEventListener('submit', (e) => {
     }
 
     //last name field validation
-    if (lastnameEntry.value === null || lastnameEntry.value === '' ) {
+    if (lastnameEntry.value === null || lastnameEntry.value === '') 
+    {
         messages.push('Last name required');
-    }
-    else if (!/^[A-Za-z-]+$/.test(lastnameEntry.value)) {
-        messages.push('Last name cannot contain numbers');
+    } 
+    else if (!/^[A-Za-z\s-]+$/.test(lastnameEntry.value)) 
+    {
+        messages.push('Last name cannot contain numbers or special characters');
     }
 
     //email field validation
