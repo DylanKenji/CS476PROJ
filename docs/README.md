@@ -4,20 +4,25 @@ The University of Regina faces a challenge where students struggle to showcase t
 
 ## Features
 - Comprehensive Profile Creation
-    - Students and graduates can create detailed profiles highlighting their education, skills, work/volunteer experience, and achievements.
+    - Students and graduates can create detailed profiles for the employer to check out.
     - Employers can showcase their company values, culture, and job opportunities through comprehensive profiles.
-- Networking and Connections
-    - Users can connect with peers, alumni, and professionals in their field, fostering valuable networking connections.
-    - A "feed" feature showcases updates from connections and provides recommendations for potential connections.
 - Customizable Job Board
     - Access to a customizable job board with filters based on industry, location, and job type.
     - Employers can post job openings with detailed descriptions, making it easier for students and graduates to find fitting opportunities.
-- Career Counseling Resources
-    - Access to a wealth of career counselling resources, including articles, videos, and webinars, empowering users to make informed decisions about their professional paths.
-- Application Tracking System (ATS)
-    - Students and graduates can track their job applications, interview schedules, and application statuses, streamlining the job search process.
 - Advanced Search 
     - Functionality that allows users to find specific profiles and job listings based on various criteria.
+- One-Click Application
+    - Allows users to apply for jobs with a single click, saving time and effort. This feature requires users to have a complete and up-to-date profile, including their resume. The system automatically sends these documents to the employer when the user applies.
+- Career Counseling Resources (PLANNED)
+    - Access to a wealth of career counselling resources, including articles, videos, and webinars, empowering users to make informed decisions about their professional paths.
+- Application Tracking System (ATS) (PLANNED)
+    - Students and graduates can track their job applications, interview schedules, and application statuses, streamlining the job search process.
+ 
+
+## Installation
+To install the dependencies for the backend, follow the steps below:
+
+1. Clone the repository: git clone https://github.com/DylanKenji/CS476PROJ.git
 
 ## Authors
 
@@ -47,6 +52,13 @@ Yes, UR Connect is free for both students/graduates and employers to use. There 
 #### Can I delete my UR Connect account?
 Yes, you have the option to delete your UR Connect account if you no longer wish to use the platform. Simply go to your account settings, and you'll find the option to delete your account.
 
+
+## Contributing
+We welcome contributions to the project. To contribute, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature: git checkout -b new-feature.
+3. Make the changes to the codebase
 
 ## Feedback
 
