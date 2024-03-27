@@ -271,7 +271,11 @@ def jobListings():
         employer_instance = Employers.query.filter_by(id=employer).first()
         if employer_instance:
             jobListings = Jobs.query.filter_by(company_name=employer_instance.company_name).order_by(Jobs.date_created.desc()).limit(20).all()
-            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance, student="student")
+            job_applicants = {}
+            for job in jobListings:
+                job_applicants[job.id] = [application.student for application in job.applicants]
+            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance,
+                                   job_applicants=job_applicants)
     else:
         return redirect(url_for('login'))
 
@@ -389,3 +393,45 @@ def apply_for_job():
     else:
         # Handle case where student ID or job ID is missing
         return jsonify({'error': 'Student ID or Job ID is missing'}), 400
+
+
+@app.route('/delete_account', methods=['POST'])
+def delete_account():
+    if 'student' in session:
+        student_id = session['student']
+        student = Students.query.get(student_id)
+        if student:
+            db.session.delete(student)
+            db.session.commit()
+            session.clear()
+            return render_template('home.html', message='Student deleted successfully'), 200
+        else:
+            return render_template('editStudent.html', message='Student not found'), 404
+    elif 'employer' in session:
+        employer_id = session['employer']
+        employer = Employers.query.get(employer_id)
+        if employer:
+            db.session.delete(employer)
+            db.session.commit()
+            session.clear()
+            return render_template('home.html', message='Employer deleted successfully'), 200
+        else:
+            return render_template('editEmployer.html', message='Employer not found'), 404
+    else:
+        return render_template('home.html', message='no user logged in'), 401
+
+@app.route('/delete_job', methods=['POST'])
+def delete_job():
+    if 'employer' in session:
+        employer_id = session['employer']
+        employer = Employers.query.get(employer_id)
+        job_id = request.json.get('job_id')
+        job = Jobs.query.get(job_id)
+        if job and employer.company_name == job.company_name:
+            db.session.delete(job)
+            db.session.commit()
+            return jsonify({'message': 'Job deleted successfully'}), 200
+        else:
+            return jsonify({'error': 'Job not found or you do not have permission to delete it'}), 404
+    else:
+        return jsonify({'error': 'You must be logged in as an employer to delete a job'}), 401

@@ -183,6 +183,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         <label class="datePosted">{{ job.date_created }}</label>
                     </div>
             </div>
+            <div>
+            <h4>Applicants for {{ job.job_title }}</h4>
+            <ul>
+                {% for applicant in job_applicants[job.id] %}
+                <li>{{ applicant.first_name }} {{ applicant.last_name }} - {{ applicant.email }}</li>
+                {% endfor %}
+            </ul>
+            </div>
             {% endfor %}
         </div>
         <div class="jobInfo roundForm">
