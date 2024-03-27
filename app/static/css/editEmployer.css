@@ -90,8 +90,8 @@ input[type=email], input[type=password], input[type=text]{
 }
 
 .submitButton{
-    width: 80%;
-    height: 45px;
+    width: 8vw;
+    height: 4vh;
     border-radius: 3%;
     background-color: #1c6928;
 }
@@ -110,4 +110,10 @@ input[type=email], input[type=password], input[type=text]{
 
 .jobImg{
     max-height: 100px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }

@@ -76,6 +76,8 @@ textarea{
 }
 
 .greenButton{
+    width: 10vw;
+    height: 5vh;
     border-radius: 50px;
     background-color: #164e1f;
     color: white;

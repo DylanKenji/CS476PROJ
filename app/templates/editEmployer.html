@@ -81,9 +81,12 @@
 
                         <label class="inputLabel float-left" >Company Avatar:</label>
                         <input class="pictureInput" type="file" accept="image/*" name="newemployerAvatar" id="newemployerAvatar" placeholder="Company Number">
-
-                        <button class="submitButton greenButton" id="backButton" type="submit">Back</button>
+                        <button id="backButton" class="submitButton greenButton">
+                            <a class="link" href="{{ url_for('profileEmployer') }}">Back</a>
+                        </button>
                         <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
+                        <button class="submitButton greenButton" id="deleteButton" type="submit">Delete Account</button>
+
                     </div>   
             </div>
         </form> 

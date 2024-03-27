@@ -24,14 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Update jobInfo section with fetched job details
                     const jobInfo = document.querySelector('.jobInfo');
                     jobInfo.querySelector('.mainImg').src = "static/library/media/avatars/" + data.avatar;
-                    jobInfo.querySelector('.mainName').textContent = "Job Title: " + data.job_title;
-                    jobInfo.querySelector('.mainCompany').textContent = "Company Name: " + data.company_name;
-                    jobInfo.querySelector('.jobLocation').textContent = "Job Location: " + data.job_location;
-                    jobInfo.querySelector('.datePosted').textContent = "Date Posted: " + data.date_created;
-                    jobInfo.querySelector('.jobDesc').textContent = "Job Description: " + data.job_description;
-                    jobInfo.querySelector('.jobMajor').textContent = "Major Required: " + data.major_required;
-                    jobInfo.querySelector('.jobHours').textContent = "Hours: " + data.hours;
-                    jobInfo.querySelector('.jobPay').textContent = "Pay: " + data.pay;
+                    jobInfo.querySelector('.mainName').innerHTML = "<strong>Job Title:</strong> " + data.job_title;
+                    jobInfo.querySelector('.mainCompany').innerHTML = "<strong>Company Name:</strong> " + data.company_name;
+                    jobInfo.querySelector('.jobLocation').innerHTML = "<strong>Job Location:</strong> " + data.job_location;
+                    jobInfo.querySelector('.datePosted').innerHTML = "<strong>Date Posted:</strong> " + data.date_created;
+                    jobInfo.querySelector('.jobDesc').innerHTML = "<strong>Job Description:</strong> " + data.job_description;
+                    jobInfo.querySelector('.jobMajor').innerHTML = "<strong>Major Required:</strong> " + data.major_required;
+                    jobInfo.querySelector('.jobHours').innerHTML = "<strong>Hours:</strong> " + data.hours;
+                    jobInfo.querySelector('.jobPay').innerHTML = "<strong>Pay:</strong> " + data.pay;
+
 
                     // Update other job details as needed
 
@@ -182,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="jobList roundForm">
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
-                <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
+                <img class="mainimgSmall" src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" alt="Employer Avatar">
                     <div class="jobDetails">
                         <label class="jobName bold">{{ job.job_title }}</label>
                         <label class="jobCompany">{{ job.company_name }}</label>
@@ -204,10 +205,10 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
 
             <div class="jobDescription">
-                <label class="jobDesc"></label><br>
-                <label class="jobMajor"></label><br>
-                <label class="jobHours"></label><br>
-                <label class="jobPay"></label>
+                <label class="jobDesc"></label><br><br>
+                <label class="jobMajor"></label><br><br>
+                <label class="jobHours"></label><br><br>
+                <label class="jobPay"></label><br><br>
             </div>
 
             <!-- action location for backend -->
@@ -254,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="jobList roundForm">
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
-                <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
+                <img class="mainimgSmall" src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" alt="Employer Avatar">
 
                     <div class="jobDetails">
                         <label class="jobName bold">{{ job.job_title }}</label>
@@ -278,10 +279,10 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
 
             <div class="jobDescription">
-                <label class="jobDesc"></label><br>
-                <label class="jobMajor"></label><br>
-                <label class="jobHours"></label><br>
-                <label class="jobPay"></label>
+                <label class="jobDesc"></label><br><br>
+                <label class="jobMajor"></label><br><br>
+                <label class="jobHours"></label><br><br>
+                <label class="jobPay"></label><br><br>
             </div>
         </div>
         <div class="jobList jobApplicants roundForm">

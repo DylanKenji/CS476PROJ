@@ -234,27 +234,26 @@ def editEmployer():
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:
                 avatar_file = request.files['newemployerAvatar']
-                if avatar_file.filename != '':
-                    # Securely save the avatar file on the server
-                    if allowed_file(avatar_file.filename):
-                        # Generate the new avatar filename
-                        avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
+            if avatar_file.filename != '':
+            # Securely save the avatar file on the server
+                if allowed_file(avatar_file.filename):
+                # Generate the new avatar filename
+                    avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
 
-                        # Check if there's an existing avatar file with a different extension
-                        old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'],
-                                                       f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar.*")
-                        old_avatar_files = glob.glob(old_avatar_path)
-                        for old_avatar_file in old_avatar_files:
-                            os.remove(old_avatar_file)
+            # Save the uploaded avatar with the new name
+                avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
 
-                        # Save the uploaded avatar with the new name
-                        avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
-
+            # Update the employer's avatar attribute with the new filename
+                employer.avatar = avatar_filename
                         # Update the employer's avatar attribute with the new filename
-                        employer.avatar = avatar_filename
+                previous_avatar = employer.avatar
+                employer.avatar = avatar_filename
 
             try:
                 db.session.commit()
+                if 'newemployerAvatar' in request.files:
+                    # Update job avatars with matching previous avatar
+                    update_jobs_with_matching_avatar(previous_avatar, avatar_filename)
                 return redirect(url_for('editEmployer'))
             except Exception as e:
                 # Handle any exceptions that may occur during the database commit
@@ -262,6 +261,18 @@ def editEmployer():
         else:
             # If it's a GET request or after processing a POST request, render the template
             return render_template('editEmployer.html', employer=employer)
+
+
+def update_jobs_with_matching_avatar(previous_avatar, new_avatar):
+    # Find all jobs with the previous avatar
+    jobs_with_matching_avatar = Jobs.query.filter_by(avatar=previous_avatar).all()
+
+    # Update job avatars to match the new avatar
+    for job in jobs_with_matching_avatar:
+        job.avatar = new_avatar
+
+    # Commit the changes to the database
+    db.session.commit()
 
 
 @app.route('/jobListings')
@@ -408,3 +419,45 @@ def apply_for_job():
     else:
         # Handle case where student ID or job ID is missing
         return jsonify({'error': 'Student ID or Job ID is missing'}), 400
+
+
+@app.route('/delete_account', methods=['POST'])
+def delete_account():
+    if 'student' in session:
+        student_id = session['student']
+        student = Students.query.get(student_id)
+        if student:
+            db.session.delete(student)
+            db.session.commit()
+            session.clear()
+            return render_template('home.html', message='Student deleted successfully'), 200
+        else:
+            return render_template('editStudent.html', message='Student not found'), 404
+    elif 'employer' in session:
+        employer_id = session['employer']
+        employer = Employers.query.get(employer_id)
+        if employer:
+            db.session.delete(employer)
+            db.session.commit()
+            session.clear()
+            return render_template('home.html', message='Employer deleted successfully'), 200
+        else:
+            return render_template('editEmployer.html', message='Employer not found'), 404
+    else:
+        return render_template('home.html', message='no user logged in'), 401
+
+@app.route('/delete_job', methods=['POST'])
+def delete_job():
+    if 'employer' in session:
+        employer_id = session['employer']
+        employer = Employers.query.get(employer_id)
+        job_id = request.json.get('job_id')
+        job = Jobs.query.get(job_id)
+        if job and employer.company_name == job.company_name:
+            db.session.delete(job)
+            db.session.commit()
+            return jsonify({'message': 'Job deleted successfully'}), 200
+        else:
+            return jsonify({'error': 'Job not found or you do not have permission to delete it'}), 404
+    else:
+        return jsonify({'error': 'You must be logged in as an employer to delete a job'}), 401
