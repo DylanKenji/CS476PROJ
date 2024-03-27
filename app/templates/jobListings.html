@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="jobList roundForm">
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
-                <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
+                <img class="mainimgSmall" src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" alt="Employer Avatar">
                     <div class="jobDetails">
                         <label class="jobName bold">{{ job.job_title }}</label>
                         <label class="jobCompany">{{ job.company_name }}</label>
@@ -175,21 +175,13 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="jobList roundForm">
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
-                <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
+                <img class="mainimgSmall" src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" alt="Employer Avatar">
 
                     <div class="jobDetails">
                         <label class="jobName bold">{{ job.job_title }}</label>
                         <label class="jobCompany">{{ job.company_name }}</label>
                         <label class="datePosted">{{ job.date_created }}</label>
                     </div>
-            </div>
-            <div>
-            <h4>Applicants for {{ job.job_title }}</h4>
-            <ul>
-                {% for applicant in job_applicants[job.id] %}
-                <li>{{ applicant.first_name }} {{ applicant.last_name }} - {{ applicant.email }}</li>
-                {% endfor %}
-            </ul>
             </div>
             {% endfor %}
         </div>

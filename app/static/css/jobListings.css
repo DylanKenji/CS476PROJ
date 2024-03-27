@@ -5,12 +5,11 @@ body{
 .jobList{
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    height: 85vh;
     width: 20vw;
     background-color: white;
-    margin-right: 50px;
+    margin-right: 2vw;
     overflow-y: scroll;
-    padding-top: 15px;
     scrollbar-width: thin;
     scrollbar-color: rgb(11, 88, 11) white;
     border: 4px solid #1c6928;
@@ -18,7 +17,7 @@ body{
 }
 
 .jobInfo{
-    height: 80vh;
+    height: 85vh;
     width: 60vw;
     background-color: white;
     border: 4px solid #1c6928;
@@ -33,7 +32,6 @@ body{
 .jobPosting{
     display: flex;
     border-bottom: 2px solid rgb(0, 0, 0);
-    
 }
 
 .jobDetails{
@@ -52,29 +50,28 @@ body{
     padding: 1vh;
 }
 
-.jobImg{
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin: 10px;
-    border: 2px solid black;
-}
-
 .jobName{
     font-size: 20px;
 }
 
-
 .titleCard{
     display: flex;
-    width: 800px;
+    width: 60vw;
     height: 30vh;
 }
 
+.mainimgSmall{
+    margin: 1vh;
+    width: 4vw;
+    height: 8vh;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
 .mainImg{
-    margin: 10px;
-    width: 200px;
-    height: 200px;
+    margin: 2vh;
+    width: 15vw;
+    height: 25vh;
     border-radius: 50%;
     border: 2px solid black;
 }
