@@ -40,7 +40,7 @@
         <div class="profile-container">
             <div class="cust-main-wrapper">
 
-                <div class="info-box">
+                <div class="info-box1">
     
                     <div class="align-center">
                         <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" class="jobImg">
@@ -62,6 +62,9 @@
                     </div>
     
                  <!--    Backend location for pdf -->
+                <div class="profile-button">
+                    
+                </div>
                 <form method="get" action="{{ url_for('static', filename='library/media/resumes/' ~ student.resume) }}" target="_blank">
                     <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-file"></i> View Resume</button>
                 </form>
