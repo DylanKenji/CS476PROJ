@@ -102,6 +102,7 @@ textarea{
     background-color: white;
     border-bottom: #0c3f14 3px solid;
     height: 6vh;
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
 }
 
 .header-container {
@@ -124,6 +125,8 @@ textarea{
 .header-profile-icon {
     width: 2vw;
     height: 4vh;
+    border-radius: 50%;
+    border: black 2px solid;
 }
 
 .header-profile-name {

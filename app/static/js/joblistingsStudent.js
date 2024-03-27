@@ -55,3 +55,32 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error submitting application:', error));
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const jobPostings = document.querySelectorAll(".jobPosting");
+
+    // Function to toggle visibility of the apply button
+    function toggleApplyButtonVisibility() {
+        const applyButton = document.querySelector(".applyButton");
+        if (applyButton) {
+            applyButton.style.display = document.querySelector(".jobPosting.selected") ? "block" : "none";
+        }
+    }
+
+    // Add event listener to job postings to toggle selection and apply button visibility
+    jobPostings.forEach(function(jobPosting) {
+        jobPosting.addEventListener("click", function() {
+            // Toggle selection class
+            jobPostings.forEach(function(posting) {
+                posting.classList.remove("selected");
+            });
+            jobPosting.classList.add("selected");
+
+            // Toggle apply button visibility
+            toggleApplyButtonVisibility();
+        });
+    });
+
+    // Initial toggle for apply button visibility
+    toggleApplyButtonVisibility();
+});

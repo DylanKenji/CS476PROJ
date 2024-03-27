@@ -12,7 +12,6 @@
 <body>
 
     <div class="page-wrap">
-
         <nav class="header">
             <div class="header-container">
                 <div class="header-logo">
@@ -25,7 +24,7 @@
                 <div class="header-profilenav">
                     
                     <div class="dropdown">
-                        <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="30vw" ></button>
+                        <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" ></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
@@ -36,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
+                    <div class="header-profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
                 </div>
             </div>
         </nav>

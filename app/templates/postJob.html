@@ -25,7 +25,7 @@
                 <div class="header-profilenav">
                     
                     <div class="dropdown">
-                        <button class="dropbtn"><img src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="30vw" ></button>
+                        <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" width="30vw" ></button>
                         <div class="dropdown-content">
                             <div class="dropdown-content">
                                 <a href="{{ url_for('profileEmployer') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
+                    <div class="header-profile-name">{{ employer.first_name }} {{ employer.last_name }}</div>
                 </div>
             </div>
         </nav>
@@ -91,9 +91,12 @@
                         <label class="postingLabel float-left">Wage:</label>
                         <input class="postingBox" name="Pay" placeholder="Wage" id="wage">
                     </section>
+                    <div id="error" class="errorMessage"></div>
+                    <div class="button-container">
 
-                    <div id="error"></div>
-                    <button class="postButton greenButton" type="submit" id="postButton">Post Job</button>
+                        <button class="postButton greenButton" type="submit" id="postButton">Post Job</button>
+                    </div>
+
                 </form>
             </div>
         </div>

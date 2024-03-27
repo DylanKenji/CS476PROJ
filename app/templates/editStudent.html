@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-name">{{ student.first_name }} {{ student.last_name }}</div>
+                    <div class="header-profile-name">{{ student.first_name }} {{ student.last_name }}</div>
                 </div>
             </div>
         </nav>
@@ -71,60 +71,63 @@
                     <img src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" class="jobImg">
                 </div>
                 <h1 class="align-center titleText">User Details</h1>
-            </div>
-            <div class="info-box2">
-                <div class="userDetails">
-                    <label class="inputLabel float-left" >First Name:</label>
-                    <input class="inputBox" type="text" id="studentfirstName" name="studentfirstName" placeholder="first name" value="{{ student.first_name }}">
-                
-                    <label class="inputLabel float-left" >Last Name:</label>
-                    <input class="inputBox" type="text" id="studentlastName" name="studentlastName" placeholder="Last Name" value="{{ student.last_name }}">
-
-                    <label class="inputLabel float-left" >Email:</label>
-                    <input class="inputBox" type="email" id="studentEmail" name="studentEmail" placeholder="Enter Email" value="{{ student.email }}">
-
-                    <label class="inputLabel float-left" >Password:</label>
-                    <input class="inputBox" type="text" id="studentPassword" name="newPassword" placeholder="Enter Password">
-
-                    <label class="inputLabel float-left" >Confirm Password:</label>
-                    <input class="inputBox" type="text"  id="studentconfirmPassword" name="confirmPassword" placeholder="Confirm Password">
+            </div><br>
+            <div class="info-section">
+                <div class="info-box2">
+                    <div class="userDetails">
+                        <label class="inputLabel float-left" >First Name:</label>
+                        <input class="inputBox" type="text" id="studentfirstName" name="studentfirstName" placeholder="first name" value="{{ student.first_name }}">
+                    
+                        <label class="inputLabel float-left" >Last Name:</label>
+                        <input class="inputBox" type="text" id="studentlastName" name="studentlastName" placeholder="Last Name" value="{{ student.last_name }}">
+    
+                        <label class="inputLabel float-left" >Email:</label>
+                        <input class="inputBox" type="email" id="studentEmail" name="studentEmail" placeholder="Enter Email" value="{{ student.email }}">
+    
+                        <label class="inputLabel float-left" >Password:</label>
+                        <input class="inputBox" type="text" id="studentPassword" name="newPassword" placeholder="Enter Password">
+    
+                        <label class="inputLabel float-left" >Confirm Password:</label>
+                        <input class="inputBox" type="text"  id="studentconfirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                    </div>
+                </div>
+                <div class="info-box3">
+                    <div class="userDetails">
+                        <label class="inputLabel float-left">Major:</label>
+                            <select class="postingBox" name="studentMajor" id="studentMajor">
+                                <option value="" selected>Select an option</option>
+                                <option class="form-item" value="Computer Science">Computer Science</option>
+                                <option class="form-item" value="Engineering">Engineering</option>
+                                <option class="form-item" value="Biology">Biology</option>
+                                <option class="form-item" value="Economics">Economics</option>
+                                <option class="form-item" value="Physics">Physics</option>
+                                <option class="form-item" value="Psychology">Psychology</option>
+                                <option class="form-item" value="Mathematics">Mathematics</option>
+                                <option class="form-item" value="Geology">Geology</option>
+                                <option class="form-item" value="Social Work">Social Work</option>
+                                <option class="form-item" value="Nursing">Nursing</option>
+                                <option class="form-item" value="Education">Education</option>
+                                <option class="form-item" value="Anthropology">Anthropology</option>
+                            </select>
+    
+                        <label class="detailText">Availability: </label>
+                        <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
+                      
+                        <label class="detailText">Resume: </label>
+                        <input type="file" id="newResume" name="newResume" class="newResume">
+    
+                        <label class="detailText">Avatar: </label>
+                        <input type="file" id="newstudentAvatar" name="newstudentAvatar" class="newStudentAvatar">
+    
+                        <button id="backButton" class="submitButton greenButton">
+                            <a class="link" href="{{ url_for('profileStudent') }}">Back</a>
+                        </button>
+                        <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
+                        <button class="submitButton greenButton" id="deleteButton" type="submit">Delete Account</button>
+                    </div>     
                 </div>
             </div>
-            <div class="info-box3">
-                <div class="userDetails">
-                    <label class="inputLabel float-left">Major:</label>
-                        <select class="postingBox" name="studentMajor" id="studentMajor">
-                            <option value="" selected>Select an option</option>
-                            <option class="form-item" value="Computer Science">Computer Science</option>
-                            <option class="form-item" value="Engineering">Engineering</option>
-                            <option class="form-item" value="Biology">Biology</option>
-                            <option class="form-item" value="Economics">Economics</option>
-                            <option class="form-item" value="Physics">Physics</option>
-                            <option class="form-item" value="Psychology">Psychology</option>
-                            <option class="form-item" value="Mathematics">Mathematics</option>
-                            <option class="form-item" value="Geology">Geology</option>
-                            <option class="form-item" value="Social Work">Social Work</option>
-                            <option class="form-item" value="Nursing">Nursing</option>
-                            <option class="form-item" value="Education">Education</option>
-                            <option class="form-item" value="Anthropology">Anthropology</option>
-                        </select>
 
-                    <label class="detailText">Availability: </label>
-                    <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
-                  
-                    <label class="detailText">Resume: </label>
-                    <input type="file" id="newResume" name="newResume" class="newResume">
-
-                    <label class="detailText">Avatar: </label>
-                    <input type="file" id="newstudentAvatar" name="newstudentAvatar" class="newStudentAvatar">
-
-                    <button id="backButton" class="submitButton greenButton">
-                        <a class="link" href="{{ url_for('profileStudent') }}">Back</a>
-                    </button>
-                    <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
-                    <button class="submitButton greenButton" id="deleteButton" type="submit">Delete Account</button>
-                </div>     
-            </div>
         </form>
     </div>
 </body>
