@@ -207,11 +207,7 @@ def allowed_file(filename):
 def allowed_resume_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'pdf', 'doc', 'docx'}
 
-def update_jobs_avatar(previous_avatar, new_avatar):
-    jobs_with_matching_avatar = Jobs.query.filter_by(avatar=previous_avatar).all()
-    for job in jobs_with_matching_avatar:
-        job.avatar = new_avatar
-    db.session.commit()
+
 @app.route('/editEmployer', methods=['GET', 'POST'])
 def editEmployer():
     UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
@@ -238,31 +234,31 @@ def editEmployer():
             # Update avatar if a new file is uploaded
             if 'newemployerAvatar' in request.files:
                 avatar_file = request.files['newemployerAvatar']
-                previous_avatar = employer.avatar
                 if avatar_file.filename != '':
                     # Securely save the avatar file on the server
                     if allowed_file(avatar_file.filename):
                         # Generate the new avatar filename
                         avatar_filename = f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar{os.path.splitext(avatar_file.filename)[1]}"
-                        previous_avatar = employer.avatar
-                        employer.avatar = avatar_filename
+
                         # Check if there's an existing avatar file with a different extension
                         old_avatar_path = os.path.join(app.config['UPLOAD_FOLDER'],
                                                        f"{employer.first_name}_{employer.last_name}_{employer.id}_Avatar.*")
                         old_avatar_files = glob.glob(old_avatar_path)
-                        update_jobs_avatar(previous_avatar, avatar_filename)
                         for old_avatar_file in old_avatar_files:
                             os.remove(old_avatar_file)
 
                         # Save the uploaded avatar with the new name
                         avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
 
+                        # Update the employer's avatar attribute with the new filename
+                        previous_avatar = employer.avatar
+                        employer.avatar = avatar_filename
 
             try:
                 db.session.commit()
                 if 'newemployerAvatar' in request.files:
                     # Update job avatars with matching previous avatar
-                    update_jobs_avatar(previous_avatar, avatar_filename)
+                    update_jobs_with_matching_avatar(previous_avatar, avatar_filename)
                 return redirect(url_for('editEmployer'))
             except Exception as e:
                 # Handle any exceptions that may occur during the database commit
@@ -272,6 +268,16 @@ def editEmployer():
             return render_template('editEmployer.html', employer=employer)
 
 
+def update_jobs_with_matching_avatar(previous_avatar, new_avatar):
+    # Find all jobs with the previous avatar
+    jobs_with_matching_avatar = Jobs.query.filter_by(avatar=previous_avatar).all()
+
+    # Update job avatars to match the new avatar
+    for job in jobs_with_matching_avatar:
+        job.avatar = new_avatar
+
+    # Commit the changes to the database
+    db.session.commit()
 
 
 @app.route('/jobListings')
@@ -289,10 +295,8 @@ def jobListings():
         if employer_instance:
             jobListings = Jobs.query.filter_by(company_name=employer_instance.company_name).order_by(Jobs.date_created.desc()).limit(20).all()
             job_applicants = {}
-            for job in jobListings:
-                job_applicants[job.id] = [application.student for application in job.applicants]
-            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance,
-                                   job_applicants=job_applicants)
+
+            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance)
     else:
         return redirect(url_for('login'))
 
@@ -373,6 +377,16 @@ def get_job_details(job_id):
         }
     else:
         return {'error': 'Job not found'}, 404
+
+
+@app.route('/job/<int:job_id>/applicants')
+def job_applicants(job_id):
+    job = Jobs.query.get_or_404(job_id)
+    applicants = [application.student for application in job.applicants]
+    # Assuming each applicant has necessary attributes like first_name, last_name, and avatar
+    applicant_data = [{'first_name': applicant.first_name, 'last_name': applicant.last_name, 'avatar': applicant.avatar, 'resume': applicant.resume} for applicant in applicants]
+    return jsonify(applicant_data)
+
 
 
 @app.route('/apply_for_job', methods=['POST'])

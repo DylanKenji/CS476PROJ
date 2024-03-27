@@ -8,61 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jobListings.css') }}">
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
     
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const jobPostings = document.querySelectorAll('.jobPosting');
 
-    jobPostings.forEach(function (jobPosting) {
-        jobPosting.addEventListener('click', function () {
-            const jobId = jobPosting.dataset.jobId;
-            fetch(`/job/${jobId}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Update jobInfo section with fetched job details
-                    const jobInfo = document.querySelector('.jobInfo');
-                    jobInfo.querySelector('.mainImg').src = "static/library/media/avatars/" + data.avatar;
-                    jobInfo.querySelector('.mainName').textContent = "Job Title: " + data.job_title;
-                    jobInfo.querySelector('.mainCompany').textContent = "Company Name: " + data.company_name;
-                    jobInfo.querySelector('.jobLocation').textContent = "Job Location: " + data.job_location;
-                    jobInfo.querySelector('.datePosted').textContent = "Date Posted: " + data.date_created;
-                    jobInfo.querySelector('.jobDesc').textContent = "Job Description: " + data.job_description;
-                    jobInfo.querySelector('.jobMajor').textContent = "Major Required: " + data.major_required;
-                    jobInfo.querySelector('.jobHours').textContent = "Hours: " + data.hours;
-                    jobInfo.querySelector('.jobPay').textContent = "Pay: " + data.pay;
+    {% if 'student' in session %}
+    <script src="{{ url_for('static', filename='js/joblistingsStudent.js') }}" defer></script>
+    {% endif %}
 
-                    // Update other job details as needed
+    {% if 'employer' in session %}
+    <script src="{{ url_for('static', filename='js/joblistingsEmployer.js') }}" defer></script>
+    {% endif %}
 
-                    // Add event listener for Apply button
-                    const applyButton = jobInfo.querySelector('.applyForm');
-                    applyButton.addEventListener('submit', function(event) {
-                        event.preventDefault(); // Prevent default form submission
-
-                        // Send POST request to apply for the job
-                        fetch('/apply_for_job', {
-                            method: 'POST',
-                            body: JSON.stringify({ job_id: jobId }), // Send job ID in request body
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                // Handle success response (e.g., show success message)
-                                alert('Application submitted successfully!');
-                            } else {
-                                // Handle error response
-                                alert('Failed to submit application. Please try again.');
-                            }
-                        })
-                        .catch(error => console.error('Error submitting application:', error));
-                    });
-                })
-                .catch(error => console.error('Error fetching job details:', error));
-        });
-    });
-});
-
-    </script>
 </head>
 <body>
 
@@ -102,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="jobList roundForm">
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
-                <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
+                <img class="mainimgSmall" src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" alt="Employer Avatar">
                     <div class="jobDetails">
                         <label class="jobName bold">{{ job.job_title }}</label>
                         <label class="jobCompany">{{ job.company_name }}</label>
@@ -124,10 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
 
             <div class="jobDescription">
-                <label class="jobDesc"></label><br>
-                <label class="jobMajor"></label><br>
-                <label class="jobHours"></label><br>
-                <label class="jobPay"></label>
+                <label class="jobDesc"></label><br><br>
+                <label class="jobMajor"></label><br><br>
+                <label class="jobHours"></label><br><br>
+                <label class="jobPay"></label><br><br>
             </div>
 
             <!-- action location for backend -->
@@ -174,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="jobList roundForm">
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
-                <img src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" width="50px" alt="Employer Avatar">
+                <img class="mainimgSmall" src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" alt="Employer Avatar">
 
                     <div class="jobDetails">
                         <label class="jobName bold">{{ job.job_title }}</label>
@@ -182,14 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <label class="datePosted">{{ job.date_created }}</label>
                     </div>
             </div>
-            <div>
-            <h4>Applicants for {{ job.job_title }}</h4>
-            <ul>
-                {% for applicant in job_applicants[job.id] %}
-                <li>{{ applicant.first_name }} {{ applicant.last_name }} - {{ applicant.email }}</li>
-                {% endfor %}
-            </ul>
-            </div>
+        
             {% endfor %}
         </div>
         <div class="jobInfo roundForm">
@@ -205,11 +152,14 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
 
             <div class="jobDescription">
-                <label class="jobDesc"></label><br>
-                <label class="jobMajor"></label><br>
-                <label class="jobHours"></label><br>
-                <label class="jobPay"></label>
+                <label class="jobDesc"></label><br><br>
+                <label class="jobMajor"></label><br><br>
+                <label class="jobHours"></label><br><br>
+                <label class="jobPay"></label><br><br>
             </div>
+        </div>
+        <div class="jobList jobApplicants roundForm">
+            
         </div>
     </div>
     {% endif %}
