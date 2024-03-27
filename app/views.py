@@ -251,10 +251,14 @@ def editEmployer():
                         avatar_file.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
 
                         # Update the employer's avatar attribute with the new filename
+                        previous_avatar = employer.avatar
                         employer.avatar = avatar_filename
 
             try:
                 db.session.commit()
+                if 'newemployerAvatar' in request.files:
+                    # Update job avatars with matching previous avatar
+                    update_jobs_with_matching_avatar(previous_avatar, avatar_filename)
                 return redirect(url_for('editEmployer'))
             except Exception as e:
                 # Handle any exceptions that may occur during the database commit
@@ -262,6 +266,18 @@ def editEmployer():
         else:
             # If it's a GET request or after processing a POST request, render the template
             return render_template('editEmployer.html', employer=employer)
+
+
+def update_jobs_with_matching_avatar(previous_avatar, new_avatar):
+    # Find all jobs with the previous avatar
+    jobs_with_matching_avatar = Jobs.query.filter_by(avatar=previous_avatar).all()
+
+    # Update job avatars to match the new avatar
+    for job in jobs_with_matching_avatar:
+        job.avatar = new_avatar
+
+    # Commit the changes to the database
+    db.session.commit()
 
 
 @app.route('/jobListings')
