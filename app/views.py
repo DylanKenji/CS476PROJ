@@ -256,9 +256,6 @@ def editEmployer():
 
             try:
                 db.session.commit()
-                if 'newemployerAvatar' in request.files:
-                    # Update job avatars with matching previous avatar
-                    update_jobs_with_matching_avatar(previous_avatar, avatar_filename)
                 return redirect(url_for('editEmployer'))
             except Exception as e:
                 # Handle any exceptions that may occur during the database commit
