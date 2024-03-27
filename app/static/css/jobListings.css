@@ -111,3 +111,14 @@ body{
     }
 }
 
+.appImg{
+    width: 100px;
+}
+
+.applicant{
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}

@@ -279,10 +279,8 @@ def jobListings():
         if employer_instance:
             jobListings = Jobs.query.filter_by(company_name=employer_instance.company_name).order_by(Jobs.date_created.desc()).limit(20).all()
             job_applicants = {}
-            for job in jobListings:
-                job_applicants[job.id] = [application.student for application in job.applicants]
-            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance,
-                                   job_applicants=job_applicants)
+
+            return render_template('jobListings.html', jobs=jobListings, employer=employer_instance)
     else:
         return redirect(url_for('login'))
 
@@ -363,6 +361,16 @@ def get_job_details(job_id):
         }
     else:
         return {'error': 'Job not found'}, 404
+
+
+@app.route('/job/<int:job_id>/applicants')
+def job_applicants(job_id):
+    job = Jobs.query.get_or_404(job_id)
+    applicants = [application.student for application in job.applicants]
+    # Assuming each applicant has necessary attributes like first_name, last_name, and avatar
+    applicant_data = [{'first_name': applicant.first_name, 'last_name': applicant.last_name, 'avatar': applicant.avatar, 'resume': applicant.resume} for applicant in applicants]
+    return jsonify(applicant_data)
+
 
 
 @app.route('/apply_for_job', methods=['POST'])
