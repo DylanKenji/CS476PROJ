@@ -21,10 +21,10 @@
                         </div>
                     </a>
                 </div>
+                <form method="POST" action="/delete_account" id="deleteForm">
+                    <button class="redButton" id="deleteButton" type="submit">DELETE ACCOUNT</button>
+                </form>
                 <div class="header-profilenav">
-                    <form method="POST" action="/delete_account" id="deleteForm">
-                        <button class="submitButton greenButton" id="deleteButton" type="submit">Delete Account</button>
-                    </form>
                     <div class="dropdown">
                         <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" ></button>
                         <div class="dropdown-content">
