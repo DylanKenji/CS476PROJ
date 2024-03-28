@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
     
 
+    <!-- Switches javascript files based on what session is active -->
     {% if 'student' in session %}
     <script src="{{ url_for('static', filename='js/joblistingsStudent.js') }}" defer></script>
     {% endif %}
@@ -34,10 +35,13 @@
                 </a>
             </div>
 
+
             <div class="header-filters">
+                <!-- Form for job searching filters with filtering by major and job type -->
                 <form id="filterForm" method="POST" action="/filterJobs" class="filterForm">
                     <section class="space lineUp">
                         <label class="postingLabel float-left">Major Requirement:</label>
+                        <!-- dropdown with all of the available majors -->
                         <select class="postingBox" name="Major" id="major">
                             <option value="" selected>Select an option</option>
                             <option class="form-item" value="Computer Science">Computer Science</option>
@@ -54,6 +58,7 @@
                             <option class="form-item" value="Anthropology">Anthropology</option>
                         </select>
                     </section>
+                     <!-- dropdown with all of the available job types -->
                     <section class="space lineUp">
                         <label class="postingLabel float-left">Job Type:</label>
                         <select class="postingBox" name="Hours" id="jobType">
@@ -64,12 +69,13 @@
                     </section>
 
                     <div id="error"></div>
+                     <!-- onclick submit the form to filter the listed jobs -->
                     <button class="filterButton" type="submit" id="filterJobs">Filter Jobs</button>
                 </form>
             </div>
 
             <div class="header-profilenav">
-
+                <!-- header dropdown with links to all the other pages the session can access -->
                 <div class="dropdown">
                     <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
                     <div class="dropdown-content">
@@ -90,6 +96,7 @@
     <!-- STUDENT PAGE -->
     <div class="listing main-wrapper">
         <div class="jobList roundForm">
+            <!-- display all jobs that the student can apply to -->
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
                 <img class="mainimgSmall" src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" alt="Employer Avatar">
@@ -102,7 +109,7 @@
             {% endfor %}
         </div>
         <div class="jobInfo roundForm">
-
+            <!-- display the details of the clicked job  -->
             <div class="titleCard">
                 <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="mainImg">
                 <div class="jobDetails">
@@ -141,7 +148,7 @@
                 </a>
             </div>
             <div class="header-profilenav">
-
+                <!-- header dropdown with links to all the other pages the session can access -->
                 <div class="dropdown">
                     <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" ></button>
                     <div class="dropdown-content">
@@ -163,6 +170,7 @@
     <!-- EMPLOYER PAGE -->
     <div class="listing main-wrapper">
         <div class="jobList roundForm">
+             <!-- display all jobs that the employer has posted -->
             {% for job in jobs %}
             <div class="jobPosting" id="testJob{{ job.id }}" data-job-id="{{ job.id }}">
                 <img class="mainimgSmall" src="{{ url_for('static', filename='library/media/avatars/' ~ job.avatar) }}" alt="Employer Avatar">
@@ -177,7 +185,7 @@
             {% endfor %}
         </div>
         <div class="jobInfo roundForm">
-
+     <!-- display the details of the clicked job  -->
             <div class="titleCard">
                 <img src="../../Root/library/media/UR_Logo_Secondary_Stacked Full_Colour_RGB.jpg" class="mainImg">
                 <div class="jobDetails">
@@ -196,12 +204,13 @@
             </div>
 
             <div class="buttonContainer">
-                <form class="removepostForm" method="GET" action="">
+            <!-- form that sends a request   -->
+            <form class="removepostForm" method="GET" action="">
                     <button class="greenButton applyButton" type="submit">Remove Posting</button>
                 </form>
             </div>
         </div>
-       
+            <!-- div for all the applicants for the clicked job -->
         <div class="jobList jobApplicants roundForm">
             
         </div>

@@ -25,6 +25,8 @@
                     <button class="redButton" id="deleteButton" type="submit">DELETE ACCOUNT</button>
                 </form>
                 <div class="header-profilenav">
+                <!-- Form that deletes the users account -->
+                      <!-- dropdown that checks the active student major and auto sets the major based on what they have selected -->
                     <div class="dropdown">
                         <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" ></button>
                         <div class="dropdown-content">
@@ -43,7 +45,7 @@
             </div>
         </nav>
 
-      <!-- Action location for backend -->
+         <!-- Form that submits all the users changes to their account information-->
         <form method="POST" action="" id="submitForm" class="cust-main-wrapper" enctype="multipart/form-data">
             <div class="info-box1">
                 <div id="error"></div>
@@ -53,6 +55,7 @@
                 <h1 class="align-center titleText">User Details</h1>          
             </div>
             <div class="info-box2">
+                     <!-- inputs for employer acount information -->
                     <div class="userDetails">     
                             <label class="inputLabel float-left" >First Name:</label>
                             <input class="inputBox" type="text" name="employerfirstName" id="employerfirstName" placeholder="First Name" value="{{ employer.first_name }}">
@@ -71,6 +74,7 @@
                     </div>
             </div>
             <div class="info-box3">
+                     <!-- inputs for employer acount information -->
                     <div class="userDetails">
                         <label class="inputLabel float-left" >Company Name:</label>
                         <input class="inputBox" type="text" name="employerCompany"  id="companyName" placeholder="Company Name" value="{{ employer.company_name }}">
@@ -83,9 +87,13 @@
 
                         <label class="inputLabel float-left" >Company Avatar:</label>
                         <input class="pictureInput" type="file" accept="image/png, image/jpeg, image/jpg, image/gif" name="newemployerAvatar" id="newemployerAvatar" placeholder="Company Number">
+
+                         <!-- button that returns the user to their profile -->
                         <button id="backButton" class="submitButton greenButton">
                             <a class="link" href="{{ url_for('profileEmployer') }}">Back</a>
                         </button>
+
+                         <!-- button that submits the form -->
                         <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
                       
                         

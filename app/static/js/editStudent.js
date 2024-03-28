@@ -11,7 +11,7 @@ const studentResume = document.getElementById('newResume');
 const newstudentAvatar = document.getElementById('newstudentAvatar');
 
 
-
+//add an event listener when the form is sumbited
 form.addEventListener('submit', (e) => {
     let messages = []
     //first name field validation
@@ -69,10 +69,7 @@ form.addEventListener('submit', (e) => {
         messages.push('Major required');
     }
 
-    //availability field validation
-    //no validation is needed because it's possible that the student is NOT currently FOR HIRE
 
-    
     //new avatar field validation
     if (newstudentAvatar.files.length > 0) {
         const file = newstudentAvatar.files[0];

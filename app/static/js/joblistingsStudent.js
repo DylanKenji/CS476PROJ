@@ -1,17 +1,23 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     const jobPostings = document.querySelectorAll('.jobPosting');
-    let lastClickedJobId; // Variable to store the ID of the last clicked job
+
+    //Store the last clicked variable for the jobId
+    let lastClickedJobId;
 
     jobPostings.forEach(function (jobPosting) {
         jobPosting.addEventListener('click', function () {
             const jobId = jobPosting.dataset.jobId;
-            lastClickedJobId = jobId; // Update the last clicked job ID
 
+            //Update the last clicked jobId
+            lastClickedJobId = jobId;
+
+             //Find the jobId based on job clicked
             fetch(`/job/${jobId}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Update jobInfo section with fetched job details
+
+                    //Update all of the html job description elements with the job based on the fetched jobId
                     const jobInfo = document.querySelector('.jobInfo');
                     jobInfo.querySelector('.mainImg').src = "static/library/media/avatars/" + data.avatar;
                     jobInfo.querySelector('.mainName').innerHTML = "<strong>Job Title:</strong> <u>" + data.job_title + "</u>";
@@ -23,32 +29,37 @@ document.addEventListener('DOMContentLoaded', function () {
                     jobInfo.querySelector('.jobHours').innerHTML = "<strong>Job Type:</strong> " + data.hours;
                     jobInfo.querySelector('.jobPay').innerHTML = "<strong>Hourly Wage: $</strong> " + data.pay;
 
-                    // Update other job details as needed
                 })
                 .catch(error => console.error('Error fetching job details:', error));
         });
     });
 
+
     // Event listener for applying to the last clicked job
     const applyButton = document.querySelector('.applyForm');
-    applyButton.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
 
-        // Send POST request to apply for the last clicked job
+    //Event listener for submiting the apply button
+    applyButton.addEventListener('submit', function (event) {
+
+        //Prevents default form submission
+        event.preventDefault();
+
+      //Send a post request to delete the clicked job
         fetch('/apply_for_job', {
             method: 'POST',
-            body: JSON.stringify({ job_id: lastClickedJobId }), // Send last clicked job ID in request body
+            body: JSON.stringify({ job_id: lastClickedJobId }), 
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(response => {
+              //If the database returns a correct response
             if (response.ok) {
-                // Handle success response (e.g., show success message)
+                //Move the window href to the employer profile page
                 alert('Application submitted successfully!');
                 window.location.href = '/profileStudent';
             } else {
-                // Handle error response
+                //Alert if the job was unsuccessful
                 alert('Failed to submit application. Please try again.');
             }
         })
@@ -57,30 +68,33 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
+    //Query the job postings
     const jobPostings = document.querySelectorAll(".jobPosting");
 
-    // Function to toggle visibility of the apply button
+    //Toggle visibility of apply button
     function toggleApplyButtonVisibility() {
         const applyButton = document.querySelector(".applyButton");
         if (applyButton) {
+            //If a job posting is selected show the job button
             applyButton.style.display = document.querySelector(".jobPosting.selected") ? "block" : "none";
         }
     }
 
-    // Add event listener to job postings to toggle selection and apply button visibility
+    //Add event listener to see when a job is clicked
     jobPostings.forEach(function(jobPosting) {
         jobPosting.addEventListener("click", function() {
-            // Toggle selection class
+            //Remove class from all other jobs
             jobPostings.forEach(function(posting) {
                 posting.classList.remove("selected");
             });
+            //Add class to current job
             jobPosting.classList.add("selected");
 
-            // Toggle apply button visibility
+            //Toggle the apply button visibility
             toggleApplyButtonVisibility();
         });
     });
 
-    // Initial toggle for apply button visibility
+    //Toggle the apply button visibility
     toggleApplyButtonVisibility();
 });

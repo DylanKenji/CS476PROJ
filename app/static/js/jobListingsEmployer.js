@@ -1,18 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
     const jobPostings = document.querySelectorAll('.jobPosting');
-    let lastClickedJobId; // Variable to store the ID of the last clicked job
+
+    //Store the last clicked variable for the jobId
+    let lastClickedJobId; 
+
+      //Hide the remove button if no job is selected
+      function hideRemoveButton() {
+        const removeButtonForm = document.querySelector('.removepostForm');
+        removeButtonForm.style.display = 'none';
+        }
+
+    //Hide the remove button right away
+    hideRemoveButton();
 
     jobPostings.forEach(function (jobPosting) {
         jobPosting.addEventListener('click', function () {
             const jobId = jobPosting.dataset.jobId;
-            lastClickedJobId = jobId; // Update the last clicked job ID
 
+            //Update the last clicked jobId
+            lastClickedJobId = jobId; 
 
+             //Show the remove posting button when a job is selected
+             const removeButtonForm = document.querySelector('.removepostForm');
+             removeButtonForm.style.display = 'block';
 
+            //Find the jobId based on job clicked
             fetch(`/job/${jobId}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Update jobInfo section with fetched job details
+                    
+                    //Update all of the html job description elements with the job based on the fetched jobId
                     const jobInfo = document.querySelector('.jobInfo');
                     jobInfo.querySelector('.mainImg').src = "static/library/media/avatars/" + data.avatar;
                     jobInfo.querySelector('.mainName').innerHTML = "<strong>Job Title:</strong> <u>" + data.job_title + "</u>";
@@ -25,37 +42,37 @@ document.addEventListener('DOMContentLoaded', function () {
                     jobInfo.querySelector('.jobPay').innerHTML = "<strong>Hourly Wage: $</strong> " + data.pay;
                     
                     
-
-                   
-                   
-
-
-                    // Fetch applicants for the selected job
+                    //Fetch applicants for job clicked
                     fetch(`/job/${jobId}/applicants`)
                     .then(response => response.json())
                     .then(applicants => {
+                        //Query the applicant div
                         const jobApplicantsContainer = document.querySelector('.jobApplicants');
                 
-                        // Clear previous applicant divs if any
+                        //Remove any previous applicants from the container
                         jobApplicantsContainer.innerHTML = '';
                 
-                        // Iterate through each applicant in reverse order and create divs
+                        //Iterate through each applicant 
                         for (let i = applicants.length - 1; i >= 0; i--) {
                             const applicant = applicants[i];
                 
+                            //Create a div for each applicant
                             const applicantDiv = document.createElement('div');
                             applicantDiv.classList.add('applicant');
                 
+                            //Add the avatar of the applicant
                             const avatarImg = document.createElement('img');
                             avatarImg.src = "static/library/media/avatars/" + applicant.avatar;
                             avatarImg.classList.add("appImg");
                             avatarImg.alt = 'Applicant Avatar';
                             applicantDiv.appendChild(avatarImg);
                 
+                            //Add the applicants name 
                             const namePara = document.createElement('p');
                             namePara.textContent = applicant.first_name + " " +  applicant.last_name;
                             applicantDiv.appendChild(namePara);
                 
+                            //Adds form that links to the applicants resume
                             const form = document.createElement('form');
                             form.classList.add("resumeForm");
                             console.log(applicant.resume);
@@ -64,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             form.target = "_blank";
                             applicantDiv.appendChild(form);
                 
+                            //Adds a button that submits the resume form to bring the pdf to a new tab
                             const resumeButton = document.createElement("button");
                             resumeButton.classList.add("viewResume", "resumeButton");
                             resumeButton.onclick = function() {
@@ -73,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             resumeButton.textContent = "View Resume";
                             form.appendChild(resumeButton);
                 
-                            // Prepend the applicant div to the container
+                            //Append the div to the applicant container
                             jobApplicantsContainer.appendChild(applicantDiv);
                         }
                     })
@@ -87,26 +105,30 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 
-    // Reset Apply button event listener
+    //Query the posting form
     const deleteButton = document.querySelector('.removepostForm');
-    deleteButton.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
 
-        // Send POST request to apply for the last clicked job
+    //Event listener for submiting the delete button
+    deleteButton.addEventListener('submit', function (event) {
+        //Prevents default form submission
+        event.preventDefault(); 
+
+        //Send a post request to delete the clicked job
         fetch('/delete_job', {
             method: 'POST',
-            body: JSON.stringify({ job_id: lastClickedJobId }), // Send last clicked job ID in request body
+            body: JSON.stringify({ job_id: lastClickedJobId }),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(response => {
+            //If the database returns a correct response
             if (response.ok) {
-                // Handle success response (e.g., show success message)
+                //Move the window href to the employer profile page
                 alert('Job removed successfully!');
                 window.location.href = '/profileEmployer';
             } else {
-                // Handle error response
+                //Alert if the job was unsuccessful
                 alert('Failed to remove job. Please try again.');
             }
         })

@@ -75,7 +75,7 @@ form.addEventListener('submit', (e) => {
     }
 
     
-    // If any errors exist, prevent form submission
+    //if any errors exist prevent form submission
     if (messages.length > 0) {
         e.preventDefault();
         errorElement.style.color = 'red';
@@ -83,7 +83,7 @@ form.addEventListener('submit', (e) => {
         errorElement.innerHTML = messages.join('<br>');
     }
     else {
-        // If no errors, redirect the user
+        //if no errors, redirect the user
         window.location.href = "../Pages/home.html";
     }
 }) 
