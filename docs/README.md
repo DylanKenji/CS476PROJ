@@ -15,7 +15,7 @@ The University of Regina faces a challenge where students struggle to showcase t
     - Allows users to apply for jobs with a single click, saving time and effort. This feature requires users to have a complete and up-to-date profile, including their resume. The system automatically sends these documents to the employer when the user applies.
 - Career Counseling Resources 
     - Access to career counselling resources allowing users to make informed decisions about their professional paths.
-- Application Tracking System (ATS) (PLANNED)
+- Application Tracking System 
     - Students and graduates can track their job applications streamlining the job search process.
  
 
