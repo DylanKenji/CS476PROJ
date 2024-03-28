@@ -13,16 +13,64 @@ The University of Regina faces a challenge where students struggle to showcase t
     - Functionality that allows users to find specific profiles and job listings based on various criteria.
 - One-Click Application
     - Allows users to apply for jobs with a single click, saving time and effort. This feature requires users to have a complete and up-to-date profile, including their resume. The system automatically sends these documents to the employer when the user applies.
-- Career Counseling Resources (PLANNED)
-    - Access to a wealth of career counselling resources, including articles, videos, and webinars, empowering users to make informed decisions about their professional paths.
+- Career Counseling Resources 
+    - Access to career counselling resources allowing users to make informed decisions about their professional paths.
 - Application Tracking System (ATS) (PLANNED)
-    - Students and graduates can track their job applications, interview schedules, and application statuses, streamlining the job search process.
+    - Students and graduates can track their job applications streamlining the job search process.
  
 
-## Installation
-To install the dependencies for the backend, follow the steps below:
+## Installation Guide
 
-1. Clone the repository: git clone https://github.com/DylanKenji/CS476PROJ.git
+### 1. Clone the Repository
+git clone https://github.com/DylanKenji/CS476PROJ.git
+
+
+### 2. Download Python
+Download and install the latest version of Python from [Python's official website](https://www.python.org/downloads/).
+
+### 3. Choose Your IDE
+Download and install your preferred Integrated Development Environment (IDE):
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [PyCharm](https://www.jetbrains.com/pycharm/download/)
+
+### 4. Set Up Interpreter
+- Open your terminal or command prompt.
+- Navigate to the project directory.
+- Create a virtual environment:
+python -m venv env
+
+- Activate the virtual environment:
+- On Windows:
+  ```
+  .\env\Scripts\activate
+  ```
+- On macOS and Linux:
+  ```
+  source env/bin/activate
+  ```
+- Install the latest version of Python as the base interpreter within the virtual environment.
+
+### 5. Install Required Packages
+With the virtual environment activated, install the required Python packages for the project:
+pip install Flask
+  ```
+  pip install Flask
+  ```
+
+  ```
+  pip install Flask-SQLAlchemy
+  ```
+
+### 6. Run the Application
+Navigate to the project directory containing `run.py` and run the Flask application:
+  ```
+ python run.py
+  ```
+
+### 7. Access the Website
+After running the application successfully, open a web browser and navigate to the address specified by Flask (usually `http://localhost:5000/`).
+You should now be able to access and interact with the website locally.
+
 
 ## Authors
 
