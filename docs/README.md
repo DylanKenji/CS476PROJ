@@ -51,15 +51,13 @@ python -m venv env
 - Install the latest version of Python as the base interpreter within the virtual environment.
 
 ### 5. Install Required Packages
-With the virtual environment activated, install the required Python packages for the project:
-pip install Flask
-  ```
-  pip install Flask
-  ```
-
-  ```
-  pip install Flask-SQLAlchemy
-  ```
+- With the virtual environment activated, install the required Python packages for the project:
+      ```
+      pip install Flask
+      ```
+      ```
+      pip install Flask-SQLAlchemy
+      ```
 
 ### 6. Run the Application
 Navigate to the project directory containing `run.py` and run the Flask application:
