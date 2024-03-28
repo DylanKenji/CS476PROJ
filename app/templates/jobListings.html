@@ -77,6 +77,7 @@
                             <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a>
                             <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a>
                             <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a>
+                            <a href="{{ url_for('resources') }}"><i class="fa-solid fa-book"></i> Resources</a>
                             <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
                         </div>
                     </div>
@@ -149,6 +150,7 @@
                             <a href="{{ url_for('editEmployer') }}"><i class="fa-solid fa-user"></i> Edit Profile</a>
                             <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a>
                             <a href="{{ url_for('postJob') }}"><i class="fa-solid fa-square-plus"></i> Post Job</a>
+                            <a href="{{ url_for('resources') }}"><i class="fa-solid fa-book"></i> Resources</a>
                             <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
                         </div>
                     </div>
@@ -192,9 +194,12 @@
                 <label class="jobHours"></label><br><br>
                 <label class="jobPay"></label><br><br>
             </div>
-            <form class="removepostForm" method="GET" action="">
-                <button class="greenButton applyButton" type="submit">Remove Posting</button>
-            </form>
+
+            <div class="buttonContainer">
+                <form class="removepostForm" method="GET" action="">
+                    <button class="greenButton applyButton" type="submit">Remove Posting</button>
+                </form>
+            </div>
         </div>
        
         <div class="jobList jobApplicants roundForm">
