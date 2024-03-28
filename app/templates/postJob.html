@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- imports the post Job JS to handle form validation for posting the job -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post a Job | UR Connect</title>
@@ -11,9 +12,10 @@
 </head>
 
 <body>
+    <!-- full page wrap for formatting -->
     <div class="page-wrap">
-
         <nav class="header">
+            <!-- Header for employer that includes a dropdown menu navigation -->
             <div class="header-container">
                 <div class="header-logo">
                     <a href="{{ url_for('jobListings') }}">
@@ -41,7 +43,7 @@
                 </div>
             </div>
         </nav>
-
+        <!-- main container for the job posting form-->
         <div class="main-wrapper">
             <div class="jobBackground">
                 <div class="postTitle">Job Posting</div>
@@ -95,6 +97,7 @@
                     <div id="error" class="errorMessage"></div>
                     <div class="button-container">
 
+                        <!-- handles the posting of the job as long as validation is good -->
                         <button class="postButton greenButton" type="submit" id="postButton">Post Job</button>
                     </div>
 

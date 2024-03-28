@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Imported the login JS to do form validation -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +10,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
     <script src="{{ url_for('static', filename='js/login.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
+    <!-- full page wrap for formatting -->
     <div class="page-wrap">
         <nav class="header">
+            <!-- container for the header that includes logo (links to index) and ur connect icon (links to login) -->
             <div class="header-container">
                 <div class="header-logo">
                     <a href="{{ url_for('index') }}">
@@ -25,9 +28,12 @@
             </div>
         </nav>
 
+        <!-- main wrapper for the login -->
         <div class="main-wrapper">
             <div class="login-box">      
                 <img class="login-icon" src="{{ url_for('static', filename='library/media/URConnect.png') }}">
+
+                <!-- form that handles the login -->
                 <form class="login-form" action="/std_profile_login" method="POST" id="login-form">
                     <div class="input-field">
                         <label class="input-label">Email</label>
@@ -42,13 +48,14 @@
                         </div>
                     </div>
                     <br>
+                    <!-- button that submits the login -->
                     <div id="error"></div>
                     <button class="login-button greenButton" id="loginButton" type="submit"> Login</button>
                     <br>
+                    <!-- links to the student account creation page -->
                     <section>
                         <label class="space">Don't have an account?<br><a class="login-link" href="{{ url_for('createStudent') }}">Create new account</a></label>
                     </section>
-                    
                 </form>
             </div>
         </div>

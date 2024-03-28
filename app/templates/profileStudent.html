@@ -8,8 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profileStudent.css') }}">
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 
-    
+    <!-- this script makes sure the student has a resume attached to their account in order to access the jobListings page -->
     <script>
+        //if the resume exists, allow, otherwise flash the alerts
         function checkResume(resumeStatus) {
             if (resumeStatus === 'exists') {
                 document.getElementById("resumeButton").closest("form").submit();
@@ -26,13 +27,12 @@
             }
         }
     </script>
-    
-
 </head>
 <body>
-
+    <!-- full page wrap for formatting -->
     <div class="page-wrap">
         <nav class="header">
+            <!-- Header for student that includes a dropdown menu navigation -->
             <div class="header-container">
                 <div class="header-logo">
                     <a href="{{ url_for('jobListings') }}">
@@ -59,6 +59,7 @@
                 </div>
             </div>
         </nav>
+        <!-- main container for the student's profile -->
         <div class="profile-container">
             <div class="cust-main-wrapper">
 
@@ -82,21 +83,25 @@
                         <label class="detailText bold">Availability:</label>
                         <label class="detailText" id="studentStatus">{{ "Looking for job" if student.looking_for_job else "Not looking for job" }}</label>
                     </div>
-    
-                 <!-- Backend location for pdf -->
+
                 <div class="profile-button">
-                    
+              
                 </div>
 
+                <!-- form that handles allowing user to view their resume. If exists, it opens the resume in another tab, else, flash error via checkResume function -->
                 <form method="get" action="{{ url_for('static', filename='library/media/resumes/' ~ student.resume) }}" target="_blank">
                     <button class="greenButton resumeButton" id="resumeButton" type="button" onclick="checkResume('{% if student.resume %}exists{% else %}not_exists{% endif %}')"><i class="fa-solid fa-file"></i> View Resume</button>
                 </form>
-    
+                    <!-- links to the edit student profile page-->
                     <form method="GET" action="/editStudent">
                         <button class="greenButton resumeButton" id="resumeButton" type="submit"><i class="fa-solid fa-user-pen"></i> Edit Profile</button>
                     </form>
                 </div>
     
+                <!-- 
+                    section that displays all the jobs that the student has applied to.
+                    if the job has been deleted from the employer, it will be removed from this section.
+                -->
                 <div class="info-box2">
                     <h2 class="align-center">Applied jobs</h2>
                     <div class="jobList roundForm">
@@ -112,14 +117,9 @@
                             </div>
                         {% endfor %}
                     </div>
-                    
                 </div>
-    
-    
             </div>
         </div>
-
     </div>
-
 </body>
 </html>

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 
+    Imported the account swapping JS to switch between the two account types
+    Imported the create student JS to do form validation
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +13,13 @@
     <script src="{{ url_for('static', filename='js/accountpageSwap.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/createStudent.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
-    
 </head>
 
 <body>
+    <!-- full page wrap for formatting -->
     <div class="page-wrap">
         <nav class="header">
+            <!-- container for the header that includes logo (links to index) and ur connect icon (links to login) -->
             <div class="header-container">
                 <div class="header-logo">
                     <a href="{{ url_for('index') }}">
@@ -28,7 +32,7 @@
             </div>
         </nav>
         
-
+        <!-- main wrapper for the account creation-->
         <div class="main-wrapper">
             <div class="creationWrapper">
                 <div class="create-account">
@@ -40,6 +44,7 @@
                         <a class="link" href="{{ url_for('gotoEmployer') }}">Switch to Employer</a>
                     </button>
 
+                    <!-- form that handles the student account creation -->
                     <form class="inputForm" id="infoForm" action="/createStudent" method="POST">
                         <section class="space">
                             <label class="inputLabel float-left">First Name:</label>
@@ -65,11 +70,14 @@
                             <label class="inputLabel float-left">Confirm Password:</label>
                             <input id="confirmEntry" class="inputBox" type="password" placeholder="Re-enter Password">
                         </section>
+
+                        <!-- button that submits the creation of the new student account -->
                         <section class="space buttonHolder">
                             <div id="error"></div>
                             <button type="submit" class="createButton greenButton" value="Create Account" id="createAccount">Create Account</button>
                         </sction>
                     </form>
+                    <!-- links to the login page -->
                     <section>
                         <label class= "login-link">Already have an account? <br><a href="{{ url_for('login') }}">Log In Here!</a></label>
                     </section>

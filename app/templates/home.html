@@ -8,9 +8,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
     <script src="https://kit.fontawesome.com/4058d35757.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
+    <!-- full page wrap for formatting -->
     <div class="page-wrap">
         <nav class="header">
+            <!-- container for the header that includes logo (links to index) and ur connect icon (links to login) -->
             <div class="header-container">
                 <div class="header-logo">
                     <a href="{{ url_for('index') }}">
@@ -24,6 +27,7 @@
         </nav>
 
         <main>
+            <!-- home hero for video and link to the login page -->
             <div class="home-hero">
                 <video autoplay muted loop id="myVideo">
                     <source src="{{ url_for('static', filename='library/media/HomeHeroVideo.mp4') }}" type="video/mp4">
@@ -42,6 +46,7 @@
                     </div>
                   </div>
             </div>
+            <!-- section for aboutus text -->
             <div class="aboutus">
                 <div class="section-darken">
                     <div class="section-container">
@@ -73,6 +78,7 @@
                 </div> 
             </div>
 
+            <!-- section for services text -->
             <div class="services">
                 <div class="section-darken">
                     <div class="section-container">
