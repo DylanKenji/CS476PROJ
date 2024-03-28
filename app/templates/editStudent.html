@@ -97,7 +97,7 @@
                     <div class="userDetails">
                         <label class="inputLabel float-left">Major:</label>
                             <select class="postingBox" name="studentMajor" id="studentMajor">
-                                <option  value="">Select an option</option>
+                                <option {% if ' ' in student.major %} selected {% endif %} value="">Select an option</option>
                                 <option class="form-item" value="Computer Science" {% if 'Computer_Science' in student.major %} selected {% endif %}>Computer Science</option>
                                 <option class="form-item" value="Engineering" {% if 'Engineering' in student.major %} selected {% endif %}>Engineering</option>
                                 <option class="form-item" value="Biology" {% if 'Biology' in student.major %} selected {% endif %}>Biology</option>

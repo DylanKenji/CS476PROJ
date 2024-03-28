@@ -7,7 +7,7 @@ const studentEmail = document.getElementById('studentEmail');
 const studentPassword = document.getElementById('newPassword');
 const studentconfirmPassword = document.getElementById('confirmPassword');
 const studentMajor = document.getElementById('studentMajor');
-const studentResume = document.getElementById('studentResume');
+const studentResume = document.getElementById('newResume');
 const newstudentAvatar = document.getElementById('newstudentAvatar');
 
 
@@ -40,7 +40,7 @@ form.addEventListener('submit', (e) => {
 
     //password field validation
     if (studentPassword.value !== null && studentPassword.value !== '' ) {
-        console.log("test");
+       
 
         if (studentPassword.value.length < 8) {
             messages.push('Password must be at least 8 characters long');
@@ -72,18 +72,7 @@ form.addEventListener('submit', (e) => {
     //availability field validation
     //no validation is needed because it's possible that the student is NOT currently FOR HIRE
 
-    //resume field validation
-    if (studentResume.files.length === 0) {
-        messages.push('Student resume (PDF) required');
-    } else {
-        const file = studentResume.files[0];
-        const fileType = file.type;
     
-        if (fileType !== 'application/pdf') {
-            messages.push('Invalid file format. Please upload a PDF file for the resume.');
-        }
-    }
-
     //new avatar field validation
     if (newstudentAvatar.files.length > 0) {
         const file = newstudentAvatar.files[0];
