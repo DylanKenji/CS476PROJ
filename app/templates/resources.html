@@ -32,7 +32,8 @@
                             <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a>
                             <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a>
                             <a href="{{ url_for('jobListings') }}"><i class="fa-solid fa-list"></i> Job Listings</a>
-                            <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                            <a href="{{ url_for('resources') }}"><i class="fa-solid fa-book"></i> Resources</a>
+                            <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -72,9 +73,58 @@
     </nav>
     {% endif %}
 
-    <!-- PAGE HERE -->
+    <!-- Resource section -->
     <div class="listing main-wrapper">
-        
+        <div class="resource-body">
+            <div class="postTitle">Resources</div>
+            <div class="resource-container">
+                <a href="{{ url_for('jobListings') }}" class="resource-block1">
+                    <div class="resource-title">
+                        Job Listings
+                    </div>
+                </a>
+                <a href="https://www.jobbank.gc.ca/findajob/resources/write-good-resume" class="resource-block2">
+                    <div class="resource-title">
+                        Resume Building
+                    </div>
+                </a>
+                <a href="https://github.com/DylanKenji/CS476PROJ" class="resource-block3">
+                    <div class="resource-title">
+                        Our Github Link
+                    </div>
+                </a>
+                <a href="https://hbr.org/2021/11/10-common-job-interview-questions-and-how-to-answer-them" class="resource-block4">
+                    <div class="resource-title">
+                        Interview Preperation
+                    </div>
+                </a>
+                <a href="https://learning.linkedin.com/customer-success-center/industry-insights" class="resource-block5">
+                    <div class="resource-title">
+                        Industry Insights
+                    </div>
+                </a>
+                <a href="https://hbr.org/2023/03/a-beginners-guide-to-networking" class="resource-block6">
+                    <div class="resource-title">
+                        Networking Tips
+                    </div>
+                </a>
+                <a href="https://www.themuse.com/advice/the-secret-weapon-that-anyone-can-bring-to-an-interview-to-stand-out" class="resource-block7">
+                    <div class="resource-title">
+                        Portfolio Building
+                    </div>
+                </a>
+                <a href="https://zapier.com/resources/guides/remote-work" class="resource-block8">
+                    <div class="resource-title">
+                        Remote Work
+                    </div>
+                </a>
+                <a href="https://www.d2l.com/blog/continuing-education-the-guide-to-getting-started/" class="resource-block9">
+                    <div class="resource-title">
+                        Continued Education
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
