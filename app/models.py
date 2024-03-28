@@ -23,9 +23,11 @@ class Students(db.Model):
     job_applications = relationship('Applications', backref='student', cascade='all, delete-orphan')
 
 
+    # The set_password method is used to hash the password before storing it in the database.
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
+    # The check_password method is used to check if the password entered by the user matches the hashed password in the database.
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
@@ -46,9 +48,11 @@ class Employers(db.Model):
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_updated = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
+    # The set_password method is used to hash the password before storing it in the database.
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
+    # The check_password method is used to check if the password entered by the user matches the hashed password in the database.
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
