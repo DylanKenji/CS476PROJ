@@ -46,7 +46,9 @@
                     </a>
                 </div>
                 <div class="header-profilenav">
-                    
+                    <form method="POST" action="/delete_account" id="deleteForm">
+                        <button class=" greenButton" id="deleteButton" type="submit">Delete Account</button>
+                    </form>
                     <div class="dropdown">
                         <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
                         <div class="dropdown-content">
@@ -65,7 +67,7 @@
         </nav>
         
          <!-- Action location for backend -->
-         <form method="POST" action="/editStudent" id="submitForm" class="cust-main-wrapper" enctype="multipart/form-data">
+         <form method="POST" action="" id="submitForm" class="cust-main-wrapper" enctype="multipart/form-data">
             <div class="info-box1">
                 <div id="error"></div><br>
                 <div class="align-center">
@@ -86,17 +88,17 @@
                         <input class="inputBox" type="email" id="studentEmail" name="studentEmail" placeholder="Enter Email" value="{{ student.email }}">
     
                         <label class="inputLabel float-left" >Password:</label>
-                        <input class="inputBox" type="text" id="studentPassword" name="newPassword" placeholder="Enter Password">
+                        <input class="inputBox" type="text" id="newPassword" name="newPassword" placeholder="Enter Password">
     
                         <label class="inputLabel float-left" >Confirm Password:</label>
-                        <input class="inputBox" type="text"  id="studentconfirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                        <input class="inputBox" type="text"  id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
                     </div>
                 </div>
                 <div class="info-box3">
                     <div class="userDetails">
                         <label class="inputLabel float-left">Major:</label>
                             <select class="postingBox" name="studentMajor" id="studentMajor">
-                                <option value="">Select an option</option>
+                                <option {% if ' ' in student.major %} selected {% endif %} value="">Select an option</option>
                                 <option class="form-item" value="Computer Science" {% if 'Computer_Science' in student.major %} selected {% endif %}>Computer Science</option>
                                 <option class="form-item" value="Engineering" {% if 'Engineering' in student.major %} selected {% endif %}>Engineering</option>
                                 <option class="form-item" value="Biology" {% if 'Biology' in student.major %} selected {% endif %}>Biology</option>
@@ -112,19 +114,19 @@
                             </select>
     
                         <label class="detailText">Availability: </label>
-                        <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" value="lfj">
+                        <input class="checkSize" type="checkbox" id="studentAvailability" name="studentAvailability" {% if student.looking_for_job %} checked {% endif %}>
                       
                         <label class="detailText">Resume: </label>
-                        <input type="file" id="newResume" name="newResume" class="newResume">
+                        <input type="file" accept="application/pdf" id="newResume" name="newResume" class="newResume">
     
                         <label class="detailText">Avatar: </label>
-                        <input type="file" id="newstudentAvatar" name="newstudentAvatar" class="newStudentAvatar">
+                        <input type="file" accept="image/png, image/jpeg, image/jpg, image/gif" id="newstudentAvatar" name="newstudentAvatar" class="newStudentAvatar">
     
                         <button id="backButton" class="submitButton greenButton">
                             <a class="link" href="{{ url_for('profileStudent') }}">Back</a>
                         </button>
                         <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
-                        <button class="submitButton greenButton" id="deleteButton" type="submit">Delete Account</button>
+    
                     </div>     
                 </div>
             </div>

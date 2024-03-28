@@ -22,7 +22,9 @@
                     </a>
                 </div>
                 <div class="header-profilenav">
-                    
+                    <form method="POST" action="/delete_account" id="deleteForm">
+                        <button class="submitButton greenButton" id="deleteButton" type="submit">Delete Account</button>
+                    </form>
                     <div class="dropdown">
                         <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ employer.avatar ) }}" ></button>
                         <div class="dropdown-content">
@@ -62,10 +64,10 @@
                             <input class="inputBox" type="email" name="employerEmail" id="employerEmail" placeholder="Enter Email" value="{{ employer.email }}">
 
                             <label class="inputLabel float-left" >Password:</label>
-                            <input class="inputBox" type="password" id="employerPassword" name="newPassword" placeholder="Enter Password">
+                            <input class="inputBox" type="text" id="newPassword" name="newPassword" placeholder="Enter Password">
 
                             <label class="inputLabel float-left" >Confirm Password:</label>
-                            <input class="inputBox" type="password" id="employerconfirmPassword" placeholder="Confirm Password">
+                            <input class="inputBox" type="text" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
                     </div>
             </div>
             <div class="info-box3">
@@ -80,16 +82,20 @@
                         <input class="inputBox" type="text" name="employerPhone" id="companyNumber" placeholder="Company Number" value="{{ employer.phone }}">
 
                         <label class="inputLabel float-left" >Company Avatar:</label>
-                        <input class="pictureInput" type="file" accept="image/*" name="newemployerAvatar" id="newemployerAvatar" placeholder="Company Number">
+                        <input class="pictureInput" type="file" accept="image/png, image/jpeg, image/jpg, image/gif" name="newemployerAvatar" id="newemployerAvatar" placeholder="Company Number">
                         <button id="backButton" class="submitButton greenButton">
                             <a class="link" href="{{ url_for('profileEmployer') }}">Back</a>
                         </button>
                         <button class="submitButton greenButton" id="saveButton" type="submit">Save Changes</button>
-                        <button class="submitButton greenButton" id="deleteButton" type="submit">Delete Account</button>
+                      
+                        
 
                     </div>   
             </div>
         </form> 
+       
     </div>
+
+    
 </body>
 </html>

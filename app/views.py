@@ -265,14 +265,16 @@ def editEmployer():
 
             try:
                 db.session.commit()
-                return redirect(url_for('editEmployer'))
+                return redirect(url_for('profileEmployer'))
             except Exception as e:
                 # Handle any exceptions that may occur during the database commit
                 print(e)
         else:
             # If it's a GET request or after processing a POST request, render the template
             return render_template('editEmployer.html', employer=employer)
-
+    else:
+        # If 'student_key' is not in the session or the student doesn't exist, redirect to login
+        return redirect(url_for('login'))  # Assuming you have a 'login' route
 
 
 @app.route('/jobListings')
@@ -282,7 +284,8 @@ def jobListings():
     if "student" in session:
         student = session["student"]
         student = Students.query.filter_by(id=student).first()
-        jobListings = Jobs.query.order_by(Jobs.date_created.desc()).limit(20).all()
+        jobListings = db.session.query(Jobs).outerjoin(Applications, (Applications.job_id == Jobs.id) & (Applications.student_id == student.id)).filter(Applications.id.is_(None)).order_by(Jobs.date_created.desc()).limit(20).all()
+        
         return render_template('jobListings.html', jobs=jobListings, student=student, employers="employers")
     elif "employer" in session:
         if "student" in session:
