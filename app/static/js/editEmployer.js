@@ -7,8 +7,8 @@ const employerEmail = document.getElementById('employerEmail');
 const companyName = document.getElementById('companyName');
 const companyAddress = document.getElementById('companyAddress');
 const companyNumber = document.getElementById('companyNumber');
-const employerPassword = document.getElementById('employerPassword');
-const employerconfirmPassword = document.getElementById('employerconfirmPassword');
+const employerPassword = document.getElementById('newPassword');
+const employerconfirmPassword = document.getElementById('confirmPassword');
 const newemployerAvatar = document.getElementById('newemployerAvatar');
 
 form.addEventListener('submit', (e) => {
