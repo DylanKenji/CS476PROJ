@@ -1,0 +1,133 @@
+body{
+    background-image: url(../library/media/UR_Library.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.resource-body {
+    border: 4px solid #1c6928;;
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 80vw;
+    height: 100%;
+    padding: 1vw;
+}
+
+.postTitle{
+    width: 80vw;
+    height: 5vh;
+    border-bottom: 2px solid black;
+    font-size: 4vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.resource-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2vh;
+}
+
+.resource-block1 {
+    background-image: url(../library/media/Resources_Jobs.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-block2 {
+    background-image: url(../library/media/Resources_Resume.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-block3 {
+    background-image: url(../library/media/Resources_Github.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-block4 {
+    background-image: url(../library/media/Resources_Interview.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-block5 {
+    background-image: url(../library/media/Resources_Insights.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-block6 {
+    background-image: url(../library/media/Resources_Networking.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-block7 {
+    background-image: url(../library/media/Resources_Portfolio.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-block8 {
+    background-image: url(../library/media/Resources_Remote.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-block9 {
+    background-image: url(../library/media/Resources_Education.jpg);
+    box-shadow: inset 5px 5px 7px 1px rgba(0,0,0,0.59);
+    background-size: cover;
+    background-position: center;
+    width: calc(32%);
+    height: 40vh;
+    margin: 1vh;
+}
+
+.resource-title {
+    text-decoration: underline;
+    text-align: center;
+    color: white;
+    background-color: #1c6928;
+    font-size: 3vh;
+    font-weight: 700;
+    padding: 1vh;
+}

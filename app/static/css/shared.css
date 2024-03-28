@@ -88,6 +88,20 @@ textarea{
     border: 3px solid goldenrod;
 }
 
+.redButton{
+    width: 10vw;
+    height: 5vh;
+    border-radius: 50px;
+    background-color: red;
+    color: white;
+    font-weight: 700;
+}
+
+.redButton:hover{
+    color: black;
+    border: 3px solid black;
+}
+
 .roundForm{
     border-radius: 10px;
 }
@@ -110,6 +124,7 @@ textarea{
     flex-direction: row;
     justify-content: space-between;
     padding: 0 2vw 0 2vw;
+    align-items: center;
 }
 
 .logo{
@@ -171,6 +186,11 @@ textarea{
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 576px) {

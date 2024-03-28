@@ -45,11 +45,11 @@
                         </div>
                     </a>
                 </div>
+                <form method="POST" action="/delete_account" id="deleteForm">
+                    <button class="redButton" id="deleteButton" type="submit">DELETE ACCOUNT</button>
+                </form>
                 <div class="header-profilenav">
                 <!-- Form that deletes the users account -->
-                    <form method="POST" action="/delete_account" id="deleteForm">
-                        <button class=" greenButton" id="deleteButton" type="submit">Delete Account</button>
-                    </form>
                     <div class="dropdown">
                         <button class="dropbtn"><img class="header-profile-icon" src="{{ url_for('static', filename='library/media/avatars/' ~ student.avatar ) }}" width="30vw" ></button>
                         <div class="dropdown-content">
@@ -58,7 +58,8 @@
                                 <a href="{{ url_for('profileStudent') }}"><i class="fa-solid fa-user"></i> My Profile</a> 
                                 <a href="{{ url_for('editStudent') }}"><i class="fa-solid fa-user"></i> Edit Profile</a> 
                                 <a href="{{ url_for('jobListings') }}" onclick="checkJoblistings('{% if student.resume %}exists{% else %}not_exists{% endif %}', event)"><i class="fa-solid fa-list"></i> Job Listings</a> 
-                                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a> 
+                                <a href="{{ url_for('resources') }}"><i class="fa-solid fa-book"></i> Resources</a>
+                                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a> 
                             </div>
                         </div>
                     </div>
